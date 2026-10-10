@@ -1,2 +1,2 @@
-# christian-and-renz
+# cougar-horns
 CodeRED project
