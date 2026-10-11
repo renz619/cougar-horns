@@ -17,6 +17,6 @@ By using the hand-tracking interface in Meta Quest and applying it into a 3D eng
 
 ---
 
-# Version 0.075
-Currently only detects an open and closed fist. Later versions will detect more hand gestures and eventually develop interactive activities and scenes
-for the user to engage in.
+# Version 0.1
+Rule-based finger recognition and basic VR text feedback.
+Added thumb to basic right-hand skeleton
