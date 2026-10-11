@@ -85,6 +85,31 @@ namespace HandPoseRecognition.Tests
             });
         }
 
+        [Test]
+        public void NoSubsystem_ShowsAllSpreadsUnknown()
+        {
+            WithDisplay((adapter, display, label) =>
+            {
+                Assert.AreEqual(
+                    "Idx-Mid Unknown (n/a) | Mid-Rng Unknown (n/a) | Rng-Lit Unknown (n/a)",
+                    display.currentSpreads);
+                StringAssert.Contains("Idx-Mid Unknown (n/a)", label.text);
+            });
+        }
+
+        [Test]
+        public void DisablingAdapter_HidesSpreads()
+        {
+            WithDisplay((adapter, display, label) =>
+            {
+                adapter.enabled = false;
+                Invoke(display, "Update");
+
+                Assert.AreEqual(string.Empty, display.currentSpreads);
+                StringAssert.DoesNotContain("Idx-Mid", label.text);
+            });
+        }
+
         static void WithDisplay(System.Action<QuestHandAdapter, HandPoseDisplay, TMP_Text> check)
         {
             var owner = new GameObject("Display test");

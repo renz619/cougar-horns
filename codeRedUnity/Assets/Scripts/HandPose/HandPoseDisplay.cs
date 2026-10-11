@@ -6,9 +6,10 @@ namespace HandPoseRecognition
 {
     /// <summary>
     /// Connects the pipeline: reads the adapter's hand snapshot each frame,
-    /// runs the classifier, and shows OPEN, FIST or UNKNOWN on a TextMeshPro
-    /// label, with a tracking hint and a small debug line of all five finger
-    /// states. The text is only rewritten when what it shows changes.
+    /// runs the classifier, and shows the pose (OPEN, FIST, POINTING, V, U, Y,
+    /// L or UNKNOWN) on a TextMeshPro label, with a tracking hint and small
+    /// debug lines for the five finger states and the finger-pair spreads.
+    /// The text is only rewritten when what it shows changes.
     /// </summary>
     /// <remarks>
     /// This component owns the classifier thresholds, so they are tuned in its
@@ -33,6 +34,7 @@ namespace HandPoseRecognition
         bool m_HasDisplayedPose;
         string m_CurrentHint;
         string m_CurrentFingerStates;
+        string m_CurrentSpreads;
 
         /// <summary>The pose currently shown on the label.</summary>
         public HandPose currentPose => m_CurrentPose;
@@ -45,6 +47,12 @@ namespace HandPoseRecognition
         /// empty string when there is no usable adapter.
         /// </summary>
         public string currentFingerStates => m_CurrentFingerStates;
+
+        /// <summary>
+        /// The debug line of finger-pair spreads currently shown, or an empty
+        /// string when there is no usable adapter.
+        /// </summary>
+        public string currentSpreads => m_CurrentSpreads;
 
         /// <summary>
         /// Debug text listing all five finger states, with the thumb's raw
@@ -70,6 +78,40 @@ namespace HandPoseRecognition
         static FingerState FingerStateFor(in HandJointData hand, in FingerJoints finger, HandPoseClassifierSettings settings) =>
             hand.isTracked ? HandPoseClassifier.ClassifyFinger(finger, settings) : FingerState.Unknown;
 
+        /// <summary>
+        /// Debug text listing the spread of each adjacent finger pair with its
+        /// raw ratio, so the spread thresholds can be tuned on the headset, e.g.
+        /// "Idx-Mid Apart (0.42) | Mid-Rng Unknown (n/a) | Rng-Lit Unknown (n/a)".
+        /// The ratio reads "n/a" when the pair isn't evaluated: the hand isn't
+        /// tracked, either finger isn't Extended, or the data is invalid.
+        /// </summary>
+        public static string DescribeSpreads(in HandJointData hand, HandPoseClassifierSettings settings)
+        {
+            return $"Idx-Mid {DescribeSpread(hand, FingerPair.IndexMiddle, settings)}"
+                + $" | Mid-Rng {DescribeSpread(hand, FingerPair.MiddleRing, settings)}"
+                + $" | Rng-Lit {DescribeSpread(hand, FingerPair.RingLittle, settings)}";
+        }
+
+        static string DescribeSpread(in HandJointData hand, FingerPair pair, HandPoseClassifierSettings settings)
+        {
+            var ratio = HandPoseClassifier.FingerSpreadRatio(hand, pair, settings);
+            return $"{HandPoseClassifier.ClassifySpread(hand, pair, settings)} ({FormatRatio(ratio)})";
+        }
+
+        static string FormatRatio(float ratio)
+        {
+            if (float.IsNaN(ratio))
+                return "n/a";
+
+            // Spread can be negative. Round first so a tiny negative value such
+            // as -0.001 shows as "0.00" rather than "-0.00". -0f == 0f is true,
+            // so the assignment replaces negative zero with positive zero.
+            var rounded = Mathf.Round(ratio * 100f) / 100f;
+            if (rounded == 0f)
+                rounded = 0f;
+            return rounded.ToString("0.00", CultureInfo.InvariantCulture);
+        }
+
         /// <summary>The text shown for each pose.</summary>
         public static string LabelFor(HandPose pose)
         {
@@ -79,6 +121,16 @@ namespace HandPoseRecognition
                     return "OPEN";
                 case HandPose.Fist:
                     return "FIST";
+                case HandPose.Pointing:
+                    return "POINTING";
+                case HandPose.V:
+                    return "V";
+                case HandPose.U:
+                    return "U";
+                case HandPose.Y:
+                    return "Y";
+                case HandPose.L:
+                    return "L";
                 default:
                     return "UNKNOWN";
             }
@@ -121,20 +173,31 @@ namespace HandPoseRecognition
             var pose = ClassifyCurrentHand();
             var hint = TrackingHint(pose);
             var fingerStates = CurrentFingerStates();
+            var spreads = CurrentSpreads();
 
             // Comparing the formatted strings means the label is only rebuilt
             // when something visible changes, e.g. the ratio's second decimal.
             if (m_HasDisplayedPose && pose == m_CurrentPose && hint == m_CurrentHint
-                && fingerStates == m_CurrentFingerStates)
+                && fingerStates == m_CurrentFingerStates && spreads == m_CurrentSpreads)
                 return;
 
             m_CurrentPose = pose;
             m_CurrentHint = hint;
             m_CurrentFingerStates = fingerStates;
+            m_CurrentSpreads = spreads;
             m_Label.text = fingerStates.Length == 0
                 ? $"{LabelFor(pose)}\n<size=22%>{hint}</size>"
-                : $"{LabelFor(pose)}\n<size=22%>{hint}</size>\n<size=16%>{fingerStates}</size>";
+                : $"{LabelFor(pose)}\n<size=22%>{hint}</size>\n<size=16%>{fingerStates}</size>\n<size=16%>{spreads}</size>";
             m_HasDisplayedPose = true;
+        }
+
+        string CurrentSpreads()
+        {
+            // Shown under the same conditions as the finger-state line.
+            if (m_Adapter == null || !m_Adapter.isActiveAndEnabled || m_Settings == null)
+                return string.Empty;
+
+            return DescribeSpreads(m_Adapter.currentHand, m_Settings);
         }
 
         string CurrentFingerStates()
@@ -189,7 +252,9 @@ namespace HandPoseRecognition
             if (m_Adapter == null || !m_Adapter.isActiveAndEnabled || m_Settings == null)
                 return HandPose.Unknown;
 
-            return HandPoseClassifier.Classify(m_Adapter.currentHand, m_Settings);
+            // ClassifyPose checks the v0.2a poses first, then falls back to the
+            // unchanged Classify for Open, Fist or Unknown.
+            return HandPoseClassifier.ClassifyPose(m_Adapter.currentHand, m_Settings);
         }
     }
 }
