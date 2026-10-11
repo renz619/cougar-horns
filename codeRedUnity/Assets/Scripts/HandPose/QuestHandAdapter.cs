@@ -6,7 +6,7 @@ namespace HandPoseRecognition
 {
     /// <summary>
     /// Reads one hand from Unity's XR Hands subsystem and converts it into the
-    /// plain <see cref="HandJointData"/> snapshot the classifier consumes. This
+    /// owned <see cref="HandFrame"/> plus the compatible <see cref="HandJointData"/> the classifier consumes. This
     /// is the only script that touches the XR Hands API; everything downstream
     /// is plain C#.
     /// </summary>
@@ -15,7 +15,7 @@ namespace HandPoseRecognition
     /// Unity calls its methods (Update, OnDisable, ...) automatically; we never
     /// call them ourselves.
     /// </remarks>
-    public class QuestHandAdapter : MonoBehaviour
+    public class QuestHandAdapter : MonoBehaviour, IHandFrameSource
     {
         public enum TrackingState
         {
@@ -45,6 +45,57 @@ namespace HandPoseRecognition
         XRHandSubsystem m_Subsystem;
         HandJointData m_CurrentHand;
         bool m_HasReceivedUpdate;
+        readonly JointPose[] m_CaptureScratch = HandFrame.CreateUnavailableJoints();
+        HandFrame m_LatestFrame;
+        ulong m_SequenceId;
+
+        // Explicit provider mapping: project slot numbers are never cast to XR IDs.
+        static readonly XRHandJointID[] s_ProviderIds =
+        {
+            XRHandJointID.Wrist, XRHandJointID.Palm,
+            XRHandJointID.ThumbMetacarpal, XRHandJointID.ThumbProximal, XRHandJointID.ThumbDistal, XRHandJointID.ThumbTip,
+            XRHandJointID.IndexMetacarpal, XRHandJointID.IndexProximal, XRHandJointID.IndexIntermediate, XRHandJointID.IndexDistal, XRHandJointID.IndexTip,
+            XRHandJointID.MiddleMetacarpal, XRHandJointID.MiddleProximal, XRHandJointID.MiddleIntermediate, XRHandJointID.MiddleDistal, XRHandJointID.MiddleTip,
+            XRHandJointID.RingMetacarpal, XRHandJointID.RingProximal, XRHandJointID.RingIntermediate, XRHandJointID.RingDistal, XRHandJointID.RingTip,
+            XRHandJointID.LittleMetacarpal, XRHandJointID.LittleProximal, XRHandJointID.LittleIntermediate, XRHandJointID.LittleDistal, XRHandJointID.LittleTip
+        };
+
+        public HandSide HandSide => m_Handedness == Handedness.Left ? HandSide.Left
+            : m_Handedness == Handedness.Right ? HandSide.Right : HandSide.Unknown;
+
+        public bool TryGetLatestFrame(out HandFrame frame)
+        {
+            InvalidateStoppedSource();
+            frame = m_LatestFrame;
+            return frame != null;
+        }
+
+        void InvalidateStoppedSource()
+        {
+            if (m_LatestFrame != null && (m_LatestFrame.HandSide != HandSide
+                || (m_LatestFrame.IsTracked && (!isActiveAndEnabled || m_Subsystem == null || !m_Subsystem.running))))
+            {
+                m_CurrentHand = default;
+                PublishUntracked();
+            }
+        }
+
+        void PublishUntracked()
+        {
+            for (int i = 0; i < m_CaptureScratch.Length; i++)
+                m_CaptureScratch[i] = JointPose.Unavailable((HandJointId)i);
+            PublishFrame(false);
+        }
+
+        void PublishFrame(bool tracked)
+        {
+            // Unity's monotonic real-time clock, sampled at acquisition/status publication.
+            // Not wall time or a hardware sample timestamp. Sequence scope is this component lifetime.
+            m_LatestFrame = new HandFrame(Time.realtimeSinceStartupAsDouble, checked(++m_SequenceId), HandSide,
+                tracked, HandFrameSpace.TrackingSpace, m_CaptureScratch,
+                trackingSpaceToWorld: m_CurrentHand.trackingSpaceToWorld,
+                hasTrackingSpaceToWorld: m_CurrentHand.hasTrackingSpaceToWorld);
+        }
 
         /// <summary>Which hand this adapter reads.</summary>
         public Handedness handedness => m_Handedness;
@@ -54,7 +105,7 @@ namespace HandPoseRecognition
         /// whenever there is no running hand subsystem, the hand isn't tracked,
         /// or this component is disabled.
         /// </summary>
-        public HandJointData currentHand => m_CurrentHand;
+        public HandJointData currentHand { get { InvalidateStoppedSource(); return m_CurrentHand; } }
 
         /// <summary>Distinguishes missing tracking from an unrecognized pose.</summary>
         public TrackingState trackingState
@@ -85,6 +136,7 @@ namespace HandPoseRecognition
             // stale data so it can't be classified as a gesture, then look again.
             // The subsystem often doesn't exist yet on the first frames, which
             // is why we search in Update rather than once in Start.
+            InvalidateStoppedSource();
             Unsubscribe();
             m_CurrentHand = default;
 
@@ -105,6 +157,7 @@ namespace HandPoseRecognition
         {
             Unsubscribe();
             m_CurrentHand = default;
+            PublishUntracked();
         }
 
         void Subscribe(XRHandSubsystem subsystem)
@@ -138,22 +191,23 @@ namespace HandPoseRecognition
             if (updateType != XRHandSubsystem.UpdateType.Dynamic)
                 return;
 
+            if (!isActiveAndEnabled) return;
             m_HasReceivedUpdate = true;
-
-            switch (m_Handedness)
+            var required = m_Handedness == Handedness.Left
+                ? XRHandSubsystem.UpdateSuccessFlags.LeftHandRootPose | XRHandSubsystem.UpdateSuccessFlags.LeftHandJoints
+                : XRHandSubsystem.UpdateSuccessFlags.RightHandRootPose | XRHandSubsystem.UpdateSuccessFlags.RightHandJoints;
+            bool selected = HandSide != HandSide.Unknown;
+            var hand = m_Handedness == Handedness.Left ? subsystem.leftHand : subsystem.rightHand;
+            bool tracked = selected && (updateSuccessFlags & required) == required && hand.isTracked;
+            for (int i = 0; i < m_CaptureScratch.Length; i++)
             {
-                case Handedness.Left:
-                    m_CurrentHand = ReadHand(subsystem.leftHand);
-                    break;
-                case Handedness.Right:
-                    m_CurrentHand = ReadHand(subsystem.rightHand);
-                    break;
-                default:
-                    m_CurrentHand = default;
-                    break;
+                var joint = JointPose.Unavailable((HandJointId)i);
+                if (tracked && hand.GetJoint(s_ProviderIds[i]).TryGetPose(out var pose))
+                    joint = new JointPose((HandJointId)i, pose.position, pose.rotation, true, true).Sanitized(true);
+                m_CaptureScratch[i] = joint;
             }
-
-            m_CurrentHand = ApplyTrackingSpace(m_CurrentHand, m_TrackingSpace);
+            m_CurrentHand = ApplyTrackingSpace(HandFrameLegacyProjection.Project(m_CaptureScratch, tracked), m_TrackingSpace);
+            PublishFrame(tracked);
         }
 
         /// <summary>
@@ -182,86 +236,6 @@ namespace HandPoseRecognition
             hand.trackingSpaceToWorld = trackingSpace.rotation;
             hand.hasTrackingSpaceToWorld = true;
             return hand;
-        }
-
-        static HandJointData ReadHand(XRHand hand)
-        {
-            // XRHand.isTracked is recomputed on every subsystem update from
-            // whether both the root pose and the joints were updated.
-            if (!hand.isTracked)
-                return default;
-
-            return new HandJointData
-            {
-                isTracked = true,
-                thumb = ReadThumb(hand),
-                index = ReadFinger(hand,
-                    XRHandJointID.IndexMetacarpal, XRHandJointID.IndexProximal, XRHandJointID.IndexIntermediate,
-                    XRHandJointID.IndexDistal, XRHandJointID.IndexTip),
-                middle = ReadFinger(hand,
-                    XRHandJointID.MiddleMetacarpal, XRHandJointID.MiddleProximal, XRHandJointID.MiddleIntermediate,
-                    XRHandJointID.MiddleDistal, XRHandJointID.MiddleTip),
-                ring = ReadFinger(hand,
-                    XRHandJointID.RingMetacarpal, XRHandJointID.RingProximal, XRHandJointID.RingIntermediate,
-                    XRHandJointID.RingDistal, XRHandJointID.RingTip),
-                little = ReadFinger(hand,
-                    XRHandJointID.LittleMetacarpal, XRHandJointID.LittleProximal, XRHandJointID.LittleIntermediate,
-                    XRHandJointID.LittleDistal, XRHandJointID.LittleTip),
-            };
-        }
-
-        static FingerJoints ReadFinger(
-            XRHand hand,
-            XRHandJointID metacarpalId, XRHandJointID proximalId, XRHandJointID intermediateId,
-            XRHandJointID distalId, XRHandJointID tipId)
-        {
-            // TryGetPose returns false when the runtime didn't supply this
-            // joint's pose. Poses are relative to the XR Origin, not world space;
-            // that's fine because the classifier only measures angles between
-            // bones. The & operator (not &&) evaluates every call so all five
-            // positions are always filled in.
-            var valid = TryGetPosition(hand, metacarpalId, out var metacarpal)
-                & TryGetPosition(hand, proximalId, out var proximal)
-                & TryGetPosition(hand, intermediateId, out var intermediate)
-                & TryGetPosition(hand, distalId, out var distal)
-                & TryGetPosition(hand, tipId, out var tip);
-
-            return new FingerJoints
-            {
-                metacarpal = metacarpal,
-                proximal = proximal,
-                intermediate = intermediate,
-                distal = distal,
-                tip = tip,
-                isValid = valid,
-            };
-        }
-
-        static ThumbJoints ReadThumb(XRHand hand)
-        {
-            // Same pattern as ReadFinger. The thumb has only four joints: XR
-            // Hands defines no ThumbIntermediate, because the thumb has one bone
-            // fewer than the other fingers.
-            var valid = TryGetPosition(hand, XRHandJointID.ThumbMetacarpal, out var metacarpal)
-                & TryGetPosition(hand, XRHandJointID.ThumbProximal, out var proximal)
-                & TryGetPosition(hand, XRHandJointID.ThumbDistal, out var distal)
-                & TryGetPosition(hand, XRHandJointID.ThumbTip, out var tip);
-
-            return new ThumbJoints
-            {
-                metacarpal = metacarpal,
-                proximal = proximal,
-                distal = distal,
-                tip = tip,
-                isValid = valid,
-            };
-        }
-
-        static bool TryGetPosition(XRHand hand, XRHandJointID id, out Vector3 position)
-        {
-            var found = hand.GetJoint(id).TryGetPose(out var pose);
-            position = pose.position;
-            return found;
         }
     }
 }

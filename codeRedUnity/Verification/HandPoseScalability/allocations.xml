@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Passed" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-11 09:41:04Z" end-time="2026-10-11 09:41:04Z" duration="0.4443733">
+  <test-suite type="TestSuite" id="1000" name="codeRedUnity" fullname="codeRedUnity" runstate="Runnable" testcasecount="285" result="Passed" start-time="2026-10-11 09:41:04Z" end-time="2026-10-11 09:41:04Z" duration="0.444373" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1334" name="HandPose.Tests.EditMode.dll" fullname="C:/Users/creep/Desktop/Projects/codeRed 2026/.verification/HandPoseBaseline/Library/ScriptAssemblies/HandPose.Tests.EditMode.dll" runstate="Runnable" testcasecount="285" result="Passed" start-time="2026-10-11 09:41:04Z" end-time="2026-10-11 09:41:04Z" duration="0.387506" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="3820" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1335" name="HandPoseRecognition" fullname="HandPoseRecognition" runstate="Runnable" testcasecount="285" result="Passed" start-time="2026-10-11 09:41:04Z" end-time="2026-10-11 09:41:04Z" duration="0.386665" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1336" name="Tests" fullname="HandPoseRecognition.Tests" runstate="Runnable" testcasecount="285" result="Passed" start-time="2026-10-11 09:41:04Z" end-time="2026-10-11 09:41:04Z" duration="0.386134" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1025" name="HandFrameAllocationTests" fullname="HandPoseRecognition.Tests.HandFrameAllocationTests" classname="HandPoseRecognition.Tests.HandFrameAllocationTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-11 09:41:04Z" end-time="2026-10-11 09:41:04Z" duration="0.382183" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1026" name="PlayMode_WarmedSyntheticDynamicUpdates_ReportManagedAllocations" fullname="HandPoseRecognition.Tests.HandFrameAllocationTests.PlayMode_WarmedSyntheticDynamicUpdates_ReportManagedAllocations" methodname="PlayMode_WarmedSyntheticDynamicUpdates_ReportManagedAllocations" classname="HandPoseRecognition.Tests.HandFrameAllocationTests" runstate="Runnable" seed="1948201933" result="Passed" start-time="2026-10-11 09:41:01Z" end-time="2026-10-11 09:41:04Z" duration="3.406447" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[PLAY_MODE_ALLOCATION: Unity 6000.0.34f1; synthetic XR provider reports 2 hands, 1 selected-hand adapter; warmup=128, measured Dynamic updates=512; GC.Alloc events/update on current thread: XR only=0, XR+capture=2, capture increment=2, XR+capture+normalize=5, normalize increment=3; repeated reads allocations=0. No allocation-byte or headset/Quest player timing measurement.
+Saving results to: C:/Users/creep/AppData/LocalLow/DefaultCompany/codeRedUnity\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

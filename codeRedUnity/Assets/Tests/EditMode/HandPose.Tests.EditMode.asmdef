@@ -3,6 +3,9 @@
     "rootNamespace": "HandPoseRecognition.Tests",
     "references": [
         "HandPose.Runtime",
+        "HandPose.Editor",
+        "Unity.XR.Hands",
+        "Unity.Collections",
         "Unity.TextMeshPro",
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner"

@@ -291,11 +291,13 @@ MonoBehaviour:
   m_Settings:
     extendedMaxCurlDegrees: 70
     curledMinCurlDegrees: 160
-    thumbExtendedMinTipDistanceRatio: 0.75
+    thumbExtendedMinTipDistanceRatio: 0.72
     thumbCurledMaxTipDistanceRatio: 0.45
     spreadTogetherMaxRatio: 0.1
     spreadApartMinRatio: 0.25
     thumbUpMaxAngleDegrees: 35
+  m_Controller: {fileID: 0}
+  m_SelectedBackend: 0
 --- !u!114 &254329070
 MonoBehaviour:
   m_ObjectHideFlags: 0

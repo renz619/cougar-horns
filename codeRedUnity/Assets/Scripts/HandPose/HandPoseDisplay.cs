@@ -31,6 +31,26 @@ namespace HandPoseRecognition
         [SerializeField, Tooltip("Curl thresholds used to judge each finger.")]
         HandPoseClassifierSettings m_Settings = new HandPoseClassifierSettings();
 
+        [SerializeField, Tooltip("Optional opt-in template controller. The original scene needs no controller.")]
+        RecognitionController m_Controller;
+        [SerializeField] RecognitionBackend m_SelectedBackend = RecognitionBackend.LegacyRules;
+        public RecognitionResult templateResult => m_Controller != null && m_Controller.isActiveAndEnabled
+            ? m_Controller.Session.LatestObservation : default;
+        public string templatePoseId => selectedBackend == RecognitionBackend.Template && m_Controller != null
+            && m_Controller.isActiveAndEnabled ? m_Controller.Session.ConfirmedPoseId : null;
+        public RecognitionBackend selectedBackend => m_SelectedBackend;
+        public RecognitionController controller { get => m_Controller; set => m_Controller = value; }
+        public void SelectBackend(RecognitionBackend backend)
+        {
+            m_SelectedBackend = backend;
+            if (m_Controller != null) m_Controller.Backend = backend;
+            m_HasDisplayedPose = false;
+        }
+
+        public static string DescribeTemplate(RecognitionResult result, RecognitionControllerStatus status, string reason)
+            => $"{status}: {reason}\nObservation {result.Status}; error "
+                + (result.HasScore ? result.Error.ToString("0.0000", CultureInfo.InvariantCulture) : "n/a");
+
         HandPose m_CurrentPose;
         bool m_HasDisplayedPose;
         string m_CurrentHint;
@@ -201,6 +221,14 @@ namespace HandPoseRecognition
                 return;
             }
 
+            // Remember explicit Template selection even if the assigned controller disappears.
+            if (m_Controller != null) m_SelectedBackend = m_Controller.Backend;
+            if (m_SelectedBackend != RecognitionBackend.LegacyRules)
+            {
+                RefreshTemplate();
+                return;
+            }
+
             var pose = ClassifyCurrentHand();
             var hint = TrackingHint(pose);
             var fingerStates = CurrentFingerStates();
@@ -223,6 +251,25 @@ namespace HandPoseRecognition
                 ? $"{LabelFor(pose)}\n<size=22%>{hint}</size>"
                 : $"{LabelFor(pose)}\n<size=22%>{hint}</size>\n<size=16%>{fingerStates}</size>\n<size=16%>{spreads}</size>\n<size=16%>{orientation}</size>";
             m_HasDisplayedPose = true;
+        }
+
+        void RefreshTemplate()
+        {
+            bool available = m_Controller != null && m_Controller.isActiveAndEnabled;
+            m_CurrentPose = HandPose.Unknown;
+            m_CurrentFingerStates = CurrentFingerStates();
+            m_CurrentSpreads = CurrentSpreads();
+            m_CurrentOrientation = CurrentOrientation();
+            var id = templatePoseId;
+            var label = id == null ? "UNKNOWN" : $"{m_Controller.ConfirmedDisplayName} ({id})";
+            m_CurrentHint = available
+                ? DescribeTemplate(templateResult, m_Controller.Session.Status, m_Controller.Session.Reason)
+                    + (m_Controller.LastBuildSucceeded ? "" : "\n" + m_Controller.CatalogReport)
+                : "Unavailable: Template controller is missing or disabled.\nObservation Unavailable; error n/a";
+            var text = $"{label}\n<size=22%>{m_CurrentHint}</size>\n<size=16%>{m_CurrentFingerStates}</size>"
+                + $"\n<size=16%>{m_CurrentSpreads}</size>\n<size=16%>{m_CurrentOrientation}</size>";
+            if (m_Label.text != text) m_Label.text = text;
+            m_HasDisplayedPose = false; // Force a full legacy refresh when explicitly returning to LegacyRules.
         }
 
         string CurrentOrientation()

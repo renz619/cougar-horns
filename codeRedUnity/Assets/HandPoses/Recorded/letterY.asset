@@ -1,0 +1,878 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eab3d0e4a17ed76458983801c0f73f07, type: 3}
+  m_Name: letterY
+  m_EditorClassIdentifier: 
+  m_SchemaVersion: 1
+  m_PoseId: y.letter
+  m_DisplayName: letterY
+  m_HandSide: 2
+  m_JointLayoutVersion: 1
+  m_NormalizationVersion: 1
+  m_Samples:
+  - m_SchemaVersion: 1
+    m_HandSide: 2
+    m_Space: 2
+    m_JointLayoutVersion: 1
+    m_NormalizationVersion: 1
+    m_SourceTimestampSeconds: 11.404767606802125
+    m_SourceSequenceId: 434
+    m_Joints:
+    - JointId: 0
+      Position: {x: 0, y: 0, z: 0}
+      Rotation: {x: -0.14362876, y: -0.68199635, z: -0.7141813, w: -0.06478356}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 1
+      Position: {x: 0.33764216, y: 1.0044857, z: -0.06017552}
+      Rotation: {x: -0.14362876, y: -0.68199635, z: -0.7141813, w: -0.06478356}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 2
+      Position: {x: 0.58472526, y: 0.43111303, z: -0.3280047}
+      Rotation: {x: -0.6740875, y: -0.32412025, z: -0.6402343, w: 0.17507724}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 3
+      Position: {x: 0.9799711, y: 0.77437603, z: -0.39069107}
+      Rotation: {x: -0.586095, y: -0.41987422, z: -0.6642994, w: 0.19724263}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 4
+      Position: {x: 1.3159201, y: 1.206772, z: -0.41239363}
+      Rotation: {x: -0.68416613, y: -0.29729187, z: -0.6489325, w: 0.14973581}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 5
+      Position: {x: 1.6443117, y: 1.4316851, z: -0.4437931}
+      Rotation: {x: -0.68416613, y: -0.29729187, z: -0.6489325, w: 0.14973581}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 6
+      Position: {x: 0.4538813, y: 0.4924738, z: -0.18760559}
+      Rotation: {x: -0.14362876, y: -0.68199635, z: -0.7141813, w: -0.06478356}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 7
+      Position: {x: 0.8075941, y: 1.3845903, z: -0.1180156}
+      Rotation: {x: -0.13123205, y: -0.97423077, z: -0.163103, w: 0.083964124}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 8
+      Position: {x: 0.7333027, y: 1.5936034, z: -0.69165766}
+      Rotation: {x: -0.02456323, y: -0.8500215, z: 0.50875247, w: 0.1342798}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 9
+      Position: {x: 0.63348377, y: 1.255335, z: -0.8675427}
+      Rotation: {x: 0.029836854, y: -0.6118021, z: 0.77436405, w: 0.15864527}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 10
+      Position: {x: 0.5706092, y: 0.90594554, z: -0.79146045}
+      Rotation: {x: 0.029836854, y: -0.6118021, z: 0.77436405, w: 0.15864527}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 11
+      Position: {x: 0.19769497, y: 0.5324631, z: -0.12035104}
+      Rotation: {x: -0.14362876, y: -0.68199635, z: -0.7141813, w: -0.06478356}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 12
+      Position: {x: 0.4775894, y: 1.4765081, z: -4.1189496e-10}
+      Rotation: {x: -0.07193959, y: -0.9933309, z: -0.07647648, w: 0.04764232}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 13
+      Position: {x: 0.41936177, y: 1.5870413, z: -0.6848111}
+      Rotation: {x: -0.01324463, y: -0.8192714, z: 0.56796324, w: 0.07769638}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 14
+      Position: {x: 0.35576552, y: 1.1722009, z: -0.83794004}
+      Rotation: {x: 0.09084793, y: -0.5369836, z: 0.83177423, w: 0.10745642}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 15
+      Position: {x: 0.36032534, y: 0.7956828, z: -0.6880369}
+      Rotation: {x: 0.09084793, y: -0.5369836, z: 0.83177423, w: 0.10745642}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 16
+      Position: {x: -0.07560894, y: 0.61496246, z: -0.052377734}
+      Rotation: {x: -0.14362876, y: -0.68199635, z: -0.7141813, w: -0.06478356}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 17
+      Position: {x: 0.14205778, y: 1.4625067, z: -0.031039473}
+      Rotation: {x: -0.04291655, y: -0.98926365, z: -0.13962817, w: 0.0044220085}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 18
+      Position: {x: 0.144104, y: 1.6374427, z: -0.6387267}
+      Rotation: {x: 0.008030756, y: -0.8633143, z: 0.5045674, w: 0.0059754048}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 19
+      Position: {x: 0.14315014, y: 1.2619853, z: -0.8502014}
+      Rotation: {x: 0.0441201, y: -0.58855957, z: 0.80717546, w: -0.01090259}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 20
+      Position: {x: 0.17124932, y: 0.8792587, z: -0.75511456}
+      Rotation: {x: 0.0441201, y: -0.58855957, z: 0.80717546, w: -0.01090259}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 21
+      Position: {x: -0.20804097, y: 0.64492077, z: -0.092340015}
+      Rotation: {x: 0.101203136, y: -0.712107, z: -0.6856134, w: -0.112231}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 22
+      Position: {x: -0.19240586, y: 1.3845903, z: -0.11801561}
+      Rotation: {x: 0.049806047, y: -0.82252884, z: -0.56471825, w: -0.045375854}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 23
+      Position: {x: -0.18324307, y: 1.8496366, z: -0.29639438}
+      Rotation: {x: 0.10563307, y: -0.86152416, z: -0.49480134, w: -0.04230198}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 24
+      Position: {x: -0.19366609, y: 2.1333938, z: -0.46330905}
+      Rotation: {x: 0.08004645, y: -0.8639252, z: -0.48983058, w: -0.085391596}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 25
+      Position: {x: -0.16958189, y: 2.4493537, z: -0.62570655}
+      Rotation: {x: 0.08004645, y: -0.8639252, z: -0.48983058, w: -0.085391596}
+      HasPosition: 1
+      HasRotation: 1
+  - m_SchemaVersion: 1
+    m_HandSide: 2
+    m_Space: 2
+    m_JointLayoutVersion: 1
+    m_NormalizationVersion: 1
+    m_SourceTimestampSeconds: 11.515443206802956
+    m_SourceSequenceId: 442
+    m_Joints:
+    - JointId: 0
+      Position: {x: 0, y: 0, z: 0}
+      Rotation: {x: -0.14362904, y: -0.6819963, z: -0.71418124, w: -0.06478382}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 1
+      Position: {x: 0.33764368, y: 1.004486, z: -0.06017504}
+      Rotation: {x: -0.14362904, y: -0.6819963, z: -0.71418124, w: -0.06478382}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 2
+      Position: {x: 0.5847276, y: 0.4311097, z: -0.32800236}
+      Rotation: {x: -0.6738917, y: -0.32408583, z: -0.6404376, w: 0.17515124}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 3
+      Position: {x: 0.9799668, y: 0.77443534, z: -0.39038682}
+      Rotation: {x: -0.5856556, y: -0.42068267, z: -0.66390926, w: 0.19813637}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 4
+      Position: {x: 1.3147595, y: 1.2077198, z: -0.41227}
+      Rotation: {x: -0.68373466, y: -0.29883218, z: -0.6483604, w: 0.15111288}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 5
+      Position: {x: 1.6421571, y: 1.4340402, z: -0.44393307}
+      Rotation: {x: -0.68373466, y: -0.29883218, z: -0.6483604, w: 0.15111288}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 6
+      Position: {x: 0.4538828, y: 0.49247226, z: -0.18760458}
+      Rotation: {x: -0.14362904, y: -0.6819963, z: -0.71418124, w: -0.06478382}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 7
+      Position: {x: 0.8075955, y: 1.3845898, z: -0.1180156}
+      Rotation: {x: -0.13232431, y: -0.9742429, z: -0.1621814, w: 0.08389375}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 8
+      Position: {x: 0.73345613, y: 1.5926027, z: -0.6920412}
+      Rotation: {x: -0.025528692, y: -0.84984106, z: 0.508832, w: 0.13493878}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 9
+      Position: {x: 0.632826, y: 1.2544672, z: -0.8677226}
+      Rotation: {x: 0.028833343, y: -0.613351, z: 0.77295786, w: 0.15970382}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 10
+      Position: {x: 0.5687114, y: 0.9050134, z: -0.7929883}
+      Rotation: {x: 0.028833343, y: -0.613351, z: 0.77295786, w: 0.15970382}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 11
+      Position: {x: 0.19769639, y: 0.5324631, z: -0.12035061}
+      Rotation: {x: -0.14362904, y: -0.6819963, z: -0.71418124, w: -0.06478382}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 12
+      Position: {x: 0.47759038, y: 1.4765068, z: 0.000000013165831}
+      Rotation: {x: -0.07265405, y: -0.9934655, z: -0.073930524, w: 0.047769967}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 13
+      Position: {x: 0.4189969, y: 1.5835958, z: -0.685327}
+      Rotation: {x: -0.013685608, y: -0.81762755, z: 0.57023656, w: 0.07828266}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 14
+      Position: {x: 0.35483432, y: 1.1679661, z: -0.83606267}
+      Rotation: {x: 0.090395, y: -0.5355953, z: 0.83259845, w: 0.10837988}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 15
+      Position: {x: 0.35885274, y: 0.7919614, z: -0.6848593}
+      Rotation: {x: 0.090395, y: -0.5355953, z: 0.83259845, w: 0.10837988}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 16
+      Position: {x: -0.07560836, y: 0.61496246, z: -0.052377895}
+      Rotation: {x: -0.14362904, y: -0.6819963, z: -0.71418124, w: -0.06478382}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 17
+      Position: {x: 0.14205891, y: 1.4625065, z: -0.031039502}
+      Rotation: {x: -0.043827485, y: -0.9896803, z: -0.13635388, w: 0.0044350605}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 18
+      Position: {x: 0.14406615, y: 1.6334248, z: -0.6398693}
+      Rotation: {x: 0.0074339546, y: -0.861044, z: 0.50843215, w: 0.0066846814}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 19
+      Position: {x: 0.14236255, y: 1.2560828, z: -0.84796256}
+      Rotation: {x: 0.043882307, y: -0.58575976, z: 0.80923563, w: -0.009877537}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 20
+      Position: {x: 0.16985509, y: 0.87398595, z: -0.7502035}
+      Rotation: {x: 0.043882307, y: -0.58575976, z: 0.80923563, w: -0.009877537}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 21
+      Position: {x: -0.20804055, y: 0.6449216, z: -0.092340186}
+      Rotation: {x: 0.10120281, y: -0.71210706, z: -0.68561333, w: -0.11223127}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 22
+      Position: {x: -0.19240455, y: 1.3845898, z: -0.11801561}
+      Rotation: {x: 0.049006127, y: -0.82329595, z: -0.5636113, w: -0.046091538}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 23
+      Position: {x: -0.18211602, y: 1.8491592, z: -0.2975731}
+      Rotation: {x: 0.104774795, y: -0.86209905, z: -0.49393645, w: -0.042828795}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 24
+      Position: {x: -0.19188498, y: 2.1326246, z: -0.4650219}
+      Rotation: {x: 0.07922645, y: -0.8644532, z: -0.48893663, w: -0.08593496}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 25
+      Position: {x: -0.16707969, y: 2.4482334, z: -0.6279946}
+      Rotation: {x: 0.07922645, y: -0.8644532, z: -0.48893663, w: -0.08593496}
+      HasPosition: 1
+      HasRotation: 1
+  - m_SchemaVersion: 1
+    m_HandSide: 2
+    m_Space: 2
+    m_JointLayoutVersion: 1
+    m_NormalizationVersion: 1
+    m_SourceTimestampSeconds: 11.626743806802551
+    m_SourceSequenceId: 450
+    m_Joints:
+    - JointId: 0
+      Position: {x: 0, y: 0, z: 0}
+      Rotation: {x: -0.14362884, y: -0.6819963, z: -0.71418124, w: -0.06478417}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 1
+      Position: {x: 0.33757424, y: 1.0045639, z: -0.060219932}
+      Rotation: {x: -0.14362884, y: -0.6819963, z: -0.71418124, w: -0.06478417}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 2
+      Position: {x: 0.58442676, y: 0.43143708, z: -0.3284032}
+      Rotation: {x: -0.6754506, y: -0.32435447, z: -0.6386379, w: 0.17522076}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 3
+      Position: {x: 0.9793632, y: 0.7746653, z: -0.39318937}
+      Rotation: {x: -0.58742005, y: -0.42042542, z: -0.6625525, w: 0.19800098}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 4
+      Position: {x: 1.314684, y: 1.2074332, z: -0.4171038}
+      Rotation: {x: -0.68541205, y: -0.29830486, z: -0.64699227, w: 0.15041788}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 5
+      Position: {x: 1.6424582, y: 1.4329758, z: -0.45036814}
+      Rotation: {x: -0.68541205, y: -0.29830486, z: -0.64699227, w: 0.15041788}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 6
+      Position: {x: 0.45373243, y: 0.4926362, z: -0.18780488}
+      Rotation: {x: -0.14362884, y: -0.6819963, z: -0.71418124, w: -0.06478417}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 7
+      Position: {x: 0.8075958, y: 1.3845901, z: -0.11801553}
+      Rotation: {x: -0.1331223, y: -0.9742697, z: -0.16138332, w: 0.08385943}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 8
+      Position: {x: 0.73352313, y: 1.591728, z: -0.6923654}
+      Rotation: {x: -0.026409065, y: -0.850355, z: 0.507805, w: 0.13539949}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 9
+      Position: {x: 0.63219804, y: 1.2541792, z: -0.86877114}
+      Rotation: {x: 0.027880015, y: -0.6158743, z: 0.77081156, w: 0.16053367}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 10
+      Position: {x: 0.566852, y: 0.90448326, z: -0.7962722}
+      Rotation: {x: 0.027880015, y: -0.6158743, z: 0.77081156, w: 0.16053367}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 11
+      Position: {x: 0.19755778, y: 0.5326193, z: -0.12043954}
+      Rotation: {x: -0.14362884, y: -0.6819963, z: -0.71418124, w: -0.06478417}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 12
+      Position: {x: 0.47759062, y: 1.4765066, z: -0.0000000047132174}
+      Rotation: {x: -0.07281941, y: -0.9935244, z: -0.07293166, w: 0.04782863}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 13
+      Position: {x: 0.41882747, y: 1.5822362, z: -0.68552303}
+      Rotation: {x: -0.0137912, y: -0.8171799, z: 0.57085353, w: 0.078441605}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 14
+      Position: {x: 0.35451895, y: 1.1663932, z: -0.8356074}
+      Rotation: {x: 0.090367354, y: -0.53478324, z: 0.83309203, w: 0.10862}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 15
+      Position: {x: 0.35851654, y: 0.79068077, z: -0.68368}
+      Rotation: {x: 0.090367354, y: -0.53478324, z: 0.83309203, w: 0.10862}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 16
+      Position: {x: -0.07560833, y: 0.61496145, z: -0.052378245}
+      Rotation: {x: -0.14362884, y: -0.6819963, z: -0.71418124, w: -0.06478417}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 17
+      Position: {x: 0.14205924, y: 1.4625065, z: -0.031039672}
+      Rotation: {x: -0.043459773, y: -0.98978734, z: -0.13569017, w: 0.0045195334}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 18
+      Position: {x: 0.14386009, y: 1.632615, z: -0.6400967}
+      Rotation: {x: 0.0078070364, y: -0.8603812, z: 0.5095492, w: 0.006550629}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 19
+      Position: {x: 0.14243084, y: 1.2547336, z: -0.8472115}
+      Rotation: {x: 0.04419891, y: -0.58442295, z: 0.8101817, w: -0.010098803}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 20
+      Position: {x: 0.17025341, y: 0.8729808, z: -0.7482118}
+      Rotation: {x: 0.04419891, y: -0.58442295, z: 0.8101817, w: -0.010098803}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 21
+      Position: {x: -0.20804043, y: 0.6449207, z: -0.09234017}
+      Rotation: {x: 0.10120297, y: -0.7121071, z: -0.6856132, w: -0.11223158}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 22
+      Position: {x: -0.19240426, y: 1.3845901, z: -0.118015535}
+      Rotation: {x: 0.049545605, y: -0.823249, z: -0.5636672, w: -0.04566976}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 23
+      Position: {x: -0.18276897, y: 1.8491836, z: -0.29754952}
+      Rotation: {x: 0.1053433, y: -0.86210334, z: -0.49383825, w: -0.042477615}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 24
+      Position: {x: -0.19291548, y: 2.1325853, z: -0.46508142}
+      Rotation: {x: 0.07975693, y: -0.8649587, z: -0.48799792, w: -0.085692845}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 25
+      Position: {x: -0.16837174, y: 2.4478483, z: -0.6287587}
+      Rotation: {x: 0.07975693, y: -0.8649587, z: -0.48799792, w: -0.085692845}
+      HasPosition: 1
+      HasRotation: 1
+  - m_SchemaVersion: 1
+    m_HandSide: 2
+    m_Space: 2
+    m_JointLayoutVersion: 1
+    m_NormalizationVersion: 1
+    m_SourceTimestampSeconds: 11.737682706801934
+    m_SourceSequenceId: 458
+    m_Joints:
+    - JointId: 0
+      Position: {x: 0, y: 0, z: 0}
+      Rotation: {x: -0.14362893, y: -0.6819963, z: -0.7141812, w: -0.06478387}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 1
+      Position: {x: 0.3377855, y: 1.0043238, z: -0.060083665}
+      Rotation: {x: -0.14362893, y: -0.6819963, z: -0.7141812, w: -0.06478387}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 2
+      Position: {x: 0.5853433, y: 0.4304381, z: -0.32717678}
+      Rotation: {x: -0.6762926, y: -0.32450715, z: -0.63834214, w: 0.17275031}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 3
+      Position: {x: 0.9814535, y: 0.77206385, z: -0.39326763}
+      Rotation: {x: -0.5888153, y: -0.41948107, z: -0.662997, w: 0.19433792}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 4
+      Position: {x: 1.3199636, y: 1.2022886, z: -0.41811165}
+      Rotation: {x: -0.6863199, y: -0.29683796, z: -0.6475711, w: 0.14664192}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 5
+      Position: {x: 1.6494925, y: 1.4252228, z: -0.45162433}
+      Rotation: {x: -0.6863199, y: -0.29683796, z: -0.6475711, w: 0.14664192}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 6
+      Position: {x: 0.4541908, y: 0.4921378, z: -0.18719146}
+      Rotation: {x: -0.14362893, y: -0.6819963, z: -0.7141812, w: -0.06478387}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 7
+      Position: {x: 0.8075953, y: 1.3845899, z: -0.118015826}
+      Rotation: {x: -0.13263977, y: -0.9743292, z: -0.16137756, w: 0.08394426}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 8
+      Position: {x: 0.7333181, y: 1.5916966, z: -0.69235104}
+      Rotation: {x: -0.02628943, y: -0.85154194, z: 0.5059, w: 0.13509367}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 9
+      Position: {x: 0.63215905, y: 1.2549325, z: -0.8703438}
+      Rotation: {x: 0.02762249, y: -0.6193172, z: 0.76810825, w: 0.16029006}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 10
+      Position: {x: 0.56634504, y: 0.90469384, z: -0.80095196}
+      Rotation: {x: 0.02762249, y: -0.6193172, z: 0.76810825, w: 0.16029006}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 11
+      Position: {x: 0.19798058, y: 0.53214204, z: -0.12016717}
+      Rotation: {x: -0.14362893, y: -0.6819963, z: -0.7141812, w: -0.06478387}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 12
+      Position: {x: 0.47759047, y: 1.4765075, z: -6.054079e-11}
+      Rotation: {x: -0.07237744, y: -0.99357116, z: -0.07270333, w: 0.047875434}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 13
+      Position: {x: 0.41869128, y: 1.5819004, z: -0.68556416}
+      Rotation: {x: -0.01355251, y: -0.8180289, z: 0.5696783, w: 0.07817668}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 14
+      Position: {x: 0.35465312, y: 1.166465, z: -0.8368828}
+      Rotation: {x: 0.09050091, y: -0.53615683, z: 0.8322513, w: 0.10818103}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 15
+      Position: {x: 0.35875773, y: 0.7902545, z: -0.68619275}
+      Rotation: {x: 0.09050091, y: -0.53615683, z: 0.8322513, w: 0.10818103}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 16
+      Position: {x: -0.075608596, y: 0.6149626, z: -0.052377917}
+      Rotation: {x: -0.14362893, y: -0.6819963, z: -0.7141812, w: -0.06478387}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 17
+      Position: {x: 0.14205883, y: 1.4625056, z: -0.031039584}
+      Rotation: {x: -0.042111352, y: -0.989433, z: -0.1386647, w: 0.0045867017}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 18
+      Position: {x: 0.14370464, y: 1.6362717, z: -0.6390641}
+      Rotation: {x: 0.008812018, y: -0.86233824, z: 0.5062245, w: 0.0056448383}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 19
+      Position: {x: 0.14335364, y: 1.2600033, z: -0.8490991}
+      Rotation: {x: 0.044721164, y: -0.5871498, z: 0.8081608, w: -0.011455481}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 20
+      Position: {x: 0.1721236, y: 0.87765276, z: -0.7527169}
+      Rotation: {x: 0.044721164, y: -0.5871498, z: 0.8081608, w: -0.011455481}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 21
+      Position: {x: -0.20804049, y: 0.64492136, z: -0.0923402}
+      Rotation: {x: 0.10120295, y: -0.71210706, z: -0.68561333, w: -0.11223127}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 22
+      Position: {x: -0.19240464, y: 1.3845899, z: -0.118015826}
+      Rotation: {x: 0.050529167, y: -0.8215121, z: -0.56618726, w: -0.044683594}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 23
+      Position: {x: -0.18433502, y: 1.8502665, z: -0.29480135}
+      Rotation: {x: 0.10640451, y: -0.86257356, z: -0.49280363, w: -0.042303212}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 24
+      Position: {x: -0.19484016, y: 2.1332512, z: -0.46301565}
+      Rotation: {x: 0.08074387, y: -0.8667393, z: -0.4846397, w: -0.085836254}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 25
+      Position: {x: -0.17028126, y: 2.447263, z: -0.62907827}
+      Rotation: {x: 0.08074387, y: -0.8667393, z: -0.4846397, w: -0.085836254}
+      HasPosition: 1
+      HasRotation: 1
+  - m_SchemaVersion: 1
+    m_HandSide: 2
+    m_Space: 2
+    m_JointLayoutVersion: 1
+    m_NormalizationVersion: 1
+    m_SourceTimestampSeconds: 11.848938706802073
+    m_SourceSequenceId: 466
+    m_Joints:
+    - JointId: 0
+      Position: {x: 0, y: 0, z: 0}
+      Rotation: {x: -0.1436294, y: -0.68199617, z: -0.7141812, w: -0.06478433}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 1
+      Position: {x: 0.3378706, y: 1.0042281, z: -0.060028765}
+      Rotation: {x: -0.1436294, y: -0.68199617, z: -0.7141812, w: -0.06478433}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 2
+      Position: {x: 0.58570844, y: 0.43003902, z: -0.32668492}
+      Rotation: {x: -0.67464864, y: -0.32422668, z: -0.64027286, w: 0.17255996}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 3
+      Position: {x: 0.98220164, y: 0.77169997, z: -0.39024174}
+      Rotation: {x: -0.5872518, y: -0.41867366, z: -0.66520405, w: 0.19326495}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 4
+      Position: {x: 1.32166, y: 1.2013273, z: -0.41232836}
+      Rotation: {x: -0.6844888, y: -0.29683715, z: -0.64944506, w: 0.14691494}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 5
+      Position: {x: 1.6511456, y: 1.4246197, z: -0.44381422}
+      Rotation: {x: -0.6844888, y: -0.29683715, z: -0.64944506, w: 0.14691494}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 6
+      Position: {x: 0.45437366, y: 0.49193695, z: -0.18694527}
+      Rotation: {x: -0.1436294, y: -0.68199617, z: -0.7141812, w: -0.06478433}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 7
+      Position: {x: 0.807597, y: 1.3845893, z: -0.118015766}
+      Rotation: {x: -0.13181691, y: -0.97364444, z: -0.16637132, w: 0.08343483}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 8
+      Position: {x: 0.7346472, y: 1.5973734, z: -0.6904425}
+      Rotation: {x: -0.025819926, y: -0.8533, z: 0.50321615, w: 0.13411163}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 9
+      Position: {x: 0.6342031, y: 1.2616423, z: -0.8707785}
+      Rotation: {x: 0.028168237, y: -0.61997825, z: 0.7678063, w: 0.15908165}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 10
+      Position: {x: 0.5691709, y: 0.91113466, z: -0.80201346}
+      Rotation: {x: 0.028168237, y: -0.61997825, z: 0.7678063, w: 0.15908165}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 11
+      Position: {x: 0.19814904, y: 0.53195024, z: -0.120057985}
+      Rotation: {x: -0.1436294, y: -0.68199617, z: -0.7141812, w: -0.06478433}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 12
+      Position: {x: 0.47759205, y: 1.476506, z: 0.000000002778238}
+      Rotation: {x: -0.07177979, y: -0.9934823, z: -0.07454422, w: 0.047788374}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 13
+      Position: {x: 0.4189431, y: 1.5843889, z: -0.68519783}
+      Rotation: {x: -0.012784368, y: -0.8164777, z: 0.5719719, w: 0.07777446}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 14
+      Position: {x: 0.35567123, y: 1.1680096, z: -0.8342331}
+      Rotation: {x: 0.09129477, y: -0.5320656, z: 0.8348486, w: 0.1076999}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 15
+      Position: {x: 0.3610717, y: 0.79323894, z: -0.6800433}
+      Rotation: {x: 0.09129477, y: -0.5320656, z: 0.8348486, w: 0.1076999}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 16
+      Position: {x: -0.07560783, y: 0.6149623, z: -0.052378003}
+      Rotation: {x: -0.1436294, y: -0.68199617, z: -0.7141812, w: -0.06478433}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 17
+      Position: {x: 0.14206079, y: 1.462506, z: -0.031039633}
+      Rotation: {x: -0.041520014, y: -0.9892847, z: -0.1398948, w: 0.0046218764}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 18
+      Position: {x: 0.14362378, y: 1.6377833, z: -0.6386303}
+      Rotation: {x: 0.009446682, y: -0.8592422, z: 0.5114546, w: 0.005270916}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 19
+      Position: {x: 0.14388475, y: 1.2589936, z: -0.84408087}
+      Rotation: {x: 0.04533479, y: -0.5796093, z: 0.8135471, w: -0.011789378}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 20
+      Position: {x: 0.1733398, y: 0.8785415, z: -0.7406424}
+      Rotation: {x: 0.04533479, y: -0.5796093, z: 0.8135471, w: -0.011789378}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 21
+      Position: {x: -0.20803988, y: 0.644921, z: -0.092340015}
+      Rotation: {x: 0.101202436, y: -0.7121071, z: -0.6856132, w: -0.11223173}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 22
+      Position: {x: -0.192403, y: 1.3845894, z: -0.11801577}
+      Rotation: {x: 0.050741147, y: -0.81996197, z: -0.5684398, w: -0.044316}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 23
+      Position: {x: -0.1849362, y: 1.8512222, z: -0.29228747}
+      Rotation: {x: 0.106650166, y: -0.8629027, z: -0.4921509, w: -0.042570103}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 24
+      Position: {x: -0.19531411, y: 2.133968, z: -0.46091047}
+      Rotation: {x: 0.08095374, y: -0.8676994, z: -0.48280722, w: -0.08626366}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 25
+      Position: {x: -0.17041294, y: 2.4472885, z: -0.6282242}
+      Rotation: {x: 0.08095374, y: -0.8676994, z: -0.48280722, w: -0.08626366}
+      HasPosition: 1
+      HasRotation: 1
+  - m_SchemaVersion: 1
+    m_HandSide: 2
+    m_Space: 2
+    m_JointLayoutVersion: 1
+    m_NormalizationVersion: 1
+    m_SourceTimestampSeconds: 11.960364306802148
+    m_SourceSequenceId: 474
+    m_Joints:
+    - JointId: 0
+      Position: {x: 0, y: 0, z: 0}
+      Rotation: {x: -0.14362931, y: -0.6819962, z: -0.7141812, w: -0.06478421}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 1
+      Position: {x: 0.33762807, y: 1.0045043, z: -0.06018602}
+      Rotation: {x: -0.14362931, y: -0.6819962, z: -0.7141812, w: -0.06478421}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 2
+      Position: {x: 0.5846563, y: 0.4311868, z: -0.32809812}
+      Rotation: {x: -0.67391783, y: -0.3240889, z: -0.6403661, w: 0.17530665}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 3
+      Position: {x: 0.9798087, y: 0.7746059, z: -0.3905215}
+      Rotation: {x: -0.58642006, y: -0.41789573, z: -0.6657757, w: 0.19549261}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 4
+      Position: {x: 1.3181729, y: 1.2051833, z: -0.41082507}
+      Rotation: {x: -0.6834168, y: -0.29821992, z: -0.64898217, w: 0.15109101}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 5
+      Position: {x: 1.6458001, y: 1.43126, z: -0.44185263}
+      Rotation: {x: -0.6834168, y: -0.29821992, z: -0.64898217, w: 0.15109101}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 6
+      Position: {x: 0.45384753, y: 0.4925115, z: -0.18765229}
+      Rotation: {x: -0.14362931, y: -0.6819962, z: -0.7141812, w: -0.06478421}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 7
+      Position: {x: 0.80759674, y: 1.3845896, z: -0.11801574}
+      Rotation: {x: -0.13048515, y: -0.972293, z: -0.17554492, w: 0.08248588}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 8
+      Position: {x: 0.73712045, y: 1.6077794, z: -0.68677753}
+      Rotation: {x: -0.025209254, y: -0.8568572, z: 0.4976263, w: 0.1323948}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 9
+      Position: {x: 0.6378132, y: 1.2743154, z: -0.8718846}
+      Rotation: {x: 0.02876629, y: -0.6228272, z: 0.7658868, w: 0.15708655}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 10
+      Position: {x: 0.5736866, y: 0.9231349, z: -0.8057481}
+      Rotation: {x: 0.02876629, y: -0.6228272, z: 0.7658868, w: 0.15708655}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 11
+      Position: {x: 0.19766396, y: 0.53249985, z: -0.1203717}
+      Rotation: {x: -0.14362931, y: -0.6819962, z: -0.7141812, w: -0.06478421}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 12
+      Position: {x: 0.4775918, y: 1.476507, z: -0.000000005703982}
+      Rotation: {x: -0.07075646, y: -0.99327844, z: -0.07826338, w: 0.047605574}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 13
+      Position: {x: 0.41946927, y: 1.5894241, z: -0.6844311}
+      Rotation: {x: -0.011808553, y: -0.81636477, z: 0.57226, w: 0.07699056}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 14
+      Position: {x: 0.35727274, y: 1.1728183, z: -0.8332799}
+      Rotation: {x: 0.09230544, y: -0.5295191, z: 0.83649623, w: 0.10659897}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 15
+      Position: {x: 0.36418897, y: 0.79893565, z: -0.67700386}
+      Rotation: {x: 0.09230544, y: -0.5295191, z: 0.83649623, w: 0.10659897}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 16
+      Position: {x: -0.075608045, y: 0.6149609, z: -0.052378275}
+      Rotation: {x: -0.14362931, y: -0.6819962, z: -0.7141812, w: -0.06478421}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 17
+      Position: {x: 0.14206015, y: 1.4625065, z: -0.031039651}
+      Rotation: {x: -0.040702425, y: -0.9889872, z: -0.14221826, w: 0.0046461592}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 18
+      Position: {x: 0.14356996, y: 1.6406326, z: -0.6378011}
+      Rotation: {x: 0.010202896, y: -0.8569748, z: 0.51523596, w: 0.0046944753}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 19
+      Position: {x: 0.14463338, y: 1.2600518, z: -0.83991057}
+      Rotation: {x: 0.045975495, y: -0.5726985, z: 0.81838185, w: -0.0124027105}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 20
+      Position: {x: 0.1749152, y: 0.88146025, z: -0.7300847}
+      Rotation: {x: 0.045975495, y: -0.5726985, z: 0.81838185, w: -0.0124027105}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 21
+      Position: {x: -0.20804007, y: 0.64492136, z: -0.09233983}
+      Rotation: {x: 0.10120253, y: -0.7121071, z: -0.6856133, w: -0.11223163}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 22
+      Position: {x: -0.19240329, y: 1.3845896, z: -0.11801574}
+      Rotation: {x: 0.05079371, y: -0.81891644, z: -0.56995416, w: -0.044137996}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 23
+      Position: {x: -0.18523449, y: 1.8518595, z: -0.2905853}
+      Rotation: {x: 0.106717125, y: -0.8634295, z: -0.49118358, w: -0.04289093}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 24
+      Position: {x: -0.19536892, y: 2.1342514, z: -0.45981702}
+      Rotation: {x: 0.08097892, y: -0.8690443, z: -0.48028216, w: -0.08679535}
+      HasPosition: 1
+      HasRotation: 1
+    - JointId: 25
+      Position: {x: -0.16992739, y: 2.4466028, z: -0.628854}
+      Rotation: {x: 0.08097892, y: -0.8690443, z: -0.48028216, w: -0.08679535}
+      HasPosition: 1
+      HasRotation: 1
+  m_JointWeights:
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  m_MaxError: 0.1
+  m_MaxSamplesPerPose: 32
