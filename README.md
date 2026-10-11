@@ -14,3 +14,9 @@ By using the hand-tracking interface in Meta Quest and applying it into a 3D eng
 - Meta Quest 2 and Meta Quest Link
 - Developer settings in Meta
 - Enable hand-tracking in Quest 2 settings
+
+---
+
+# Version 0.075
+Currently only detects an open and closed fist. Later versions will detect more hand gestures and eventually develop interactive activities and scenes
+for the user to engage in.
