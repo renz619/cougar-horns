@@ -157,6 +157,7 @@ namespace HandPoseRecognition
             return new HandJointData
             {
                 isTracked = true,
+                thumb = ReadThumb(hand),
                 index = ReadFinger(hand,
                     XRHandJointID.IndexMetacarpal, XRHandJointID.IndexProximal, XRHandJointID.IndexIntermediate,
                     XRHandJointID.IndexDistal, XRHandJointID.IndexTip),
@@ -193,6 +194,26 @@ namespace HandPoseRecognition
                 metacarpal = metacarpal,
                 proximal = proximal,
                 intermediate = intermediate,
+                distal = distal,
+                tip = tip,
+                isValid = valid,
+            };
+        }
+
+        static ThumbJoints ReadThumb(XRHand hand)
+        {
+            // Same pattern as ReadFinger. The thumb has only four joints: XR
+            // Hands defines no ThumbIntermediate, because the thumb has one bone
+            // fewer than the other fingers.
+            var valid = TryGetPosition(hand, XRHandJointID.ThumbMetacarpal, out var metacarpal)
+                & TryGetPosition(hand, XRHandJointID.ThumbProximal, out var proximal)
+                & TryGetPosition(hand, XRHandJointID.ThumbDistal, out var distal)
+                & TryGetPosition(hand, XRHandJointID.ThumbTip, out var tip);
+
+            return new ThumbJoints
+            {
+                metacarpal = metacarpal,
+                proximal = proximal,
                 distal = distal,
                 tip = tip,
                 isValid = valid,

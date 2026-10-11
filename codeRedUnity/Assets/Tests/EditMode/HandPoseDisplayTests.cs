@@ -60,6 +60,31 @@ namespace HandPoseRecognition.Tests
             });
         }
 
+        [Test]
+        public void NoSubsystem_ShowsAllFingerStatesUnknown()
+        {
+            WithDisplay((adapter, display, label) =>
+            {
+                Assert.AreEqual(
+                    "Thumb Unknown (n/a) | Index Unknown | Middle Unknown | Ring Unknown | Little Unknown",
+                    display.currentFingerStates);
+                StringAssert.Contains("Thumb Unknown (n/a)", label.text);
+            });
+        }
+
+        [Test]
+        public void DisablingAdapter_HidesFingerStates()
+        {
+            WithDisplay((adapter, display, label) =>
+            {
+                adapter.enabled = false;
+                Invoke(display, "Update");
+
+                Assert.AreEqual(string.Empty, display.currentFingerStates);
+                StringAssert.DoesNotContain("Thumb", label.text);
+            });
+        }
+
         static void WithDisplay(System.Action<QuestHandAdapter, HandPoseDisplay, TMP_Text> check)
         {
             var owner = new GameObject("Display test");

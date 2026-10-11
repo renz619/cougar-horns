@@ -1,3 +1,4 @@
+using System.Globalization;
 using TMPro;
 using UnityEngine;
 
@@ -6,7 +7,8 @@ namespace HandPoseRecognition
     /// <summary>
     /// Connects the pipeline: reads the adapter's hand snapshot each frame,
     /// runs the classifier, and shows OPEN, FIST or UNKNOWN on a TextMeshPro
-    /// label. The text is only rewritten when the result changes.
+    /// label, with a tracking hint and a small debug line of all five finger
+    /// states. The text is only rewritten when what it shows changes.
     /// </summary>
     /// <remarks>
     /// This component owns the classifier thresholds, so they are tuned in its
@@ -30,12 +32,43 @@ namespace HandPoseRecognition
         HandPose m_CurrentPose;
         bool m_HasDisplayedPose;
         string m_CurrentHint;
+        string m_CurrentFingerStates;
 
         /// <summary>The pose currently shown on the label.</summary>
         public HandPose currentPose => m_CurrentPose;
 
         /// <summary>The tracking explanation currently shown below the pose.</summary>
         public string currentHint => m_CurrentHint;
+
+        /// <summary>
+        /// The debug line of all five finger states currently shown, or an
+        /// empty string when there is no usable adapter.
+        /// </summary>
+        public string currentFingerStates => m_CurrentFingerStates;
+
+        /// <summary>
+        /// Debug text listing all five finger states, with the thumb's raw
+        /// tip-distance ratio so thresholds can be tuned on the headset, e.g.
+        /// "Thumb Extended (0.72) | Index Curled | Middle Curled | Ring Curled | Little Curled".
+        /// The ratio reads "n/a" when the hand isn't tracked or the thumb data is invalid.
+        /// </summary>
+        public static string DescribeFingerStates(in HandJointData hand, HandPoseClassifierSettings settings)
+        {
+            var ratio = hand.isTracked ? HandPoseClassifier.ThumbTipDistanceRatio(hand.thumb, hand.index) : float.NaN;
+
+            // InvariantCulture always prints a decimal point; some Windows locales
+            // would otherwise print 0,72.
+            var ratioText = float.IsNaN(ratio) ? "n/a" : ratio.ToString("0.00", CultureInfo.InvariantCulture);
+
+            return $"Thumb {HandPoseClassifier.ClassifyThumb(hand, settings)} ({ratioText})"
+                + $" | Index {FingerStateFor(hand, hand.index, settings)}"
+                + $" | Middle {FingerStateFor(hand, hand.middle, settings)}"
+                + $" | Ring {FingerStateFor(hand, hand.ring, settings)}"
+                + $" | Little {FingerStateFor(hand, hand.little, settings)}";
+        }
+
+        static FingerState FingerStateFor(in HandJointData hand, in FingerJoints finger, HandPoseClassifierSettings settings) =>
+            hand.isTracked ? HandPoseClassifier.ClassifyFinger(finger, settings) : FingerState.Unknown;
 
         /// <summary>The text shown for each pose.</summary>
         public static string LabelFor(HandPose pose)
@@ -87,13 +120,31 @@ namespace HandPoseRecognition
 
             var pose = ClassifyCurrentHand();
             var hint = TrackingHint(pose);
-            if (m_HasDisplayedPose && pose == m_CurrentPose && hint == m_CurrentHint)
+            var fingerStates = CurrentFingerStates();
+
+            // Comparing the formatted strings means the label is only rebuilt
+            // when something visible changes, e.g. the ratio's second decimal.
+            if (m_HasDisplayedPose && pose == m_CurrentPose && hint == m_CurrentHint
+                && fingerStates == m_CurrentFingerStates)
                 return;
 
             m_CurrentPose = pose;
             m_CurrentHint = hint;
-            m_Label.text = $"{LabelFor(pose)}\n<size=22%>{hint}</size>";
+            m_CurrentFingerStates = fingerStates;
+            m_Label.text = fingerStates.Length == 0
+                ? $"{LabelFor(pose)}\n<size=22%>{hint}</size>"
+                : $"{LabelFor(pose)}\n<size=22%>{hint}</size>\n<size=16%>{fingerStates}</size>";
             m_HasDisplayedPose = true;
+        }
+
+        string CurrentFingerStates()
+        {
+            // Only shown with an enabled adapter; the hint already explains the
+            // missing or disabled cases.
+            if (m_Adapter == null || !m_Adapter.isActiveAndEnabled || m_Settings == null)
+                return string.Empty;
+
+            return DescribeFingerStates(m_Adapter.currentHand, m_Settings);
         }
 
         string TrackingHint(HandPose pose)
