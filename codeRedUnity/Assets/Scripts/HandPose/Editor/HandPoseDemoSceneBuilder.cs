@@ -56,7 +56,7 @@ namespace HandPoseRecognition.Editor
             CreateLight();
             var camera = CreateXROrigin();
             var label = CreateLabel(camera);
-            CreateRecognition(label);
+            CreateRecognition(label, camera.transform.parent);
 
             if (!EditorSceneManager.SaveScene(scene, k_ScenePath))
             {
@@ -155,7 +155,7 @@ namespace HandPoseRecognition.Editor
             return label;
         }
 
-        static void CreateRecognition(TMP_Text label)
+        static void CreateRecognition(TMP_Text label, Transform trackingSpace)
         {
             var recognitionObject = new GameObject("Hand Pose Recognition");
             var adapter = recognitionObject.AddComponent<QuestHandAdapter>();
@@ -167,6 +167,14 @@ namespace HandPoseRecognition.Editor
             serializedDisplay.FindProperty("m_Adapter").objectReferenceValue = adapter;
             serializedDisplay.FindProperty("m_Label").objectReferenceValue = label;
             serializedDisplay.ApplyModifiedPropertiesWithoutUndo();
+
+            var visualizer = recognitionObject.AddComponent<HandJointVisualizer>();
+            var serializedVisualizer = new SerializedObject(visualizer);
+            serializedVisualizer.FindProperty("m_Adapter").objectReferenceValue = adapter;
+            serializedVisualizer.FindProperty("m_TrackingSpace").objectReferenceValue = trackingSpace;
+            serializedVisualizer.FindProperty("m_Material").objectReferenceValue =
+                AssetDatabase.LoadAssetAtPath<Material>("Assets/Materials/HandPoseJoints.mat");
+            serializedVisualizer.ApplyModifiedPropertiesWithoutUndo();
         }
 
         static void SetAsStartupScene()

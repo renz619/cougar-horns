@@ -29,9 +29,13 @@ namespace HandPoseRecognition
 
         HandPose m_CurrentPose;
         bool m_HasDisplayedPose;
+        string m_CurrentHint;
 
         /// <summary>The pose currently shown on the label.</summary>
         public HandPose currentPose => m_CurrentPose;
+
+        /// <summary>The tracking explanation currently shown below the pose.</summary>
+        public string currentHint => m_CurrentHint;
 
         /// <summary>The text shown for each pose.</summary>
         public static string LabelFor(HandPose pose)
@@ -82,12 +86,49 @@ namespace HandPoseRecognition
             }
 
             var pose = ClassifyCurrentHand();
-            if (m_HasDisplayedPose && pose == m_CurrentPose)
+            var hint = TrackingHint(pose);
+            if (m_HasDisplayedPose && pose == m_CurrentPose && hint == m_CurrentHint)
                 return;
 
             m_CurrentPose = pose;
-            m_Label.text = LabelFor(pose);
+            m_CurrentHint = hint;
+            m_Label.text = $"{LabelFor(pose)}\n<size=22%>{hint}</size>";
             m_HasDisplayedPose = true;
+        }
+
+        string TrackingHint(HandPose pose)
+        {
+            if (m_Adapter == null)
+                return "Hand reader is not connected.";
+
+            var side = m_Adapter.handedness == UnityEngine.XR.Hands.Handedness.Left ? "Left" : "Right";
+            switch (m_Adapter.trackingState)
+            {
+                case QuestHandAdapter.TrackingState.Disabled:
+                    return "Hand reader is disabled.";
+                case QuestHandAdapter.TrackingState.WaitingForSubsystem:
+                    return "Waiting for Quest hand tracking.\nConnect Quest Link and enable hand tracking.";
+                case QuestHandAdapter.TrackingState.WaitingForUpdate:
+                    return "Waiting for hand data.\nWear the headset and resume Quest Link.";
+                case QuestHandAdapter.TrackingState.NotTracked:
+                    return $"{side} hand is not tracked.\nEnable hand tracking, put controllers down, and show your hand.";
+                case QuestHandAdapter.TrackingState.IncompleteJoints:
+                    return $"{side} finger positions are incomplete.\nKeep your hand visible to the headset cameras.";
+            }
+
+            if (m_Settings == null || !(m_Settings.extendedMaxCurlDegrees < m_Settings.curledMinCurlDegrees))
+                return "Recognition settings need attention.";
+
+            var hand = m_Adapter.currentHand;
+            if (float.IsNaN(HandPoseClassifier.FingerCurlDegrees(hand.index))
+                || float.IsNaN(HandPoseClassifier.FingerCurlDegrees(hand.middle))
+                || float.IsNaN(HandPoseClassifier.FingerCurlDegrees(hand.ring))
+                || float.IsNaN(HandPoseClassifier.FingerCurlDegrees(hand.little)))
+                return $"{side} finger positions are unusable.\nKeep your hand visible to the headset cameras.";
+
+            return pose == HandPose.Unknown
+                ? $"{side} hand is tracked; pose is unclear.\nOpen all four fingers or make a fist."
+                : $"{side} hand is tracked.";
         }
 
         HandPose ClassifyCurrentHand()

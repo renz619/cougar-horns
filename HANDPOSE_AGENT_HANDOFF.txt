@@ -1,6 +1,35 @@
 HAND POSE PROJECT: CODE AGENT HANDOFF
 Review date: October 10, 2026
 
+FOLLOW-UP: HANDPOSEDEMO UNKNOWN / QUEST LINK
+
+The original review below describes the project before HandPoseDemo was added.
+It is historical: the saved demo now contains QuestHandAdapter and
+HandPoseDisplay, has a tracked XR camera, and is the enabled build scene.
+
+The follow-up fixes add:
+- Separate tracking explanations below UNKNOWN, so unavailable hand tracking
+  can be distinguished from a tracked hand that does not match a pose.
+- Four cyan finger outlines drawn from the same measured joint positions used
+  by recognition. They hide when tracking is lost or positions are unusable.
+- The corresponding scene-builder references and a compatible URP material.
+- Regression coverage: Unity EditMode ran 20 tests, all passed, 0 failed.
+  Results: ../handpose-fixed-test-results.xml.
+- Exact setup instructions in codeRedUnity/HAND_TRACKING_SETUP.md.
+
+Live observations: Unity recognizes Oculus Quest2, the XR hand subsystem runs,
+and Dynamic updates reach the reader. The selected right hand was reported
+untracked during the first hardware check. This is not evidence of a
+classifier threshold problem. Meta Horizon Link's Settings > Developer >
+Developer Runtime Features was OFF; it has now been enabled. A fresh Unity
+session and a repeated headset check are needed to establish whether this
+resolves live tracking. Do not report hardware success from synthetic tests.
+
+Meta's current Link development setup:
+https://developers.meta.com/vr/documentation/unity/unity-link/
+
+ORIGINAL REVIEW (BEFORE HANDPOSEDEMO)
+
 PROJECT AND OBJECTIVE
 
 Workspace: C:\Users\creep\Desktop\Projects\codeRed 2026

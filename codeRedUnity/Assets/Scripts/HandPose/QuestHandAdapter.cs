@@ -17,6 +17,16 @@ namespace HandPoseRecognition
     /// </remarks>
     public class QuestHandAdapter : MonoBehaviour
     {
+        public enum TrackingState
+        {
+            Disabled,
+            WaitingForSubsystem,
+            WaitingForUpdate,
+            NotTracked,
+            IncompleteJoints,
+            Tracked,
+        }
+
         // [SerializeField] shows a private field in the Inspector and saves it
         // with the scene, without making it public to other scripts.
         [SerializeField, Tooltip("Which hand to read. v0.1 classifies one hand.")]
@@ -27,6 +37,7 @@ namespace HandPoseRecognition
 
         XRHandSubsystem m_Subsystem;
         HandJointData m_CurrentHand;
+        bool m_HasReceivedUpdate;
 
         /// <summary>Which hand this adapter reads.</summary>
         public Handedness handedness => m_Handedness;
@@ -37,6 +48,26 @@ namespace HandPoseRecognition
         /// or this component is disabled.
         /// </summary>
         public HandJointData currentHand => m_CurrentHand;
+
+        /// <summary>Distinguishes missing tracking from an unrecognized pose.</summary>
+        public TrackingState trackingState
+        {
+            get
+            {
+                if (!isActiveAndEnabled)
+                    return TrackingState.Disabled;
+                if (m_Subsystem == null || !m_Subsystem.running)
+                    return TrackingState.WaitingForSubsystem;
+                if (!m_HasReceivedUpdate)
+                    return TrackingState.WaitingForUpdate;
+                if (!m_CurrentHand.isTracked)
+                    return TrackingState.NotTracked;
+                if (!m_CurrentHand.index.isValid || !m_CurrentHand.middle.isValid
+                    || !m_CurrentHand.ring.isValid || !m_CurrentHand.little.isValid)
+                    return TrackingState.IncompleteJoints;
+                return TrackingState.Tracked;
+            }
+        }
 
         void Update()
         {
@@ -72,6 +103,7 @@ namespace HandPoseRecognition
         void Subscribe(XRHandSubsystem subsystem)
         {
             m_Subsystem = subsystem;
+            m_HasReceivedUpdate = false;
             // += adds our method to the subsystem's callback list; it then runs
             // every time the subsystem refreshes hand data.
             m_Subsystem.updatedHands += OnUpdatedHands;
@@ -79,6 +111,7 @@ namespace HandPoseRecognition
 
         void Unsubscribe()
         {
+            m_HasReceivedUpdate = false;
             if (m_Subsystem == null)
                 return;
 
@@ -97,6 +130,8 @@ namespace HandPoseRecognition
             // is the one meant for game logic; BeforeRender is for visuals.
             if (updateType != XRHandSubsystem.UpdateType.Dynamic)
                 return;
+
+            m_HasReceivedUpdate = true;
 
             switch (m_Handedness)
             {
