@@ -151,6 +151,33 @@ namespace HandPoseRecognition.Tests
         public static float SplayForRatio(float ratio) =>
             Mathf.Asin(ratio * k_PalmWidth / (2f * k_ReachFromKnuckle)) * Mathf.Rad2Deg;
 
+        /// <summary>
+        /// A copy of <paramref name="hand"/> with an available tracking-space
+        /// to world rotation, as the adapter would supply from Camera Offset.
+        /// </summary>
+        public static HandJointData WithTrackingSpace(HandJointData hand, Quaternion trackingSpaceToWorld)
+        {
+            hand.trackingSpaceToWorld = trackingSpaceToWorld;
+            hand.hasTrackingSpaceToWorld = true;
+            return hand;
+        }
+
+        /// <summary>
+        /// A tracking-space rotation that turns <paramref name="hand"/>'s thumb
+        /// direction (proximal to tip) to world up, then tilts it
+        /// <paramref name="angleFromUpDeg"/> away from up about a horizontal axis
+        /// chosen by <paramref name="azimuthDeg"/>. The resulting angle from world
+        /// up equals <paramref name="angleFromUpDeg"/> (0 = up, 90 = sideways,
+        /// 180 = down).
+        /// </summary>
+        public static Quaternion ThumbUpRotation(HandJointData hand, float angleFromUpDeg, float azimuthDeg = 0f)
+        {
+            var direction = hand.thumb.tip - hand.thumb.proximal;
+            var toUp = Quaternion.FromToRotation(direction, Vector3.up);
+            var tiltAxis = Quaternion.AngleAxis(azimuthDeg, Vector3.up) * Vector3.right;
+            return Quaternion.AngleAxis(angleFromUpDeg, tiltAxis) * toUp;
+        }
+
         /// <summary>A copy of <paramref name="hand"/> with the given thumb.</summary>
         public static HandJointData WithThumb(HandJointData hand, ThumbJoints thumb)
         {
