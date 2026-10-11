@@ -4,8 +4,9 @@ using UnityEngine;
 namespace HandPoseRecognition
 {
     /// <summary>
-    /// Rule-based Open / Fist classifier. Pure C#: no MonoBehaviour, no scene,
-    /// no XR runtime, so it runs in EditMode tests on any machine.
+    /// Rule-based Open / Fist classifier, plus per-finger and thumb states.
+    /// Pure C#: no MonoBehaviour, no scene, no XR runtime, so it runs in
+    /// EditMode tests on any machine.
     /// </summary>
     /// <remarks>
     /// A static class can't be instantiated or attached to a GameObject; it is
@@ -18,13 +19,6 @@ namespace HandPoseRecognition
         // Real finger bones are 2-7 cm long; coincident joints usually mean
         // the runtime gave us zeroed or placeholder positions.
         const float k_MinSegmentLength = 1e-4f;
-
-        enum FingerState
-        {
-            Ambiguous,
-            Extended,
-            Curled,
-        }
 
         /// <summary>
         /// Classifies one hand from its four non-thumb fingers.
@@ -99,17 +93,110 @@ namespace HandPoseRecognition
                 + Vector3.Angle(intermediateBone, distalBone);
         }
 
+        /// <summary>
+        /// Judges one non-thumb finger on its own, with the same thresholds and
+        /// rules Classify uses. Intended for debug readouts; Classify does not
+        /// call this.
+        /// </summary>
+        /// <returns>
+        /// Extended or Curled, or Unknown if the finger is invalid, its curl
+        /// falls between the thresholds, or the thresholds are reversed.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">settings is null.</exception>
+        public static FingerState ClassifyFinger(in FingerJoints finger, HandPoseClassifierSettings settings)
+        {
+            if (settings == null)
+                throw new ArgumentNullException(nameof(settings));
+
+            if (!(settings.extendedMaxCurlDegrees < settings.curledMinCurlDegrees))
+                return FingerState.Unknown;
+
+            return JudgeFinger(finger, settings);
+        }
+
+        /// <summary>
+        /// Judges the thumb from <see cref="ThumbTipDistanceRatio"/>. Open and
+        /// Fist ignore the thumb, so this never affects Classify.
+        /// </summary>
+        /// <returns>
+        /// Extended or Curled, or Unknown if the hand isn't tracked, the thumb or
+        /// index data is invalid, the ratio falls between the thresholds, or the
+        /// thumb thresholds are reversed.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">settings is null.</exception>
+        public static FingerState ClassifyThumb(in HandJointData hand, HandPoseClassifierSettings settings)
+        {
+            if (settings == null)
+                throw new ArgumentNullException(nameof(settings));
+
+            if (!hand.isTracked)
+                return FingerState.Unknown;
+
+            // Same reasoning as the finger thresholds: overlapping or NaN values
+            // would make one ratio both extended and curled, so refuse to judge.
+            if (!(settings.thumbCurledMaxTipDistanceRatio < settings.thumbExtendedMinTipDistanceRatio))
+                return FingerState.Unknown;
+
+            var ratio = ThumbTipDistanceRatio(hand.thumb, hand.index);
+
+            // A NaN ratio fails both comparisons and falls through to Unknown.
+            if (ratio >= settings.thumbExtendedMinTipDistanceRatio)
+                return FingerState.Extended;
+            if (ratio <= settings.thumbCurledMaxTipDistanceRatio)
+                return FingerState.Curled;
+            return FingerState.Unknown;
+        }
+
+        /// <summary>
+        /// Distance from the thumb tip to the index knuckle (index proximal
+        /// joint), divided by the thumb's length. A thumb sticking out reads
+        /// high; a thumb tucked against or across the palm reads low.
+        /// </summary>
+        /// <remarks>
+        /// Tucking the thumb mostly happens at its base, which bend angles at
+        /// the thumb's two upper joints barely register, so a distance is used
+        /// instead. Thumb length is the sum of its three bones (metacarpal,
+        /// proximal, distal); there is no intermediate bone. Distances don't
+        /// change when the hand moves or rotates, and dividing by thumb length
+        /// removes the effect of hand size.
+        /// </remarks>
+        /// <returns>
+        /// The ratio, or <see cref="float.NaN"/> if the thumb or index finger is
+        /// marked invalid, any thumb bone is degenerate, or a position is NaN or infinite.
+        /// </returns>
+        public static float ThumbTipDistanceRatio(in ThumbJoints thumb, in FingerJoints index)
+        {
+            if (!thumb.isValid || !index.isValid)
+                return float.NaN;
+
+            var metacarpalBone = thumb.proximal - thumb.metacarpal;
+            var proximalBone = thumb.distal - thumb.proximal;
+            var distalBone = thumb.tip - thumb.distal;
+
+            if (!IsUsableSegment(metacarpalBone) || !IsUsableSegment(proximalBone) || !IsUsableSegment(distalBone))
+                return float.NaN;
+
+            // The tip may legitimately touch the knuckle (distance 0), so only
+            // require a finite distance here, not a minimum length.
+            var tipDistance = (thumb.tip - index.proximal).magnitude;
+            if (float.IsNaN(tipDistance) || float.IsInfinity(tipDistance))
+                return float.NaN;
+
+            var thumbLength = metacarpalBone.magnitude + proximalBone.magnitude + distalBone.magnitude;
+            return tipDistance / thumbLength;
+        }
+
         static FingerState JudgeFinger(in FingerJoints finger, HandPoseClassifierSettings settings)
         {
             var curl = FingerCurlDegrees(finger);
 
             // Comparisons with NaN are always false, so invalid fingers fall
-            // through to Ambiguous.
+            // through to Unknown.
             if (curl <= settings.extendedMaxCurlDegrees)
                 return FingerState.Extended;
             if (curl >= settings.curledMinCurlDegrees)
                 return FingerState.Curled;
-            return FingerState.Ambiguous;
+            return FingerState.Unknown;
         }
 
         static void Tally(FingerState state, ref int extended, ref int curled)

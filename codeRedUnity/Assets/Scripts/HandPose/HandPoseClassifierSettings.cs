@@ -26,5 +26,18 @@ namespace HandPoseRecognition
         [Tooltip("A finger whose total curl is at or above this many degrees counts as curled. Must be greater than the extended threshold.")]
         [Range(0f, 360f)]
         public float curledMinCurlDegrees = 160f;
+
+        // The thumb uses a different measure: how far its tip is from the
+        // index knuckle, divided by the thumb's own length. Larger means more
+        // extended, the opposite direction from curl degrees. Open and Fist
+        // never read these values.
+        [Header("Thumb")]
+        [Tooltip("The thumb counts as extended when its tip is at least this far from the index knuckle, as a fraction of thumb length.")]
+        [Range(0f, 2f)]
+        public float thumbExtendedMinTipDistanceRatio = 0.6f;
+
+        [Tooltip("The thumb counts as curled when its tip is at most this far from the index knuckle, as a fraction of thumb length. Must be less than the extended threshold.")]
+        [Range(0f, 2f)]
+        public float thumbCurledMaxTipDistanceRatio = 0.45f;
     }
 }
