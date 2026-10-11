@@ -21,5 +21,8 @@ namespace HandPoseRecognition
         U = 5,
         Y = 6,
         L = 7,
+
+        // v0.2b pose, resolved by HandPoseClassifier.ClassifyPoseWithOrientation.
+        ThumbsUp = 8,
     }
 }

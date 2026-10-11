@@ -340,6 +340,123 @@ namespace HandPoseRecognition
             return IsFinite(ratio) ? ratio : float.NaN;
         }
 
+        /// <summary>
+        /// Resolves the full pose including the v0.2b ThumbsUp, which needs the
+        /// thumb's world-space direction.
+        /// </summary>
+        /// <remarks>
+        /// Priority order, first match wins:
+        ///   1. ThumbsUp  thumb Extended; index, middle, ring, little Curled;
+        ///                thumb direction Up (within thumbUpMaxAngleDegrees of world +Y)
+        ///   2. ClassifyPose(hand, settings), unchanged: L, Y, Pointing, V, U,
+        ///      then Classify (Fist, Open or Unknown)
+        /// ThumbsUp's finger states match no v0.2a rule, so without a valid
+        /// upward thumb the same hand resolves to Fist. A sideways, downward,
+        /// Unknown or unavailable thumb direction is never guessed into ThumbsUp.
+        /// </remarks>
+        /// <exception cref="ArgumentNullException">settings is null.</exception>
+        public static HandPose ClassifyPoseWithOrientation(in HandJointData hand, HandPoseClassifierSettings settings)
+        {
+            if (settings == null)
+                throw new ArgumentNullException(nameof(settings));
+
+            if (!hand.isTracked)
+                return HandPose.Unknown;
+
+            // 1. ThumbsUp
+            if (ClassifyThumb(hand, settings) == FingerState.Extended
+                && ClassifyFinger(hand.index, settings) == FingerState.Curled
+                && ClassifyFinger(hand.middle, settings) == FingerState.Curled
+                && ClassifyFinger(hand.ring, settings) == FingerState.Curled
+                && ClassifyFinger(hand.little, settings) == FingerState.Curled
+                && ClassifyThumbDirection(hand, settings) == ThumbDirectionState.Up)
+                return HandPose.ThumbsUp;
+
+            // 2. Everything from v0.2a, exactly as before.
+            return ClassifyPose(hand, settings);
+        }
+
+        /// <summary>
+        /// Judges whether the thumb points up in world space, from
+        /// <see cref="ThumbAngleFromWorldUpDegrees"/>.
+        /// </summary>
+        /// <returns>
+        /// Up if the angle is at or below <c>thumbUpMaxAngleDegrees</c>
+        /// (inclusive), NotUp if above it. Unknown if the angle is unavailable,
+        /// or the setting is not finite or outside [0, 90).
+        /// </returns>
+        /// <exception cref="ArgumentNullException">settings is null.</exception>
+        public static ThumbDirectionState ClassifyThumbDirection(in HandJointData hand, HandPoseClassifierSettings settings)
+        {
+            if (settings == null)
+                throw new ArgumentNullException(nameof(settings));
+
+            // Below 90 so a sideways (90) or downward thumb can never count as up.
+            var maxAngle = settings.thumbUpMaxAngleDegrees;
+            if (!IsFinite(maxAngle) || maxAngle < 0f || maxAngle >= 90f)
+                return ThumbDirectionState.Unknown;
+
+            var angle = ThumbAngleFromWorldUpDegrees(hand);
+            if (float.IsNaN(angle))
+                return ThumbDirectionState.Unknown;
+
+            return angle <= maxAngle ? ThumbDirectionState.Up : ThumbDirectionState.NotUp;
+        }
+
+        /// <summary>
+        /// Angle in degrees (0-180) between the thumb's direction and Unity
+        /// world up (+Y). The direction runs from the thumb's proximal joint to
+        /// its tip: the two visible thumb bones, without the metacarpal that sits
+        /// inside the palm.
+        /// </summary>
+        /// <remarks>
+        /// Joints are in tracking space (Camera Offset local). The direction is
+        /// converted to world space exactly once, by
+        /// <see cref="HandJointData.trackingSpaceToWorld"/>. A direction needs
+        /// only rotation, so translation and positive uniform scale don't affect
+        /// the result; nonuniform or mirrored rig scaling is not supported.
+        /// </remarks>
+        /// <returns>
+        /// The angle, or <see cref="float.NaN"/> if the hand isn't tracked, the
+        /// thumb is invalid, there is no tracking-space rotation, the rotation is
+        /// not a finite unit quaternion, or the direction is degenerate.
+        /// </returns>
+        public static float ThumbAngleFromWorldUpDegrees(in HandJointData hand)
+        {
+            if (!hand.isTracked || !hand.thumb.isValid || !hand.hasTrackingSpaceToWorld)
+                return float.NaN;
+
+            if (!TryNormalizeRotation(hand.trackingSpaceToWorld, out var toWorld))
+                return float.NaN;
+
+            var direction = hand.thumb.tip - hand.thumb.proximal;
+            if (!IsUsableSegment(direction))
+                return float.NaN;
+
+            var angle = Vector3.Angle(toWorld * direction, Vector3.up);
+            return IsFinite(angle) ? angle : float.NaN;
+        }
+
+        // Accepts only finite quaternions within a small tolerance of unit
+        // length. A zero (default) or clearly scaled quaternion is rejected
+        // rather than silently normalized.
+        static bool TryNormalizeRotation(Quaternion rotation, out Quaternion normalized)
+        {
+            normalized = Quaternion.identity;
+
+            if (!IsFinite(rotation.x) || !IsFinite(rotation.y) || !IsFinite(rotation.z) || !IsFinite(rotation.w))
+                return false;
+
+            var lengthSquared = rotation.x * rotation.x + rotation.y * rotation.y
+                + rotation.z * rotation.z + rotation.w * rotation.w;
+            if (Mathf.Abs(lengthSquared - 1f) > 1e-3f)
+                return false;
+
+            var length = Mathf.Sqrt(lengthSquared);
+            normalized = new Quaternion(rotation.x / length, rotation.y / length, rotation.z / length, rotation.w / length);
+            return true;
+        }
+
         static bool TryGetPair(in HandJointData hand, FingerPair pair, out FingerJoints first, out FingerJoints second)
         {
             switch (pair)

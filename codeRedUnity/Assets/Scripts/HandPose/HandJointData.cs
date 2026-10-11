@@ -61,6 +61,29 @@ namespace HandPoseRecognition
         /// <summary>Mirrors XRHand.isTracked. Defaults to false.</summary>
         public bool isTracked;
 
+        // Coordinate space: every joint position above and below is in tracking
+        // space, i.e. local to the XR Origin's Camera Offset (the parent of the
+        // tracked camera). Joint positions are never converted to world space.
+
+        /// <summary>
+        /// World rotation of the tracking space (Camera Offset), which already
+        /// includes the XR Origin's rotation. The classifier applies it exactly
+        /// once, to the thumb direction only. Do not also apply the XR Origin's
+        /// rotation, and do not store world-space joints here.
+        /// </summary>
+        /// <remarks>
+        /// Rotation-only conversion assumes the rig has positive, uniform scale.
+        /// Nonuniform or mirrored (negative) rig scaling is not supported in this
+        /// version.
+        /// </remarks>
+        public Quaternion trackingSpaceToWorld;
+
+        /// <summary>
+        /// False when no tracking-space rotation is available. Defaults to false,
+        /// so orientation is unavailable unless the adapter supplies it.
+        /// </summary>
+        public bool hasTrackingSpaceToWorld;
+
         public ThumbJoints thumb;
         public FingerJoints index;
         public FingerJoints middle;

@@ -53,5 +53,13 @@ namespace HandPoseRecognition
         [Tooltip("Two extended fingers count as apart when their spread is at or above this ratio of palm width. Larger means more spread.")]
         [Range(-1f, 2f)]
         public float spreadApartMinRatio = 0.25f;
+
+        // Thumbs-up compares the thumb's direction (proximal joint to tip) with
+        // Unity world up. The classifier rejects any value that is not finite
+        // or not in [0, 90), so sideways or downward thumbs can never qualify.
+        [Header("Orientation")]
+        [Tooltip("Max angle in degrees between the thumb (proximal joint to tip) and world up for thumbs-up. Larger is more permissive. Must be at least 0 and below 90.")]
+        [Range(0f, 89f)]
+        public float thumbUpMaxAngleDegrees = 35f;
     }
 }

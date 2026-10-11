@@ -13,8 +13,112 @@
 separable from static joint geometry on Quest 2 and are deferred.
 
 
+## Current version: v0.2b (Thumbs-up orientation)
+Status: specification ready for planning; implementation is not yet approved.
+v0.2a Phase 2 is complete per the developer's report. The developer reported
+126 passing Unity EditMode tests and no Console errors after v0.2a Phase 1.
+Spec precedence and current tuning
+- This section defines the active scope. Earlier version sections are
+  historical; their orientation exclusions do not prohibit v0.2b work.
+  Their compatibility constraints still apply unless explicitly superseded here.
+- During v0.2a headset tuning, extendedMaxCurlDegrees was raised to tolerate
+  minor finger curl, especially the pinky. Its new numeric value was not
+  supplied with this spec. Read the current project scene and Inspector
+  settings; preserve those values. Do not restore the historical 60-degree
+  default. Record actual tuned curl, thumb, and spread values here when verified.
+- Scene-serialized settings override script defaults. Preserve both existing
+  scene values and existing defaults during orientation implementation.
+- B and 5 remain deferred. Pointing, V, U, Y, and L retain their v0.2a rules.
+Goal and recognition rule
+Recognize a static ThumbsUp pose using existing finger states plus the thumb's
+world-space direction. For this version, "up" means Unity world +Y,
+independent of headset tilt or the hand's local axes.
+ThumbsUp requires ALL of the following:
+- The hand is tracked and the required joint data is valid.
+- Thumb state is Extended under the existing thumb classifier.
+- Index, middle, ring, and little finger states are all Curled.
+- A valid thumb direction points within the configured angle of world up.
+ThumbsUp takes precedence over the Fist fallback. If the complete rule does
+not match, retain v0.2a pose resolution. In particular, four valid Curled
+non-thumb fingers can still produce Fist when the thumb is sideways,
+downward, Unknown, or its orientation is unavailable. Untracked hands remain
+Unknown. Unknown data must never be guessed into a ThumbsUp match.
+In scope
+- Propose and justify a thumb direction derived from existing thumb joints.
+  Choose its endpoints during planning after inspecting actual joint data.
+- Inspect and document the coordinate space used by QuestHandAdapter.
+  Explain the exact conversion to world space through the existing XR rig,
+  including applicable origin/parent transforms. Transform exactly once.
+- Verify every XR Hands API against the installed Library/PackageCache.
+  Inspect the relevant installed XR origin implementation when needed.
+- Keep orientation math and pose decisions in pure C#, with no MonoBehaviour
+  or scene/Transform lookup in the classifier. Isolate scene/transform access
+  in the adapter or another minimal integration component.
+- Expose an orientation setting in HandPoseClassifierSettings with a clear
+  header and tooltip. Use a maximum angle from world up, in degrees; a larger
+  angle is more permissive. Propose a provisional default during planning.
+  Define the boundary as inclusive and validate a finite angle from 0 up to,
+  but not including, 90 degrees so sideways/downward directions cannot qualify.
+- Reject missing joints, NaN/infinite coordinates, zero-length or otherwise
+  degenerate direction vectors, and invalid orientation settings for ThumbsUp.
+  Expose invalid orientation as Unknown/unavailable; preserve fallback rules.
+- Append ThumbsUp to HandPose without renumbering existing enum values.
+- Add a THUMBS UP display label and a separate compact orientation debug
+  readout showing the angle from world up and validity; use n/a when unavailable.
+- Provide exact Unity Editor setup instructions for any new references.
+Protected behavior
+- Do not change the bodies of Classify, Tally, FingerCurlDegrees,
+  ClassifyThumb, or ThumbTipDistanceRatio.
+- Preserve existing public call behavior used by old tests. Add new orientation
+  resolution code; do not require scene access for existing classifier calls.
+- Preserve the thumb metric, all finger/spread rules, and tuned thresholds.
+- The legacy Classify result for Fist/Open stays unchanged. The new orientation
+  resolver may return ThumbsUp ahead of Fist only when the full new rule matches.
+- Preserve existing finger-state text, raw thumb ratio, spread debug output,
+  tracking behavior, and the five-finger visualization.
+- All existing EditMode test methods must remain unedited and pass. New tests
+  and additive fake-data helpers are allowed. Inspect the FULL git diff,
+  including additions, to verify protected bodies and old tests are untouched.
+Out of scope
+- Other orientation-dependent signs, including H/U, K/P, and G/Q distinctions.
+- Thumb-placement distinctions A/E/M/N/S/T; B/5; thumbs-down recognition.
+- Dynamic signs, motion, smoothing, temporal recognition, two-hand signs.
+- Recording, templates, databases, lessons, or a general recognition framework.
+- Android setup or unrelated XR/sample visualization changes.
+Workflow and phases
+Read this file and applicable AGENTS.md first. Start in Plan mode: list exact
+files, direction endpoints, coordinate conversion, settings, tests, and Editor
+setup. Do not write implementation code until the developer approves the plan.
+Work one script at a time, explain its role, and stop after each phase.
+1. Pure orientation logic, settings, pose resolution, and new EditMode tests.
+   Verify on Mac, report actual Unity test results separately from compilation
+   checks, inspect the full diff, then commit after the tests pass. Stop.
+2. Adapter/world-space conversion and display integration, with new integration
+   tests where appropriate. Verify in Unity, then on Quest Link with the teammate.
+   Tune the new orientation threshold, save it in the scene, and record its
+   actual value here or deliberately synchronize its script default. Commit
+   after verification and stop. Do not proceed into v0.3.
+Required tests and headset verification
+- Clean ThumbsUp; sideways/downward directions must not produce ThumbsUp.
+- Correct direction with thumb Curled/Unknown or any non-thumb finger
+  Extended/Unknown must not produce ThumbsUp.
+- Angles just inside, exactly at, and just outside the allowed boundary.
+- Invalid angular settings, missing tracking/joints, NaN/infinite coordinates,
+  and zero-length direction. Verify fallback behavior as well as rejection.
+- Translation and positive uniform-scale invariance for valid geometry.
+- Rotation toward/away from world up changes orientation recognition correctly;
+  rotation about world up preserves the angle. Cover non-identity XR origin
+  rotation in integration tests to detect missing or double transformation.
+- ThumbsUp wins over Fist when both shape rules qualify; otherwise Fist and
+  Open remain available, and Pointing/V/U/Y/L retain their prior results.
+- All old and new Unity EditMode tests pass with no red Console errors.
+- On Quest Link, repeat upward, sideways, and downward thumb poses; verify
+  headset tilt does not redefine up. Confirm the existing poses still work
+  with the saved curl/thumb/spread tuning (thumb ratio remains unchanged).
+- Record the tested orientation angle range and final saved threshold.
 
-## Current version: 0.2a (Finger spread + non-orientation poses)
+
+## v0.2a spec (Finger spread + non-orientation poses)
 Goal: the classifier measures spread between adjacent extended fingers and
 uses it, together with the per-finger states (Extended, Curled, Unknown),
 to recognize new static poses. This fixes the known v0.1 limitation:
