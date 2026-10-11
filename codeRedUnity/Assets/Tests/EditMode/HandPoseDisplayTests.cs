@@ -110,6 +110,29 @@ namespace HandPoseRecognition.Tests
             });
         }
 
+        [Test]
+        public void NoSubsystem_ShowsOrientationUnavailable()
+        {
+            WithDisplay((adapter, display, label) =>
+            {
+                Assert.AreEqual("Thumb Dir Unknown (n/a)", display.currentOrientation);
+                StringAssert.Contains("Thumb Dir Unknown (n/a)", label.text);
+            });
+        }
+
+        [Test]
+        public void DisablingAdapter_HidesOrientation()
+        {
+            WithDisplay((adapter, display, label) =>
+            {
+                adapter.enabled = false;
+                Invoke(display, "Update");
+
+                Assert.AreEqual(string.Empty, display.currentOrientation);
+                StringAssert.DoesNotContain("Thumb Dir", label.text);
+            });
+        }
+
         static void WithDisplay(System.Action<QuestHandAdapter, HandPoseDisplay, TMP_Text> check)
         {
             var owner = new GameObject("Display test");

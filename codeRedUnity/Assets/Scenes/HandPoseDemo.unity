@@ -295,6 +295,7 @@ MonoBehaviour:
     thumbCurledMaxTipDistanceRatio: 0.45
     spreadTogetherMaxRatio: 0.1
     spreadApartMinRatio: 0.25
+    thumbUpMaxAngleDegrees: 35
 --- !u!114 &254329070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,6 +309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Handedness: 2
+  m_TrackingSpace: {fileID: 886588081}
 --- !u!4 &254329071
 Transform:
   m_ObjectHideFlags: 0

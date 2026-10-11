@@ -32,6 +32,13 @@ namespace HandPoseRecognition
         [SerializeField, Tooltip("Which hand to read. v0.1 classifies one hand.")]
         Handedness m_Handedness = Handedness.Right;
 
+        // Joint positions arrive in tracking space: local to the XR Origin's
+        // Camera Offset, the tracked camera's parent. Only this transform's
+        // world rotation is copied, so the thumb direction is converted to
+        // world space exactly once. Assumes positive, uniform rig scale.
+        [SerializeField, Tooltip("XR Origin's Camera Offset: the space of tracked joint positions. Its world rotation lets the classifier find world up for thumbs-up. Leave empty to disable orientation.")]
+        Transform m_TrackingSpace;
+
         // Reused every search so finding the subsystem doesn't allocate garbage.
         static readonly List<XRHandSubsystem> s_Subsystems = new List<XRHandSubsystem>();
 
@@ -145,6 +152,36 @@ namespace HandPoseRecognition
                     m_CurrentHand = default;
                     break;
             }
+
+            m_CurrentHand = ApplyTrackingSpace(m_CurrentHand, m_TrackingSpace);
+        }
+
+        /// <summary>
+        /// Returns a copy of <paramref name="hand"/> carrying the tracking
+        /// space's world rotation, or with orientation explicitly marked
+        /// unavailable when <paramref name="trackingSpace"/> is null or destroyed.
+        /// </summary>
+        /// <remarks>
+        /// Joint positions are left in tracking space; nothing else is
+        /// transformed. <c>Transform.rotation</c> is the world rotation, which
+        /// already includes every parent (the XR Origin), so no further
+        /// rotation should be applied on top. Rotation-only conversion assumes
+        /// the rig has positive, uniform scale; nonuniform or mirrored scaling
+        /// is not supported in this version.
+        /// </remarks>
+        public static HandJointData ApplyTrackingSpace(HandJointData hand, Transform trackingSpace)
+        {
+            // Unity overrides == null, so a destroyed Transform also counts as missing.
+            if (trackingSpace == null)
+            {
+                hand.trackingSpaceToWorld = default;
+                hand.hasTrackingSpaceToWorld = false;
+                return hand;
+            }
+
+            hand.trackingSpaceToWorld = trackingSpace.rotation;
+            hand.hasTrackingSpaceToWorld = true;
+            return hand;
         }
 
         static HandJointData ReadHand(XRHand hand)

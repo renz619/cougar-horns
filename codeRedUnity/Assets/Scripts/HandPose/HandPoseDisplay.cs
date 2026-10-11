@@ -7,8 +7,9 @@ namespace HandPoseRecognition
     /// <summary>
     /// Connects the pipeline: reads the adapter's hand snapshot each frame,
     /// runs the classifier, and shows the pose (OPEN, FIST, POINTING, V, U, Y,
-    /// L or UNKNOWN) on a TextMeshPro label, with a tracking hint and small
-    /// debug lines for the five finger states and the finger-pair spreads.
+    /// L, THUMBS UP or UNKNOWN) on a TextMeshPro label, with a tracking hint
+    /// and small debug lines for the five finger states, the finger-pair
+    /// spreads and the thumb's direction from world up.
     /// The text is only rewritten when what it shows changes.
     /// </summary>
     /// <remarks>
@@ -35,6 +36,7 @@ namespace HandPoseRecognition
         string m_CurrentHint;
         string m_CurrentFingerStates;
         string m_CurrentSpreads;
+        string m_CurrentOrientation;
 
         /// <summary>The pose currently shown on the label.</summary>
         public HandPose currentPose => m_CurrentPose;
@@ -53,6 +55,12 @@ namespace HandPoseRecognition
         /// string when there is no usable adapter.
         /// </summary>
         public string currentSpreads => m_CurrentSpreads;
+
+        /// <summary>
+        /// The thumb-direction debug line currently shown, or an empty string
+        /// when there is no usable adapter.
+        /// </summary>
+        public string currentOrientation => m_CurrentOrientation;
 
         /// <summary>
         /// Debug text listing all five finger states, with the thumb's raw
@@ -118,6 +126,21 @@ namespace HandPoseRecognition
             return rounded.ToString("0.00", CultureInfo.InvariantCulture);
         }
 
+        /// <summary>
+        /// Debug text for the thumb's direction relative to world up, with the
+        /// raw angle so the thumbs-up threshold can be tuned on the headset,
+        /// e.g. "Thumb Dir Up (12.30°)" or "Thumb Dir NotUp (84.10°)". The angle
+        /// reads "n/a" when it is unavailable (untracked hand, invalid thumb,
+        /// no tracking space, or degenerate direction). A valid angle with an
+        /// invalid setting shows Unknown with the value.
+        /// </summary>
+        public static string DescribeOrientation(in HandJointData hand, HandPoseClassifierSettings settings)
+        {
+            var angle = HandPoseClassifier.ThumbAngleFromWorldUpDegrees(hand);
+            var angleText = float.IsNaN(angle) ? "n/a" : angle.ToString("0.00", CultureInfo.InvariantCulture) + "°";
+            return $"Thumb Dir {HandPoseClassifier.ClassifyThumbDirection(hand, settings)} ({angleText})";
+        }
+
         /// <summary>The text shown for each pose.</summary>
         public static string LabelFor(HandPose pose)
         {
@@ -137,6 +160,8 @@ namespace HandPoseRecognition
                     return "Y";
                 case HandPose.L:
                     return "L";
+                case HandPose.ThumbsUp:
+                    return "THUMBS UP";
                 default:
                     return "UNKNOWN";
             }
@@ -180,21 +205,33 @@ namespace HandPoseRecognition
             var hint = TrackingHint(pose);
             var fingerStates = CurrentFingerStates();
             var spreads = CurrentSpreads();
+            var orientation = CurrentOrientation();
 
             // Comparing the formatted strings means the label is only rebuilt
             // when something visible changes, e.g. the ratio's second decimal.
             if (m_HasDisplayedPose && pose == m_CurrentPose && hint == m_CurrentHint
-                && fingerStates == m_CurrentFingerStates && spreads == m_CurrentSpreads)
+                && fingerStates == m_CurrentFingerStates && spreads == m_CurrentSpreads
+                && orientation == m_CurrentOrientation)
                 return;
 
             m_CurrentPose = pose;
             m_CurrentHint = hint;
             m_CurrentFingerStates = fingerStates;
             m_CurrentSpreads = spreads;
+            m_CurrentOrientation = orientation;
             m_Label.text = fingerStates.Length == 0
                 ? $"{LabelFor(pose)}\n<size=22%>{hint}</size>"
-                : $"{LabelFor(pose)}\n<size=22%>{hint}</size>\n<size=16%>{fingerStates}</size>\n<size=16%>{spreads}</size>";
+                : $"{LabelFor(pose)}\n<size=22%>{hint}</size>\n<size=16%>{fingerStates}</size>\n<size=16%>{spreads}</size>\n<size=16%>{orientation}</size>";
             m_HasDisplayedPose = true;
+        }
+
+        string CurrentOrientation()
+        {
+            // Shown under the same conditions as the other debug lines.
+            if (m_Adapter == null || !m_Adapter.isActiveAndEnabled || m_Settings == null)
+                return string.Empty;
+
+            return DescribeOrientation(m_Adapter.currentHand, m_Settings);
         }
 
         string CurrentSpreads()
@@ -260,7 +297,7 @@ namespace HandPoseRecognition
 
             // ClassifyPose checks the v0.2a poses first, then falls back to the
             // unchanged Classify for Open, Fist or Unknown.
-            return HandPoseClassifier.ClassifyPose(m_Adapter.currentHand, m_Settings);
+            return HandPoseClassifier.ClassifyPoseWithOrientation(m_Adapter.currentHand, m_Settings);
         }
     }
 }
