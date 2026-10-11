@@ -13,5 +13,13 @@ namespace HandPoseRecognition
         Unknown,
         Open,
         Fist,
+
+        // v0.2a poses, resolved by HandPoseClassifier.ClassifyPose. Values are
+        // explicit so the earlier ones are never renumbered.
+        Pointing = 3,
+        V = 4,
+        U = 5,
+        Y = 6,
+        L = 7,
     }
 }

@@ -186,6 +186,185 @@ namespace HandPoseRecognition
             return tipDistance / thumbLength;
         }
 
+        /// <summary>
+        /// Resolves the full pose, including the v0.2a poses, from the finger
+        /// states, thumb state and index-middle spread. Open and Fist come from
+        /// the unchanged <see cref="Classify"/>, used as the final fallback.
+        /// </summary>
+        /// <remarks>
+        /// Priority order, first match wins (most specific first, Open and Fist last):
+        ///   1. L        thumb Extended; index Extended; middle, ring, little Curled
+        ///   2. Y        thumb Extended; little Extended; index, middle, ring Curled
+        ///   3. Pointing thumb NOT Extended (Curled or Unknown); index Extended;
+        ///               middle, ring, little Curled
+        ///   4. V        index, middle Extended and index-middle spread Apart;
+        ///               ring, little Curled; thumb ignored
+        ///   5. U        index, middle Extended and index-middle spread Together;
+        ///               ring, little Curled; thumb ignored
+        ///   6. Classify(hand, settings): Fist, Open or Unknown
+        /// The current rules are mutually exclusive (L vs. Pointing differ by
+        /// thumb, V vs. U by spread, and every new pose needs a Curled finger, so
+        /// none overlaps Open). The order only matters once overlapping poses are
+        /// added.
+        /// </remarks>
+        /// <exception cref="ArgumentNullException">settings is null.</exception>
+        public static HandPose ClassifyPose(in HandJointData hand, HandPoseClassifierSettings settings)
+        {
+            if (settings == null)
+                throw new ArgumentNullException(nameof(settings));
+
+            if (!hand.isTracked)
+                return HandPose.Unknown;
+
+            var thumb = ClassifyThumb(hand, settings);
+            var index = ClassifyFinger(hand.index, settings);
+            var middle = ClassifyFinger(hand.middle, settings);
+            var ring = ClassifyFinger(hand.ring, settings);
+            var little = ClassifyFinger(hand.little, settings);
+
+            const FingerState extended = FingerState.Extended;
+            const FingerState curled = FingerState.Curled;
+
+            // 1. L
+            if (thumb == extended && index == extended && middle == curled && ring == curled && little == curled)
+                return HandPose.L;
+
+            // 2. Y
+            if (thumb == extended && little == extended && index == curled && middle == curled && ring == curled)
+                return HandPose.Y;
+
+            // 3. Pointing
+            if (thumb != extended && index == extended && middle == curled && ring == curled && little == curled)
+                return HandPose.Pointing;
+
+            // 4. V and 5. U share their finger states and differ only by spread.
+            // A spread in the Unknown band matches neither and falls through.
+            if (index == extended && middle == extended && ring == curled && little == curled)
+            {
+                var spread = ClassifySpread(hand, FingerPair.IndexMiddle, settings);
+                if (spread == SpreadState.Apart)
+                    return HandPose.V;
+                if (spread == SpreadState.Together)
+                    return HandPose.U;
+            }
+
+            // 6. Open, Fist or Unknown, exactly as before v0.2a.
+            return Classify(hand, settings);
+        }
+
+        /// <summary>
+        /// Judges whether an adjacent pair of extended fingers is held together
+        /// or apart, from <see cref="FingerSpreadRatio"/>.
+        /// </summary>
+        /// <returns>
+        /// Together if the ratio is at or below <c>spreadTogetherMaxRatio</c>,
+        /// Apart if at or above <c>spreadApartMinRatio</c>, otherwise Unknown.
+        /// Also Unknown if the ratio is NaN, either threshold is NaN or infinite,
+        /// or the thresholds are equal or reversed.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">settings is null.</exception>
+        public static SpreadState ClassifySpread(in HandJointData hand, FingerPair pair, HandPoseClassifierSettings settings)
+        {
+            if (settings == null)
+                throw new ArgumentNullException(nameof(settings));
+
+            var together = settings.spreadTogetherMaxRatio;
+            var apart = settings.spreadApartMinRatio;
+
+            // !(a < b) rejects equal, reversed and NaN thresholds, but would let
+            // e.g. together = -infinity through, so check finiteness explicitly.
+            if (!IsFinite(together) || !IsFinite(apart) || !(together < apart))
+                return SpreadState.Unknown;
+
+            var ratio = FingerSpreadRatio(hand, pair, settings);
+
+            // A NaN ratio fails both comparisons and falls through to Unknown.
+            if (ratio <= together)
+                return SpreadState.Together;
+            if (ratio >= apart)
+                return SpreadState.Apart;
+            return SpreadState.Unknown;
+        }
+
+        /// <summary>
+        /// How much farther apart a pair's fingertips are than its knuckles,
+        /// measured across the palm and divided by palm width.
+        /// </summary>
+        /// <remarks>
+        /// <c>u</c> is the knuckle line from the index proximal joint to the
+        /// little proximal joint, and palm width is its length:
+        /// <c>(dot(second.tip - first.tip, u) - dot(second.proximal - first.proximal, u)) / palmWidth</c>.
+        ///
+        /// This is extra lateral separation beyond the knuckles, not a literal
+        /// "touching" test: parallel fingers read about 0 even with a gap,
+        /// fingers whose tips converge read negative, and spread fingers read
+        /// positive. Measuring only along the knuckle line reduces, but does
+        /// not remove, the effect of one finger bending more than the other.
+        /// Dot products and lengths between the hand's own joints don't change
+        /// when the hand moves or rotates, and dividing by palm width removes
+        /// the effect of hand size.
+        /// </remarks>
+        /// <returns>
+        /// The ratio, or <see cref="float.NaN"/> if the hand isn't tracked,
+        /// either finger of the pair isn't Extended, the index or little finger
+        /// (which define the knuckle line) is invalid, palm width is degenerate,
+        /// or any value is NaN or infinite.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">settings is null.</exception>
+        public static float FingerSpreadRatio(in HandJointData hand, FingerPair pair, HandPoseClassifierSettings settings)
+        {
+            if (settings == null)
+                throw new ArgumentNullException(nameof(settings));
+
+            if (!hand.isTracked || !TryGetPair(hand, pair, out var first, out var second))
+                return float.NaN;
+
+            // Spread is only defined for two extended fingers; never guess.
+            if (ClassifyFinger(first, settings) != FingerState.Extended
+                || ClassifyFinger(second, settings) != FingerState.Extended)
+                return float.NaN;
+
+            if (!hand.index.isValid || !hand.little.isValid)
+                return float.NaN;
+
+            var knuckleLine = hand.little.proximal - hand.index.proximal;
+            if (!IsUsableSegment(knuckleLine))
+                return float.NaN;
+
+            var palmWidth = knuckleLine.magnitude;
+            var across = knuckleLine / palmWidth;
+            var tipGap = Vector3.Dot(second.tip - first.tip, across);
+            var knuckleGap = Vector3.Dot(second.proximal - first.proximal, across);
+            var ratio = (tipGap - knuckleGap) / palmWidth;
+
+            return IsFinite(ratio) ? ratio : float.NaN;
+        }
+
+        static bool TryGetPair(in HandJointData hand, FingerPair pair, out FingerJoints first, out FingerJoints second)
+        {
+            switch (pair)
+            {
+                case FingerPair.IndexMiddle:
+                    first = hand.index;
+                    second = hand.middle;
+                    return true;
+                case FingerPair.MiddleRing:
+                    first = hand.middle;
+                    second = hand.ring;
+                    return true;
+                case FingerPair.RingLittle:
+                    first = hand.ring;
+                    second = hand.little;
+                    return true;
+                default:
+                    first = default;
+                    second = default;
+                    return false;
+            }
+        }
+
+        static bool IsFinite(float value) => !float.IsNaN(value) && !float.IsInfinity(value);
+
         static FingerState JudgeFinger(in FingerJoints finger, HandPoseClassifierSettings settings)
         {
             var curl = FingerCurlDegrees(finger);

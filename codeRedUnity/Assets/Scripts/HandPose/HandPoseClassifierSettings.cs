@@ -39,5 +39,19 @@ namespace HandPoseRecognition
         [Tooltip("The thumb counts as curled when its tip is at most this far from the index knuckle, as a fraction of thumb length. Must be less than the extended threshold.")]
         [Range(0f, 2f)]
         public float thumbCurledMaxTipDistanceRatio = 0.45f;
+
+        // Spread compares two adjacent extended fingers: how much farther apart
+        // the fingertips are than the knuckles, measured across the palm and
+        // divided by palm width. Parallel fingers read about 0, fingers whose
+        // tips converge read negative, and spread fingers read positive. The
+        // range allows negative values so Together can be tuned below 0.
+        [Header("Spread")]
+        [Tooltip("Two extended fingers count as together when their spread is at or below this ratio of palm width. Larger means more spread; may be negative. Must be less than the apart threshold.")]
+        [Range(-1f, 2f)]
+        public float spreadTogetherMaxRatio = 0.10f;
+
+        [Tooltip("Two extended fingers count as apart when their spread is at or above this ratio of palm width. Larger means more spread.")]
+        [Range(-1f, 2f)]
+        public float spreadApartMinRatio = 0.25f;
     }
 }

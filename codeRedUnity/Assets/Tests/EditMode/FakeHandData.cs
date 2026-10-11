@@ -105,6 +105,52 @@ namespace HandPoseRecognition.Tests
             };
         }
 
+        // Proximal joint to tip: proximal + intermediate + distal bones.
+        const float k_ReachFromKnuckle = 0.040f + 0.025f + 0.020f;
+
+        // Index proximal to little proximal: three finger spacings.
+        const float k_PalmWidth = 3f * k_FingerSpacing;
+
+        /// <summary>
+        /// A tracked hand at the origin, like <c>Hand(...)</c>, where each finger
+        /// can also be splayed sideways. Splay turns the finger about the palm
+        /// normal (+Y) <b>at its proximal joint</b>, so the knuckles and palm width
+        /// stay fixed. Positive splay turns toward the little finger (+X).
+        /// The thumb is left unset (invalid).
+        /// </summary>
+        public static HandJointData SplayedHand(
+            float indexBend, float middleBend, float ringBend, float littleBend,
+            float indexSplayDeg, float middleSplayDeg, float ringSplayDeg, float littleSplayDeg)
+        {
+            FingerJoints SplayedFinger(int fingerNumber, float bend, float splayDeg)
+            {
+                var finger = Finger(bend, Quaternion.identity, Vector3.right * (fingerNumber * k_FingerSpacing));
+                var splay = Quaternion.AngleAxis(splayDeg, Vector3.up);
+                var knuckle = finger.proximal;
+                finger.intermediate = knuckle + splay * (finger.intermediate - knuckle);
+                finger.distal = knuckle + splay * (finger.distal - knuckle);
+                finger.tip = knuckle + splay * (finger.tip - knuckle);
+                return finger;
+            }
+
+            return new HandJointData
+            {
+                isTracked = true,
+                index = SplayedFinger(0, indexBend, indexSplayDeg),
+                middle = SplayedFinger(1, middleBend, middleSplayDeg),
+                ring = SplayedFinger(2, ringBend, ringSplayDeg),
+                little = SplayedFinger(3, littleBend, littleSplayDeg),
+            };
+        }
+
+        /// <summary>
+        /// The splay angle s that gives index-middle spread <paramref name="ratio"/>
+        /// when both fingers are straight and splayed -s (index) and +s (middle):
+        /// spread = 2 * reach * sin(s) / palmWidth.
+        /// </summary>
+        public static float SplayForRatio(float ratio) =>
+            Mathf.Asin(ratio * k_PalmWidth / (2f * k_ReachFromKnuckle)) * Mathf.Rad2Deg;
+
         /// <summary>A copy of <paramref name="hand"/> with the given thumb.</summary>
         public static HandJointData WithThumb(HandJointData hand, ThumbJoints thumb)
         {
