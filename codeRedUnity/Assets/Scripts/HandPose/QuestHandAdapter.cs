@@ -15,7 +15,7 @@ namespace HandPoseRecognition
     /// Unity calls its methods (Update, OnDisable, ...) automatically; we never
     /// call them ourselves.
     /// </remarks>
-    public class QuestHandAdapter : MonoBehaviour, IHandFrameSource
+    public class QuestHandAdapter : MonoBehaviour, IHandFrameStream
     {
         public enum TrackingState
         {
@@ -63,6 +63,9 @@ namespace HandPoseRecognition
         public HandSide HandSide => m_Handedness == Handedness.Left ? HandSide.Left
             : m_Handedness == Handedness.Right ? HandSide.Right : HandSide.Unknown;
 
+        /// <summary>Every owned Dynamic acquisition or explicit loss status, never BeforeRender.</summary>
+        public event System.Action<HandFrame> FramePublished;
+
         public bool TryGetLatestFrame(out HandFrame frame)
         {
             InvalidateStoppedSource();
@@ -95,6 +98,7 @@ namespace HandPoseRecognition
                 tracked, HandFrameSpace.TrackingSpace, m_CaptureScratch,
                 trackingSpaceToWorld: m_CurrentHand.trackingSpaceToWorld,
                 hasTrackingSpaceToWorld: m_CurrentHand.hasTrackingSpaceToWorld);
+            FramePublished?.Invoke(m_LatestFrame);
         }
 
         /// <summary>Which hand this adapter reads.</summary>
