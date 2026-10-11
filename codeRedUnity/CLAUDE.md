@@ -9,9 +9,61 @@
 - Unity version: 6000.0.34f1. Mac is for code and tests; hand tracking is
   tested by a teammate on Windows with Quest Link.
 
-## Current version: 0.1 (Fist vs Open)
 # Unity Quest 2 Hand Pose Prototype
+Goal: the classifier reports a per-finger state (Extended, Curled, or
+Unknown) for the thumb, alongside the existing four fingers.
 
+## Current version: 0.075 (Thumb tracking only)
+Goal: the classifier reports a per-finger state (Extended, Curled, or
+Unknown) for the thumb, alongside the existing four fingers.
+
+In scope:
+- Add thumb joints to the adapter's joint data (ThumbMetacarpal,
+  ThumbProximal, ThumbDistal, ThumbTip). Thumb has no Intermediate joint.
+- Compute a thumb state with thresholds exposed in the settings class.
+- Missing or invalid thumb data returns Unknown, never a guess.
+- EditMode tests: thumb extended, curled, missing.
+- Optional debug text showing all five finger states.
+
+Out of scope (do NOT build yet):
+- New poses (thumbs-up, pointing, ASL letters). Those are v0.2.
+- Orientation or world-space direction logic.
+- Recording, databases, normalization, lessons.
+
+Constraints:
+- Open and Fist behavior must not change. Existing tests must pass unchanged.
+- Open and Fist continue to ignore the thumb.
+- Core logic stays a pure C# function, testable without a headset.
+
+Done when:
+- All old and new EditMode tests pass.
+- Friend confirms on the headset that the thumb reads Extended when out,
+  Curled when tucked, and Unknown when hidden, and Open/Fist still work.
+
+In scope:
+- Add thumb joints to the adapter's joint data (ThumbMetacarpal,
+  ThumbProximal, ThumbDistal, ThumbTip). Thumb has no Intermediate joint.
+- Compute a thumb state with thresholds exposed in the settings class.
+- Missing or invalid thumb data returns Unknown, never a guess.
+- EditMode tests: thumb extended, curled, missing.
+- Optional debug text showing all five finger states.
+
+Out of scope (do NOT build yet):
+- New poses (thumbs-up, pointing, ASL letters). Those are v0.2.
+- Orientation or world-space direction logic.
+- Recording, databases, normalization, lessons.
+
+Constraints:
+- Open and Fist behavior must not change. Existing tests must pass unchanged.
+- Open and Fist continue to ignore the thumb.
+- Core logic stays a pure C# function, testable without a headset.
+
+Done when:
+- All old and new EditMode tests pass.
+- Friend confirms on the headset that the thumb reads Extended when out,
+  Curled when tucked, and Unknown when hidden, and Open/Fist still work.
+
+## v0.1 spec (COMPLETE, kept for reference and constraints only)
 ## Objective
 Build a minimal Unity application that recognizes two static hand poses using Meta Quest 2 hand tracking:
 
@@ -64,7 +116,9 @@ The application should display the currently recognized pose inside the VR envir
 6. No unnecessary recognition architecture is implemented.
 
 ## Roadmap
-0.1 Fist vs Open (rule-based, VR text feedback)
+0.1 Fist vs Open (done)
+- Outcomes of v0.1: fist/open verified on the headset, thresholds tuned
+0.075 Thumb tracking (current)
 0.2 More static gestures (thumbs-up, pointing, a few ASL handshapes)
 0.3 Pose recording (HandFrame, HandPoseRecorder, HandPoseData)
 0.4 Template matching (normalization, pose database, shape recognition)
