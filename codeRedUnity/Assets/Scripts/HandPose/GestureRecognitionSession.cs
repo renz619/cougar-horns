@@ -34,14 +34,24 @@ namespace HandPoseRecognition
         public IReadOnlyList<GestureObservation> Frames { get; }
         public HandJointId TrajectoryJoint => m_Definition?.TrajectoryJoint ?? HandJointId.Invalid;
         public event Action<GestureRecognitionResult> GestureConfirmed;
+        public event Action<GestureRecognitionState, GestureRecognitionState, string> StateChanged;
         public GestureRecognitionSession() { Trail = m_Trail.AsReadOnly(); Frames = m_Frames.AsReadOnly(); }
+
+        void ChangeState(GestureRecognitionState next, string reason)
+        {
+            Reason = reason;
+            if (State == next) return;
+            var previous = State;
+            State = next;
+            StateChanged?.Invoke(previous, next, reason);
+        }
 
         /// <summary>Context changes and disable reset cooldown as well as evidence; an old clip can never be replayed.</summary>
         public void Reset(string reason = "Motion state reset.")
         {
             m_Frames.Clear(); m_Trail.Clear(); m_Definition = null; m_Reference = null; m_Last = null; m_Source = null;
             m_Catalog = null; m_LastNow = -1; m_ReleaseStart = -1; m_LastEventTime = double.NegativeInfinity; m_Attempts = 0;
-            LatestObservation = default; ConfirmedGestureId = null; PhaseCoverage = 0; State = GestureRecognitionState.Idle; Reason = reason;
+            LatestObservation = default; ConfirmedGestureId = null; PhaseCoverage = 0; ChangeState(GestureRecognitionState.Idle, reason);
         }
 
         public void Update(GestureObservation observation, GestureCalibration calibration, GestureCatalogSnapshot catalog, double now)
@@ -60,7 +70,7 @@ namespace HandPoseRecognition
                 // A context discontinuity never continues the current suffix in this update.
                 return;
             }
-            if (State == GestureRecognitionState.Completed || State == GestureRecognitionState.Rejected) State = GestureRecognitionState.AwaitRearm;
+            if (State == GestureRecognitionState.Completed || State == GestureRecognitionState.Rejected) ChangeState(GestureRecognitionState.AwaitRearm, Reason);
             if (observation == null) { Lose("Hand tracking unavailable."); return; }
             if (!observation.TryValidate(out var observationReason)) { Lose(observationReason); return; }
             if (observation.CoordinateEpoch != calibration.CoordinateEpoch) { Lose("Acquisition and calibration epochs differ."); return; }
@@ -75,7 +85,7 @@ namespace HandPoseRecognition
                     { Reason = reason; continue; }
                     m_Definition = definition; m_Source = observation.SourceIdentity; m_Epoch = observation.CoordinateEpoch;
                     m_Start = now; m_Last = null; m_Attempts = 0; m_Frames.Clear(); m_Trail.Clear(); PhaseCoverage = 0;
-                    State = GestureRecognitionState.Armed; Reason = "Ready; begin the complete movement."; break;
+                    ChangeState(GestureRecognitionState.Armed, "Ready; begin the complete movement."); break;
                 }
                 if (m_Definition == null) { Reason = "Waiting for a supported right-hand J/Z starting shape."; return; }
             }
@@ -105,7 +115,7 @@ namespace HandPoseRecognition
                 if (observation.TimestampSeconds - m_ReleaseStart >= settings.RearmSeconds && now - m_LastEventTime >= settings.CooldownSeconds)
                 {
                     m_Definition = null; m_Reference = null; m_Frames.Clear(); m_Trail.Clear(); m_Last = null;
-                    LatestObservation = default; PhaseCoverage = 0; State = GestureRecognitionState.Idle; Reason = "Released; ready for a new performance.";
+                    LatestObservation = default; PhaseCoverage = 0; ChangeState(GestureRecognitionState.Idle, "Released; ready for a new performance.");
                 }
                 return;
             }
@@ -122,7 +132,7 @@ namespace HandPoseRecognition
             {
                 hand.TryGetJoint(m_Definition.TrajectoryJoint, out var tip);
                 double displacement = GestureFeatureExtractor.Distance(tip.Position, m_Reference.InitialTip) / m_Reference.PalmWidth;
-                if (displacement >= settings.StartMovementThreshold) { State = GestureRecognitionState.Tracking; Reason = "Follow the whole movement."; }
+                if (displacement >= settings.StartMovementThreshold) { ChangeState(GestureRecognitionState.Tracking, "Follow the whole movement."); }
                 else
                 {
                     while (m_Frames.Count > settings.PreMovementFrames || m_Frames.Count > 2 && observation.TimestampSeconds - m_Frames[0].TimestampSeconds > settings.PreMovementSeconds)
@@ -141,8 +151,9 @@ namespace HandPoseRecognition
                 LatestObservation = m_Recognizer.Recognize(CurrentClip, catalog);
                 if (LatestObservation.IsMatch)
                 {
-                    State = GestureRecognitionState.Completed; ConfirmedGestureId = LatestObservation.GestureId; Reason = "Complete motion confirmed. Release before repeating.";
+                    ConfirmedGestureId = LatestObservation.GestureId;
                     m_LastEventTime = now; m_ReleaseStart = -1;
+                    ChangeState(GestureRecognitionState.Completed, "Complete motion confirmed. Release before repeating.");
                     GestureConfirmed?.Invoke(LatestObservation); return;
                 }
                 Reject(LatestObservation.Reason, false); return;
@@ -174,14 +185,14 @@ namespace HandPoseRecognition
         }
         void Reject(string reason, bool clearObservation = true)
         {
-            ConfirmedGestureId = null; State = GestureRecognitionState.Rejected; Reason = reason; m_ReleaseStart = -1;
+            ConfirmedGestureId = null; m_ReleaseStart = -1;
             if (clearObservation) LatestObservation = new GestureRecognitionResult(GestureRecognitionStatus.Incomplete, CurrentClip, reason, PhaseCoverage);
+            ChangeState(GestureRecognitionState.Rejected, reason);
         }
         void Lose(string reason)
         {
             ConfirmedGestureId = null; LatestObservation = default; m_ReleaseStart = -1; m_Last = null;
-            if (m_Definition != null) State = GestureRecognitionState.AwaitRearm;
-            Reason = reason;
+            ChangeState(m_Definition != null ? GestureRecognitionState.AwaitRearm : State, reason);
         }
         void ClearUnavailable(string reason)
         { if (m_Definition == null) { ConfirmedGestureId = null; LatestObservation = default; Reason = reason; } else Lose(reason); }

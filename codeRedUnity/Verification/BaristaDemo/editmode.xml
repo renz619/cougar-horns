@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="47" result="Passed" total="47" passed="47" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-11 16:56:51Z" end-time="2026-10-11 16:56:53Z" duration="2.2632314">
+  <test-suite type="TestSuite" id="1000" name="codeRedUnity" fullname="codeRedUnity" runstate="Runnable" testcasecount="512" result="Passed" start-time="2026-10-11 16:56:51Z" end-time="2026-10-11 16:56:53Z" duration="2.263231" total="47" passed="47" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1610" name="HandPose.Tests.EditMode.dll" fullname="C:/Users/creep/AppData/Local/Temp/LeftHandCheck-b30ea4efe04546258ca4e8ca0194f205/Library/ScriptAssemblies/HandPose.Tests.EditMode.dll" runstate="Runnable" testcasecount="512" result="Passed" start-time="2026-10-11 16:56:51Z" end-time="2026-10-11 16:56:53Z" duration="2.248884" total="47" passed="47" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="41232" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1611" name="HandPoseRecognition" fullname="HandPoseRecognition" runstate="Runnable" testcasecount="512" result="Passed" start-time="2026-10-11 16:56:51Z" end-time="2026-10-11 16:56:53Z" duration="2.240028" total="47" passed="47" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1612" name="Tests" fullname="HandPoseRecognition.Tests" runstate="Runnable" testcasecount="512" result="Passed" start-time="2026-10-11 16:56:51Z" end-time="2026-10-11 16:56:53Z" duration="2.231117" total="47" passed="47" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1001" name="BaristaDemoTests" fullname="HandPoseRecognition.Tests.BaristaDemoTests" classname="HandPoseRecognition.Tests.BaristaDemoTests" runstate="Runnable" testcasecount="17" result="Passed" start-time="2026-10-11 16:56:51Z" end-time="2026-10-11 16:56:51Z" duration="0.468980" total="17" passed="17" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="1013" name="AslNumbersUseThumbIndexAndMiddleRatherThanThreeNonThumbFingers" fullname="HandPoseRecognition.Tests.BaristaDemoTests.AslNumbersUseThumbIndexAndMiddleRatherThanThreeNonThumbFingers" classname="HandPoseRecognition.Tests.BaristaDemoTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-11 16:56:51Z" end-time="2026-10-11 16:56:51Z" duration="0.022487" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1010" name="AslNumbersUseThumbIndexAndMiddleRatherThanThreeNonThumbFingers(1)" fullname="HandPoseRecognition.Tests.BaristaDemoTests.AslNumbersUseThumbIndexAndMiddleRatherThanThreeNonThumbFingers(1)" methodname="AslNumbersUseThumbIndexAndMiddleRatherThanThreeNonThumbFingers" classname="HandPoseRecognition.Tests.BaristaDemoTests" runstate="Runnable" seed="1386221649" result="Passed" start-time="2026-10-11 16:56:51Z" end-time="2026-10-11 16:56:51Z" duration="0.014058" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1011" name="AslNumbersUseThumbIndexAndMiddleRatherThanThreeNonThumbFingers(2)" fullname="HandPoseRecognition.Tests.BaristaDemoTests.AslNumbersUseThumbIndexAndMiddleRatherThanThreeNonThumbFingers(2)" methodname="AslNumbersUseThumbIndexAndMiddleRatherThanThreeNonThumbFingers" classname="HandPoseRecognition.Tests.BaristaDemoTests" runstate="Runnable" seed="1124872663" result="Passed" start-time="2026-10-11 16:56:51Z" end-time="2026-10-11 16:56:51Z" duration="0.001109" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1012" name="AslNumbersUseThumbIndexAndMiddleRatherThanThreeNonThumbFingers(3)" fullname="HandPoseRecognition.Tests.BaristaDemoTests.AslNumbersUseThumbIndexAndMiddleRatherThanThreeNonThumbFingers(3)" methodname="AslNumbersUseThumbIndexAndMiddleRatherThanThreeNonThumbFingers" classname="HandPoseRecognition.Tests.BaristaDemoTests" runstate="Runnable" seed="1359350371" result="Passed" start-time="2026-10-11 16:56:51Z" end-time="2026-10-11 16:56:51Z" duration="0.000100" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1020" name="BaristaThankYouStartsBelowCamera" fullname="HandPoseRecognition.Tests.BaristaDemoTests.BaristaThankYouStartsBelowCamera" methodname="BaristaThankYouStartsBelowCamera" classname="HandPoseRecognition.Tests.BaristaDemoTests" runstate="Runnable" seed="947063421" result="Passed" start-time="2026-10-11 16:56:51Z" end-time="2026-10-11 16:56:51Z" duration="0.003355" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1017" name="CoffeeNeedsTwoFistsAndACircularGrind" fullname="HandPoseRecognition.Tests.BaristaDemoTests.CoffeeNeedsTwoFistsAndACircularGrind" classname="HandPoseRecognition.Tests.BaristaDemoTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11 16:56:51Z" end-time="2026-10-11 16:56:51Z" duration="0.015198" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1015" name="CoffeeNeedsTwoFistsAndACircularGrind(1)" fullname="HandPoseRecognition.Tests.BaristaDemoTests.CoffeeNeedsTwoFistsAndACircularGrind(1)" methodname="CoffeeNeedsTwoFistsAndACircularGrind" classname="HandPoseRecognition.Tests.BaristaDemoTests" runstate="Runnable" seed="1644680752" result="Passed" start-time="2026-10-11 16:56:51Z" end-time="2026-10-11 16:56:51Z" duration="0.006354" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1016" name="CoffeeNeedsTwoFistsAndACircularGrind(-1)" fullname="HandPoseRecognition.Tests.BaristaDemoTests.CoffeeNeedsTwoFistsAndACircularGrind(-1)" methodname="CoffeeNeedsTwoFistsAndACircularGrind" classname="HandPoseRecognition.Tests.BaristaDemoTests" runstate="Runnable" seed="615583118" result="Passed" start-time="2026-10-11 16:56:51Z" end-time="2026-10-11 16:56:51Z" duration="0.004307" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1008" name="EntireOrderRequiresAmountConfirmationDrinkPleaseAndFinalThankYou" fullname="HandPoseRecognition.Tests.BaristaDemoTests.EntireOrderRequiresAmountConfirmationDrinkPleaseAndFinalThankYou" classname="HandPoseRecognition.Tests.BaristaDemoTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-11 16:56:51Z" end-time="2026-10-11 16:56:51Z" duration="0.005391" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1002" name="EntireOrderRequiresAmountConfirmationDrinkPleaseAndFinalThankYou(1,Coffee)" fullname="HandPoseRecognition.Tests.BaristaDemoTests.EntireOrderRequiresAmountConfirmationDrinkPleaseAndFinalThankYou(1,Coffee)" methodname="EntireOrderRequiresAmountConfirmationDrinkPleaseAndFinalThankYou" classname="HandPoseRecognition.Tests.BaristaDemoTests" runstate="Runnable" seed="1096161282" result="Passed" start-time="2026-10-11 16:56:51Z" end-time="2026-10-11 16:56:51Z" duration="0.001585" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1003" name="EntireOrderRequiresAmountConfirmationDrinkPleaseAndFinalThankYou(2,Coffee)" fullname="HandPoseRecognition.Tests.BaristaDemoTests.EntireOrderRequiresAmountConfirmationDrinkPleaseAndFinalThankYou(2,Coffee)" methodname="EntireOrderRequiresAmountConfirmationDrinkPleaseAndFinalThankYou" classname="HandPoseRecognition.Tests.BaristaDemoTests" runstate="Runnable" seed="1350842687" result="Passed" start-time="2026-10-11 16:56:51Z" end-time="2026-10-11 16:56:51Z" duration="0.000315" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1004" name="EntireOrderRequiresAmountConfirmationDrinkPleaseAndFinalThankYou(3,Coffee)" fullname="HandPoseRecognition.Tests.BaristaDemoTests.EntireOrderRequiresAmountConfirmationDrinkPleaseAndFinalThankYou(3,Coffee)" methodname="EntireOrderRequiresAmountConfirmationDrinkPleaseAndFinalThankYou" classname="HandPoseRecognition.Tests.BaristaDemoTests" runstate="Runnable" seed="233374489" result="Passed" start-time="2026-10-11 16:56:51Z" end-time="2026-10-11 16:56:51Z" duration="0.000181" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1005" name="EntireOrderRequiresAmountConfirmationDrinkPleaseAndFinalThankYou(1,Tea)" fullname="HandPoseRecognition.Tests.BaristaDemoTests.EntireOrderRequiresAmountConfirmationDrinkPleaseAndFinalThankYou(1,Tea)" methodname="EntireOrderRequiresAmountConfirmationDrinkPleaseAndFinalThankYou" classname="HandPoseRecognition.Tests.BaristaDemoTests" runstate="Runnable" seed="1648638572" result="Passed" start-time="2026-10-11 16:56:51Z" end-time="2026-10-11 16:56:51Z" duration="0.000290" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1006" name="EntireOrderRequiresAmountConfirmationDrinkPleaseAndFinalThankYou(2,Tea)" fullname="HandPoseRecognition.Tests.BaristaDemoTests.EntireOrderRequiresAmountConfirmationDrinkPleaseAndFinalThankYou(2,Tea)" methodname="EntireOrderRequiresAmountConfirmationDrinkPleaseAndFinalThankYou" classname="HandPoseRecognition.Tests.BaristaDemoTests" runstate="Runnable" seed="1322164341" result="Passed" start-time="2026-10-11 16:56:51Z" end-time="2026-10-11 16:56:51Z" duration="0.000190" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1007" name="EntireOrderRequiresAmountConfirmationDrinkPleaseAndFinalThankYou(3,Tea)" fullname="HandPoseRecognition.Tests.BaristaDemoTests.EntireOrderRequiresAmountConfirmationDrinkPleaseAndFinalThankYou(3,Tea)" methodname="EntireOrderRequiresAmountConfirmationDrinkPleaseAndFinalThankYou" classname="HandPoseRecognition.Tests.BaristaDemoTests" runstate="Runnable" seed="200521801" result="Passed" start-time="2026-10-11 16:56:51Z" end-time="2026-10-11 16:56:51Z" duration="0.000177" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1009" name="InvalidOrOutOfOrderInputDoesNotAdvanceAndAmountCanBeCorrected" fullname="HandPoseRecognition.Tests.BaristaDemoTests.InvalidOrOutOfOrderInputDoesNotAdvanceAndAmountCanBeCorrected" methodname="InvalidOrOutOfOrderInputDoesNotAdvanceAndAmountCanBeCorrected" classname="HandPoseRecognition.Tests.BaristaDemoTests" runstate="Runnable" seed="1589144338" result="Passed" start-time="2026-10-11 16:56:51Z" end-time="2026-10-11 16:56:51Z" duration="0.000431" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1021" name="SavedSceneHasBothTrackedHandsAnimatedHintsAndCompleteConversationWiring" fullname="HandPoseRecognition.Tests.BaristaDemoTests.SavedSceneHasBothTrackedHandsAnimatedHintsAndCompleteConversationWiring" methodname="SavedSceneHasBothTrackedHandsAnimatedHintsAndCompleteConversationWiring" classname="HandPoseRecognition.Tests.BaristaDemoTests" runstate="Runnable" seed="109235061" result="Passed" start-time="2026-10-11 16:56:51Z" end-time="2026-10-11 16:56:51Z" duration="0.405850" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1019" name="StationaryHandsWrongShapesAndOneWayDipDoNotSelectDrink" fullname="HandPoseRecognition.Tests.BaristaDemoTests.StationaryHandsWrongShapesAndOneWayDipDoNotSelectDrink" methodname="StationaryHandsWrongShapesAndOneWayDipDoNotSelectDrink" classname="HandPoseRecognition.Tests.BaristaDemoTests" runstate="Runnable" seed="767326529" result="Passed" start-time="2026-10-11 16:56:51Z" end-time="2026-10-11 16:56:51Z" duration="0.005449" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1018" name="TeaNeedsPinchAndCupWithDownThenUpMotion" fullname="HandPoseRecognition.Tests.BaristaDemoTests.TeaNeedsPinchAndCupWithDownThenUpMotion" methodname="TeaNeedsPinchAndCupWithDownThenUpMotion" classname="HandPoseRecognition.Tests.BaristaDemoTests" runstate="Runnable" seed="865300076" result="Passed" start-time="2026-10-11 16:56:51Z" end-time="2026-10-11 16:56:51Z" duration="0.000987" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1014" name="UnknownThumbAndWrongThreeFingersCannotCountAsQuantity" fullname="HandPoseRecognition.Tests.BaristaDemoTests.UnknownThumbAndWrongThreeFingersCannotCountAsQuantity" methodname="UnknownThumbAndWrongThreeFingersCannotCountAsQuantity" classname="HandPoseRecognition.Tests.BaristaDemoTests" runstate="Runnable" seed="1957406292" result="Passed" start-time="2026-10-11 16:56:51Z" end-time="2026-10-11 16:56:51Z" duration="0.000164" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1022" name="DirectGestureTests" fullname="HandPoseRecognition.Tests.DirectGestureTests" classname="HandPoseRecognition.Tests.DirectGestureTests" runstate="Runnable" testcasecount="14" result="Passed" start-time="2026-10-11 16:56:51Z" end-time="2026-10-11 16:56:52Z" duration="0.864900" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="1039" name="DemoUsesDirectRulesWithDedicatedCameraLabelAndKeepsBothHandVisualizers" fullname="HandPoseRecognition.Tests.DirectGestureTests.DemoUsesDirectRulesWithDedicatedCameraLabelAndKeepsBothHandVisualizers" classname="HandPoseRecognition.Tests.DirectGestureTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-11 16:56:51Z" end-time="2026-10-11 16:56:52Z" duration="0.789302" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1036" name="DemoUsesDirectRulesWithDedicatedCameraLabelAndKeepsBothHandVisualizers(&quot;HandPoseDemo&quot;)" fullname="HandPoseRecognition.Tests.DirectGestureTests.DemoUsesDirectRulesWithDedicatedCameraLabelAndKeepsBothHandVisualizers(&quot;HandPoseDemo&quot;)" methodname="DemoUsesDirectRulesWithDedicatedCameraLabelAndKeepsBothHandVisualizers" classname="HandPoseRecognition.Tests.DirectGestureTests" runstate="Runnable" seed="475562818" result="Passed" start-time="2026-10-11 16:56:51Z" end-time="2026-10-11 16:56:52Z" duration="0.268365" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1037" name="DemoUsesDirectRulesWithDedicatedCameraLabelAndKeepsBothHandVisualizers(&quot;HandPoseRecognitionDemo&quot;)" fullname="HandPoseRecognition.Tests.DirectGestureTests.DemoUsesDirectRulesWithDedicatedCameraLabelAndKeepsBothHandVisualizers(&quot;HandPoseRecognitionDemo&quot;)" methodname="DemoUsesDirectRulesWithDedicatedCameraLabelAndKeepsBothHandVisualizers" classname="HandPoseRecognition.Tests.DirectGestureTests" runstate="Runnable" seed="654339498" result="Passed" start-time="2026-10-11 16:56:52Z" end-time="2026-10-11 16:56:52Z" duration="0.258739" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1038" name="DemoUsesDirectRulesWithDedicatedCameraLabelAndKeepsBothHandVisualizers(&quot;HandGestureMotionDemo&quot;)" fullname="HandPoseRecognition.Tests.DirectGestureTests.DemoUsesDirectRulesWithDedicatedCameraLabelAndKeepsBothHandVisualizers(&quot;HandGestureMotionDemo&quot;)" methodname="DemoUsesDirectRulesWithDedicatedCameraLabelAndKeepsBothHandVisualizers" classname="HandPoseRecognition.Tests.DirectGestureTests" runstate="Runnable" seed="721249342" result="Passed" start-time="2026-10-11 16:56:52Z" end-time="2026-10-11 16:56:52Z" duration="0.261500" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1034" name="InvalidInputAndSettingsClearTheAttempt" fullname="HandPoseRecognition.Tests.DirectGestureTests.InvalidInputAndSettingsClearTheAttempt" methodname="InvalidInputAndSettingsClearTheAttempt" classname="HandPoseRecognition.Tests.DirectGestureTests" runstate="Runnable" seed="1990750170" result="Passed" start-time="2026-10-11 16:56:52Z" end-time="2026-10-11 16:56:52Z" duration="0.000510" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1027" name="PartialCircleZigzagDepthMovementAndFistCircleAreRejected" fullname="HandPoseRecognition.Tests.DirectGestureTests.PartialCircleZigzagDepthMovementAndFistCircleAreRejected" methodname="PartialCircleZigzagDepthMovementAndFistCircleAreRejected" classname="HandPoseRecognition.Tests.DirectGestureTests" runstate="Runnable" seed="2099920234" result="Passed" start-time="2026-10-11 16:56:52Z" end-time="2026-10-11 16:56:52Z" duration="0.010761" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1026" name="PleaseAcceptsBothCircleDirections" fullname="HandPoseRecognition.Tests.DirectGestureTests.PleaseAcceptsBothCircleDirections" classname="HandPoseRecognition.Tests.DirectGestureTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11 16:56:52Z" end-time="2026-10-11 16:56:52Z" duration="0.013822" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1024" name="PleaseAcceptsBothCircleDirections(1)" fullname="HandPoseRecognition.Tests.DirectGestureTests.PleaseAcceptsBothCircleDirections(1)" methodname="PleaseAcceptsBothCircleDirections" classname="HandPoseRecognition.Tests.DirectGestureTests" runstate="Runnable" seed="1715601308" result="Passed" start-time="2026-10-11 16:56:52Z" end-time="2026-10-11 16:56:52Z" duration="0.005716" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1025" name="PleaseAcceptsBothCircleDirections(-1)" fullname="HandPoseRecognition.Tests.DirectGestureTests.PleaseAcceptsBothCircleDirections(-1)" methodname="PleaseAcceptsBothCircleDirections" classname="HandPoseRecognition.Tests.DirectGestureTests" runstate="Runnable" seed="342021800" result="Passed" start-time="2026-10-11 16:56:52Z" end-time="2026-10-11 16:56:52Z" duration="0.004957" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1035" name="SampleConversionUsesCameraAndRigExactlyOnceAndRejectsMissingPalm" fullname="HandPoseRecognition.Tests.DirectGestureTests.SampleConversionUsesCameraAndRigExactlyOnceAndRejectsMissingPalm" methodname="SampleConversionUsesCameraAndRigExactlyOnceAndRejectsMissingPalm" classname="HandPoseRecognition.Tests.DirectGestureTests" runstate="Runnable" seed="662227209" result="Passed" start-time="2026-10-11 16:56:52Z" end-time="2026-10-11 16:56:52Z" duration="0.004493" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1031" name="StaticFistOneWayTiltAndOpenHandNodAreRejected" fullname="HandPoseRecognition.Tests.DirectGestureTests.StaticFistOneWayTiltAndOpenHandNodAreRejected" methodname="StaticFistOneWayTiltAndOpenHandNodAreRejected" classname="HandPoseRecognition.Tests.DirectGestureTests" runstate="Runnable" seed="117848210" result="Passed" start-time="2026-10-11 16:56:52Z" end-time="2026-10-11 16:56:52Z" duration="0.002669" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1032" name="StationaryOpenHandAndSmallJitterDoNotDetect" fullname="HandPoseRecognition.Tests.DirectGestureTests.StationaryOpenHandAndSmallJitterDoNotDetect" methodname="StationaryOpenHandAndSmallJitterDoNotDetect" classname="HandPoseRecognition.Tests.DirectGestureTests" runstate="Runnable" seed="2045138157" result="Passed" start-time="2026-10-11 16:56:52Z" end-time="2026-10-11 16:56:52Z" duration="0.038503" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1023" name="ThankYouRequiresOpenHandNearCameraMovingOutward" fullname="HandPoseRecognition.Tests.DirectGestureTests.ThankYouRequiresOpenHandNearCameraMovingOutward" methodname="ThankYouRequiresOpenHandNearCameraMovingOutward" classname="HandPoseRecognition.Tests.DirectGestureTests" runstate="Runnable" seed="1858969287" result="Passed" start-time="2026-10-11 16:56:52Z" end-time="2026-10-11 16:56:52Z" duration="0.000629" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1033" name="TrackingLossGapShapeChangeAndDuplicateFramesCannotCompleteAnOldAttempt" fullname="HandPoseRecognition.Tests.DirectGestureTests.TrackingLossGapShapeChangeAndDuplicateFramesCannotCompleteAnOldAttempt" methodname="TrackingLossGapShapeChangeAndDuplicateFramesCannotCompleteAnOldAttempt" classname="HandPoseRecognition.Tests.DirectGestureTests" runstate="Runnable" seed="992790818" result="Passed" start-time="2026-10-11 16:56:52Z" end-time="2026-10-11 16:56:52Z" duration="0.000468" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1030" name="YesIsFistNodReturningToItsStartingAngle" fullname="HandPoseRecognition.Tests.DirectGestureTests.YesIsFistNodReturningToItsStartingAngle" classname="HandPoseRecognition.Tests.DirectGestureTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11 16:56:52Z" end-time="2026-10-11 16:56:52Z" duration="0.001254" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1028" name="YesIsFistNodReturningToItsStartingAngle(1)" fullname="HandPoseRecognition.Tests.DirectGestureTests.YesIsFistNodReturningToItsStartingAngle(1)" methodname="YesIsFistNodReturningToItsStartingAngle" classname="HandPoseRecognition.Tests.DirectGestureTests" runstate="Runnable" seed="1234842313" result="Passed" start-time="2026-10-11 16:56:52Z" end-time="2026-10-11 16:56:52Z" duration="0.000470" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1029" name="YesIsFistNodReturningToItsStartingAngle(-1)" fullname="HandPoseRecognition.Tests.DirectGestureTests.YesIsFistNodReturningToItsStartingAngle(-1)" methodname="YesIsFistNodReturningToItsStartingAngle" classname="HandPoseRecognition.Tests.DirectGestureTests" runstate="Runnable" seed="1571524027" result="Passed" start-time="2026-10-11 16:56:52Z" end-time="2026-10-11 16:56:52Z" duration="0.000271" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="1191" name="HandJointVisualizerTests" fullname="HandPoseRecognition.Tests.HandJointVisualizerTests" classname="HandPoseRecognition.Tests.HandJointVisualizerTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-11 16:56:52Z" end-time="2026-10-11 16:56:52Z" duration="0.012060" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1195" name="InvalidFinger_HidesOnlyThatFinger" fullname="HandPoseRecognition.Tests.HandJointVisualizerTests.InvalidFinger_HidesOnlyThatFinger" methodname="InvalidFinger_HidesOnlyThatFinger" classname="HandPoseRecognition.Tests.HandJointVisualizerTests" runstate="Runnable" seed="1871747323" result="Passed" start-time="2026-10-11 16:56:52Z" end-time="2026-10-11 16:56:52Z" duration="0.006248" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1200" name="InvalidThumb_HidesOnlyThumb" fullname="HandPoseRecognition.Tests.HandJointVisualizerTests.InvalidThumb_HidesOnlyThumb" classname="HandPoseRecognition.Tests.HandJointVisualizerTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-11 16:56:52Z" end-time="2026-10-11 16:56:52Z" duration="0.002322" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1196" name="InvalidThumb_HidesOnlyThumb(Missing)" fullname="HandPoseRecognition.Tests.HandJointVisualizerTests.InvalidThumb_HidesOnlyThumb(Missing)" methodname="InvalidThumb_HidesOnlyThumb" classname="HandPoseRecognition.Tests.HandJointVisualizerTests" runstate="Runnable" seed="1170527702" result="Passed" start-time="2026-10-11 16:56:52Z" end-time="2026-10-11 16:56:52Z" duration="0.000556" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1197" name="InvalidThumb_HidesOnlyThumb(Coincident)" fullname="HandPoseRecognition.Tests.HandJointVisualizerTests.InvalidThumb_HidesOnlyThumb(Coincident)" methodname="InvalidThumb_HidesOnlyThumb" classname="HandPoseRecognition.Tests.HandJointVisualizerTests" runstate="Runnable" seed="231605972" result="Passed" start-time="2026-10-11 16:56:52Z" end-time="2026-10-11 16:56:52Z" duration="0.000258" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1198" name="InvalidThumb_HidesOnlyThumb(NaN)" fullname="HandPoseRecognition.Tests.HandJointVisualizerTests.InvalidThumb_HidesOnlyThumb(NaN)" methodname="InvalidThumb_HidesOnlyThumb" classname="HandPoseRecognition.Tests.HandJointVisualizerTests" runstate="Runnable" seed="701426851" result="Passed" start-time="2026-10-11 16:56:52Z" end-time="2026-10-11 16:56:52Z" duration="0.000235" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1199" name="InvalidThumb_HidesOnlyThumb(Infinity)" fullname="HandPoseRecognition.Tests.HandJointVisualizerTests.InvalidThumb_HidesOnlyThumb(Infinity)" methodname="InvalidThumb_HidesOnlyThumb" classname="HandPoseRecognition.Tests.HandJointVisualizerTests" runstate="Runnable" seed="1184175725" result="Passed" start-time="2026-10-11 16:56:52Z" end-time="2026-10-11 16:56:52Z" duration="0.000230" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1192" name="TrackedFinger_UsesTrackingSpaceAndMeasuredJointPositions" fullname="HandPoseRecognition.Tests.HandJointVisualizerTests.TrackedFinger_UsesTrackingSpaceAndMeasuredJointPositions" methodname="TrackedFinger_UsesTrackingSpaceAndMeasuredJointPositions" classname="HandPoseRecognition.Tests.HandJointVisualizerTests" runstate="Runnable" seed="1589775674" result="Passed" start-time="2026-10-11 16:56:52Z" end-time="2026-10-11 16:56:52Z" duration="0.000928" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1193" name="TrackedThumb_UsesFourMeasuredJointsAndSameMaterialInTrackingSpace" fullname="HandPoseRecognition.Tests.HandJointVisualizerTests.TrackedThumb_UsesFourMeasuredJointsAndSameMaterialInTrackingSpace" methodname="TrackedThumb_UsesFourMeasuredJointsAndSameMaterialInTrackingSpace" classname="HandPoseRecognition.Tests.HandJointVisualizerTests" runstate="Runnable" seed="619641716" result="Passed" start-time="2026-10-11 16:56:52Z" end-time="2026-10-11 16:56:52Z" duration="0.000877" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1194" name="TrackingLoss_HidesPreviouslyVisibleFingers" fullname="HandPoseRecognition.Tests.HandJointVisualizerTests.TrackingLoss_HidesPreviouslyVisibleFingers" methodname="TrackingLoss_HidesPreviouslyVisibleFingers" classname="HandPoseRecognition.Tests.HandJointVisualizerTests" runstate="Runnable" seed="526903979" result="Passed" start-time="2026-10-11 16:56:52Z" end-time="2026-10-11 16:56:52Z" duration="0.000430" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1246" name="LeftHandStateDisplayTests" fullname="HandPoseRecognition.Tests.LeftHandStateDisplayTests" classname="HandPoseRecognition.Tests.LeftHandStateDisplayTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-11 16:56:52Z" end-time="2026-10-11 16:56:53Z" duration="0.787872" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1252" name="DisplayReadsOnlyLeftHandAndClearsOnTrackingLoss" fullname="HandPoseRecognition.Tests.LeftHandStateDisplayTests.DisplayReadsOnlyLeftHandAndClearsOnTrackingLoss" methodname="DisplayReadsOnlyLeftHandAndClearsOnTrackingLoss" classname="HandPoseRecognition.Tests.LeftHandStateDisplayTests" runstate="Runnable" seed="1545468985" result="Passed" start-time="2026-10-11 16:56:52Z" end-time="2026-10-11 16:56:52Z" duration="0.002572" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1250" name="MirroredHandUsesExistingCurlRules" fullname="HandPoseRecognition.Tests.LeftHandStateDisplayTests.MirroredHandUsesExistingCurlRules" classname="HandPoseRecognition.Tests.LeftHandStateDisplayTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-11 16:56:52Z" end-time="2026-10-11 16:56:52Z" duration="0.001363" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1247" name="MirroredHandUsesExistingCurlRules(0.0f,Open,&quot;LEFT: OPEN&quot;)" fullname="HandPoseRecognition.Tests.LeftHandStateDisplayTests.MirroredHandUsesExistingCurlRules(0.0f,Open,&quot;LEFT: OPEN&quot;)" methodname="MirroredHandUsesExistingCurlRules" classname="HandPoseRecognition.Tests.LeftHandStateDisplayTests" runstate="Runnable" seed="73838158" result="Passed" start-time="2026-10-11 16:56:52Z" end-time="2026-10-11 16:56:52Z" duration="0.000537" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1248" name="MirroredHandUsesExistingCurlRules(90.0f,Fist,&quot;LEFT: CLOSED&quot;)" fullname="HandPoseRecognition.Tests.LeftHandStateDisplayTests.MirroredHandUsesExistingCurlRules(90.0f,Fist,&quot;LEFT: CLOSED&quot;)" methodname="MirroredHandUsesExistingCurlRules" classname="HandPoseRecognition.Tests.LeftHandStateDisplayTests" runstate="Runnable" seed="1546445112" result="Passed" start-time="2026-10-11 16:56:52Z" end-time="2026-10-11 16:56:52Z" duration="0.000069" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1249" name="MirroredHandUsesExistingCurlRules(35.0f,Unknown,&quot;LEFT: UNKNOWN&quot;)" fullname="HandPoseRecognition.Tests.LeftHandStateDisplayTests.MirroredHandUsesExistingCurlRules(35.0f,Unknown,&quot;LEFT: UNKNOWN&quot;)" methodname="MirroredHandUsesExistingCurlRules" classname="HandPoseRecognition.Tests.LeftHandStateDisplayTests" runstate="Runnable" seed="709584149" result="Passed" start-time="2026-10-11 16:56:52Z" end-time="2026-10-11 16:56:52Z" duration="0.000045" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1251" name="MissingTrackingOrJointsNeverReportsOpenOrClosed" fullname="HandPoseRecognition.Tests.LeftHandStateDisplayTests.MissingTrackingOrJointsNeverReportsOpenOrClosed" methodname="MissingTrackingOrJointsNeverReportsOpenOrClosed" classname="HandPoseRecognition.Tests.LeftHandStateDisplayTests" runstate="Runnable" seed="1424949776" result="Passed" start-time="2026-10-11 16:56:52Z" end-time="2026-10-11 16:56:52Z" duration="0.000151" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1256" name="SavedDemoHasIndependentLeftAdapterAndLabel" fullname="HandPoseRecognition.Tests.LeftHandStateDisplayTests.SavedDemoHasIndependentLeftAdapterAndLabel" classname="HandPoseRecognition.Tests.LeftHandStateDisplayTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-11 16:56:52Z" end-time="2026-10-11 16:56:53Z" duration="0.782710" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1253" name="SavedDemoHasIndependentLeftAdapterAndLabel(&quot;HandPoseDemo&quot;)" fullname="HandPoseRecognition.Tests.LeftHandStateDisplayTests.SavedDemoHasIndependentLeftAdapterAndLabel(&quot;HandPoseDemo&quot;)" methodname="SavedDemoHasIndependentLeftAdapterAndLabel" classname="HandPoseRecognition.Tests.LeftHandStateDisplayTests" runstate="Runnable" seed="1257342306" result="Passed" start-time="2026-10-11 16:56:52Z" end-time="2026-10-11 16:56:52Z" duration="0.235355" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1254" name="SavedDemoHasIndependentLeftAdapterAndLabel(&quot;HandPoseRecognitionDemo&quot;)" fullname="HandPoseRecognition.Tests.LeftHandStateDisplayTests.SavedDemoHasIndependentLeftAdapterAndLabel(&quot;HandPoseRecognitionDemo&quot;)" methodname="SavedDemoHasIndependentLeftAdapterAndLabel" classname="HandPoseRecognition.Tests.LeftHandStateDisplayTests" runstate="Runnable" seed="102749799" result="Passed" start-time="2026-10-11 16:56:52Z" end-time="2026-10-11 16:56:53Z" duration="0.294905" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1255" name="SavedDemoHasIndependentLeftAdapterAndLabel(&quot;HandGestureMotionDemo&quot;)" fullname="HandPoseRecognition.Tests.LeftHandStateDisplayTests.SavedDemoHasIndependentLeftAdapterAndLabel(&quot;HandGestureMotionDemo&quot;)" methodname="SavedDemoHasIndependentLeftAdapterAndLabel" classname="HandPoseRecognition.Tests.LeftHandStateDisplayTests" runstate="Runnable" seed="396678874" result="Passed" start-time="2026-10-11 16:56:53Z" end-time="2026-10-11 16:56:53Z" duration="0.251663" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: C:/Users/creep/AppData/LocalLow/DefaultCompany/codeRedUnity\TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

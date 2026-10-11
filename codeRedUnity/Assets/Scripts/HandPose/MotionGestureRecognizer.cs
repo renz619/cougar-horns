@@ -35,9 +35,12 @@ namespace HandPoseRecognition
             }
             if (winner == null) return new GestureRecognitionResult(supported ? GestureRecognitionStatus.Incomplete : GestureRecognitionStatus.NoCandidates,
                 clip, supported ? "No eligible complete example comparison." : "No supported same-side motion candidates.", result.PhaseCoverage);
-            bool match = best <= winner.FrozenDefinition.Settings.MaxError;
+            double threshold = winner.FrozenDefinition.Settings.MaxError;
+            bool match = best <= threshold;
             return new GestureRecognitionResult(match ? GestureRecognitionStatus.Matched : GestureRecognitionStatus.AboveThreshold,
-                clip, match ? "Complete motion matched." : "Best complete candidate exceeds its own threshold.", 1, winner.GestureId, best, example);
+                clip, match ? "Complete motion matched." : FormattableString.Invariant(
+                    $"Best complete candidate exceeds its own threshold. Candidate={winner.GestureId}; error={best:G6}; threshold={threshold:G6}; over by={best - threshold:G6}."),
+                1, winner.GestureId, best, example);
         }
 
         public static bool TryCheckComplete(GestureClip clip, out GestureRecognitionResult result)
@@ -102,9 +105,13 @@ namespace HandPoseRecognition
             if (definition.MotionKind == GestureMotionKind.Z)
             {
                 int top = 0;
-                for (int i = 1; i < points.Count && start.y - points[i].Tip.y < threshold; i++)
+                for (int i = 1; i < points.Count && start.y - points[i].Tip.y <= s.StrokeVerticalTolerance; i++)
+                {
+                    // A clear reversal ends the top stroke even when the diagonal is shallow.
+                    if (direction * (points[top].Tip.x - points[i].Tip.x) >= threshold) break;
                     if (direction * (points[i].Tip.x - points[top].Tip.x) > 0) top = i;
-                if (direction * (points[top].Tip.x - start.x) < threshold || Math.Abs(points[top].Tip.y - start.y) > threshold)
+                }
+                if (direction * (points[top].Tip.x - start.x) < threshold || Math.Abs(points[top].Tip.y - start.y) > s.StrokeVerticalTolerance)
                 { reason = "Finish the top stroke."; return false; }
                 coverage = 1.0 / 3;
                 int diagonal = top;
@@ -113,8 +120,8 @@ namespace HandPoseRecognition
                 if (direction * (points[top].Tip.x - points[diagonal].Tip.x) < threshold || points[top].Tip.y - points[diagonal].Tip.y < threshold)
                 { reason = "Finish the downward diagonal reversal."; return false; }
                 coverage = 2.0 / 3;
-                if (direction * (end.x - points[diagonal].Tip.x) < threshold || Math.Abs(end.y - points[diagonal].Tip.y) > threshold
-                    || diagonal >= points.Count - 2)
+                if (direction * (end.x - points[diagonal].Tip.x) < threshold || Math.Abs(end.y - points[diagonal].Tip.y) > s.StrokeVerticalTolerance
+                    || diagonal >= points.Count - 1)
                 { reason = "Finish the bottom stroke."; return false; }
             }
             else if (definition.MotionKind == GestureMotionKind.J)

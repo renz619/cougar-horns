@@ -47,6 +47,8 @@ namespace HandPoseRecognition.Editor
                     var material = new Material(shader); AssetDatabase.CreateAsset(material, materialPath); trail.sharedMaterial = material;
                 }
                 var debug = display.gameObject.AddComponent<HandGestureDebugDisplay>(); debug.Controller = controller; debug.Label = label; debug.Trail = trail;
+                EnsureZFeedback(controller, oldLabel);
+                DirectGestureDemoSetup.Ensure(scene);
                 EditorSceneManager.MarkSceneDirty(scene); AssetDatabase.SaveAssets(); EditorSceneManager.SaveScene(scene);
                 Debug.Log("Motion demo saved: " + path + "; default Disabled; empty catalog " + catalogPath + ". Record reviewed complete examples before enabling JZOnly.");
             }
@@ -54,5 +56,40 @@ namespace HandPoseRecognition.Editor
         }
         static void EnsureFolder(string parent, string child)
         { if (!AssetDatabase.IsValidFolder(parent + "/" + child)) AssetDatabase.CreateFolder(parent, child); }
+
+        [MenuItem("Tools/Hand Gesture/Add Persistent Z Feedback to Motion Demo")]
+        public static void AddPersistentZFeedback()
+        {
+            var scene = EditorSceneManager.OpenScene("Assets/Scenes/HandGestureMotionDemo.unity", OpenSceneMode.Additive);
+            try
+            {
+                HandGestureController controller = null;
+                foreach (var root in scene.GetRootGameObjects())
+                    if (controller == null) controller = root.GetComponentInChildren<HandGestureController>(true);
+                if (controller == null) throw new InvalidOperationException("Motion demo has no gesture controller.");
+                var debug = controller.GetComponent<HandGestureDebugDisplay>();
+                if (debug == null || debug.Label == null) throw new InvalidOperationException("Motion demo has no motion label to copy.");
+                EnsureZFeedback(controller, debug.Label);
+                EditorSceneManager.MarkSceneDirty(scene);
+                if (!EditorSceneManager.SaveScene(scene)) throw new InvalidOperationException("Could not save motion feedback wiring.");
+            }
+            finally { EditorSceneManager.CloseScene(scene, true); }
+        }
+        static void EnsureZFeedback(HandGestureController controller, TMP_Text sourceLabel)
+        {
+            var feedback = controller.GetComponent<HandGestureDetectionDisplay>();
+            if (feedback == null) feedback = controller.gameObject.AddComponent<HandGestureDetectionDisplay>();
+            feedback.Controller = controller;
+            if (feedback.Label != null) return;
+            var labelObject = UnityEngine.Object.Instantiate(sourceLabel.gameObject, sourceLabel.transform.parent);
+            labelObject.name = "Z Detected Label";
+            var rect = labelObject.GetComponent<RectTransform>();
+            rect.anchorMin = rect.anchorMax = new Vector2(.5f, .5f);
+            rect.sizeDelta = new Vector2(800, 90); rect.anchoredPosition = new Vector2(0, 210);
+            var label = labelObject.GetComponent<TMP_Text>();
+            label.text = "Z DETECTED"; label.fontSize = 48; label.fontStyle = FontStyles.Bold;
+            label.alignment = TextAlignmentOptions.Center; label.color = Color.red; label.raycastTarget = false;
+            feedback.Label = label;
+        }
     }
 }

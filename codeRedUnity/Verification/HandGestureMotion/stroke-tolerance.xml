@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="81" result="Failed(Child)" total="81" passed="80" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-11 15:34:34Z" end-time="2026-10-11 15:34:35Z" duration="1.0346157">
+  <test-suite type="TestSuite" id="1000" name="codeRedUnity" fullname="codeRedUnity" runstate="Runnable" testcasecount="473" result="Failed" site="Child" start-time="2026-10-11 15:34:34Z" end-time="2026-10-11 15:34:35Z" duration="1.034616" total="81" passed="80" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1561" name="HandPose.Tests.EditMode.dll" fullname="C:/Users/creep/Desktop/Projects/codeRed 2026/.verification/HandPoseBaseline/Library/ScriptAssemblies/HandPose.Tests.EditMode.dll" runstate="Runnable" testcasecount="473" result="Failed" site="Child" start-time="2026-10-11 15:34:34Z" end-time="2026-10-11 15:34:35Z" duration="0.983458" total="81" passed="80" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="39272" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1562" name="HandPoseRecognition" fullname="HandPoseRecognition" runstate="Runnable" testcasecount="473" result="Failed" site="Child" start-time="2026-10-11 15:34:34Z" end-time="2026-10-11 15:34:35Z" duration="0.982377" total="81" passed="80" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1563" name="Tests" fullname="HandPoseRecognition.Tests" runstate="Runnable" testcasecount="473" result="Failed" site="Child" start-time="2026-10-11 15:34:34Z" end-time="2026-10-11 15:34:35Z" duration="0.981253" total="81" passed="80" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1016" name="GestureComponentTests" fullname="HandPoseRecognition.Tests.GestureComponentTests" classname="HandPoseRecognition.Tests.GestureComponentTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-11 15:34:34Z" end-time="2026-10-11 15:34:34Z" duration="0.015405" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1017" name="AdapterStreamPublishesEveryDynamicAndLossButNeverBeforeRender" fullname="HandPoseRecognition.Tests.GestureComponentTests.AdapterStreamPublishesEveryDynamicAndLossButNeverBeforeRender" methodname="AdapterStreamPublishesEveryDynamicAndLossButNeverBeforeRender" classname="HandPoseRecognition.Tests.GestureComponentTests" runstate="Runnable" seed="855467556" result="Passed" start-time="2026-10-11 15:34:20Z" end-time="2026-10-11 15:34:20Z" duration="0.026101" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1019" name="ComponentsHonorFalseSourceReturnEvenWithNonnullFrame" fullname="HandPoseRecognition.Tests.GestureComponentTests.ComponentsHonorFalseSourceReturnEvenWithNonnullFrame" methodname="ComponentsHonorFalseSourceReturnEvenWithNonnullFrame" classname="HandPoseRecognition.Tests.GestureComponentTests" runstate="Runnable" seed="1610322602" result="Passed" start-time="2026-10-11 15:34:20Z" end-time="2026-10-11 15:34:20Z" duration="0.007202" asserts="0">
+              <properties />
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1023" name="DisabledOrDestroyedRequiredSourceInvalidatesRecordingImmediately" fullname="HandPoseRecognition.Tests.GestureComponentTests.DisabledOrDestroyedRequiredSourceInvalidatesRecordingImmediately" classname="HandPoseRecognition.Tests.GestureComponentTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11 15:34:34Z" end-time="2026-10-11 15:34:34Z" duration="0.000519" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1021" name="DisabledOrDestroyedRequiredSourceInvalidatesRecordingImmediately(False)" fullname="HandPoseRecognition.Tests.GestureComponentTests.DisabledOrDestroyedRequiredSourceInvalidatesRecordingImmediately(False)" methodname="DisabledOrDestroyedRequiredSourceInvalidatesRecordingImmediately" classname="HandPoseRecognition.Tests.GestureComponentTests" runstate="Runnable" seed="1526042674" result="Passed" start-time="2026-10-11 15:34:20Z" end-time="2026-10-11 15:34:20Z" duration="0.004235" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1022" name="DisabledOrDestroyedRequiredSourceInvalidatesRecordingImmediately(True)" fullname="HandPoseRecognition.Tests.GestureComponentTests.DisabledOrDestroyedRequiredSourceInvalidatesRecordingImmediately(True)" methodname="DisabledOrDestroyedRequiredSourceInvalidatesRecordingImmediately" classname="HandPoseRecognition.Tests.GestureComponentTests" runstate="Runnable" seed="368272211" result="Passed" start-time="2026-10-11 15:34:20Z" end-time="2026-10-11 15:34:20Z" duration="0.000271" asserts="0">
+                <properties />
+              </test-case>
+            </test-suite>
+            <test-case id="1020" name="MotionComponentsCaptureCompleteLiveSequenceAndClearOnDisable" fullname="HandPoseRecognition.Tests.GestureComponentTests.MotionComponentsCaptureCompleteLiveSequenceAndClearOnDisable" methodname="MotionComponentsCaptureCompleteLiveSequenceAndClearOnDisable" classname="HandPoseRecognition.Tests.GestureComponentTests" runstate="Runnable" seed="776045601" result="Passed" start-time="2026-10-11 15:34:20Z" end-time="2026-10-11 15:34:24Z" duration="4.536830" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+              </properties>
+              <output><![CDATA[[HandGestureController] Idle -> Armed; gesture=synthetic.motion.Z; Ready; begin the complete movement.
+[HandGestureController] Armed -> Tracking; gesture=synthetic.motion.Z; Follow the whole movement.
+[HandGestureController] Tracking -> Completed; gesture=synthetic.motion.Z; Complete motion confirmed. Release before repeating.
+[HandGestureController] Completed -> AwaitRearm; gesture=synthetic.motion.Z; Complete motion confirmed. Release before repeating.
+[HandGestureController] AwaitRearm -> Idle; gesture=none; Motion component disabled.
+]]></output>
+            </test-case>
+            <test-case id="1018" name="ReferenceProviderFreezesNumericalAxesButDetectsRigChanges" fullname="HandPoseRecognition.Tests.GestureComponentTests.ReferenceProviderFreezesNumericalAxesButDetectsRigChanges" methodname="ReferenceProviderFreezesNumericalAxesButDetectsRigChanges" classname="HandPoseRecognition.Tests.GestureComponentTests" runstate="Runnable" seed="1679398779" result="Passed" start-time="2026-10-11 15:34:24Z" end-time="2026-10-11 15:34:24Z" duration="0.005387" asserts="0">
+              <properties />
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1024" name="GestureCoreTests" fullname="HandPoseRecognition.Tests.GestureCoreTests" classname="HandPoseRecognition.Tests.GestureCoreTests" runstate="Runnable" testcasecount="17" result="Passed" start-time="2026-10-11 15:34:34Z" end-time="2026-10-11 15:34:34Z" duration="0.001769" total="17" passed="17" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1043" name="CalibrationRejectsScaleAndVerticalHeadForward" fullname="HandPoseRecognition.Tests.GestureCoreTests.CalibrationRejectsScaleAndVerticalHeadForward" methodname="CalibrationRejectsScaleAndVerticalHeadForward" classname="HandPoseRecognition.Tests.GestureCoreTests" runstate="Runnable" seed="93661521" result="Passed" start-time="2026-10-11 15:34:24Z" end-time="2026-10-11 15:34:24Z" duration="0.000302" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1037" name="ClipOwnsDefinitionArrayAndRetainsRawRotations" fullname="HandPoseRecognition.Tests.GestureCoreTests.ClipOwnsDefinitionArrayAndRetainsRawRotations" methodname="ClipOwnsDefinitionArrayAndRetainsRawRotations" classname="HandPoseRecognition.Tests.GestureCoreTests" runstate="Runnable" seed="93564681" result="Passed" start-time="2026-10-11 15:34:24Z" end-time="2026-10-11 15:34:24Z" duration="0.001487" asserts="0">
+              <properties />
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1027" name="CompleteSyntheticPerformanceMatchesOwnedSnapshot" fullname="HandPoseRecognition.Tests.GestureCoreTests.CompleteSyntheticPerformanceMatchesOwnedSnapshot" classname="HandPoseRecognition.Tests.GestureCoreTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11 15:34:34Z" end-time="2026-10-11 15:34:34Z" duration="0.000153" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1025" name="CompleteSyntheticPerformanceMatchesOwnedSnapshot(Z)" fullname="HandPoseRecognition.Tests.GestureCoreTests.CompleteSyntheticPerformanceMatchesOwnedSnapshot(Z)" methodname="CompleteSyntheticPerformanceMatchesOwnedSnapshot" classname="HandPoseRecognition.Tests.GestureCoreTests" runstate="Runnable" seed="1793970853" result="Passed" start-time="2026-10-11 15:34:24Z" end-time="2026-10-11 15:34:24Z" duration="0.003811" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1026" name="CompleteSyntheticPerformanceMatchesOwnedSnapshot(J)" fullname="HandPoseRecognition.Tests.GestureCoreTests.CompleteSyntheticPerformanceMatchesOwnedSnapshot(J)" methodname="CompleteSyntheticPerformanceMatchesOwnedSnapshot" classname="HandPoseRecognition.Tests.GestureCoreTests" runstate="Runnable" seed="1531841644" result="Passed" start-time="2026-10-11 15:34:24Z" end-time="2026-10-11 15:34:24Z" duration="0.003281" asserts="0">
+                <properties />
+              </test-case>
+            </test-suite>
+            <test-case id="1045" name="DtwHandComputedDiagonalCostAndQuaternionSign" fullname="HandPoseRecognition.Tests.GestureCoreTests.DtwHandComputedDiagonalCostAndQuaternionSign" methodname="DtwHandComputedDiagonalCostAndQuaternionSign" classname="HandPoseRecognition.Tests.GestureCoreTests" runstate="Runnable" seed="2046790891" result="Passed" start-time="2026-10-11 15:34:24Z" end-time="2026-10-11 15:34:24Z" duration="0.000983" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1044" name="FutureStaticTwoHandDefinitionIsStoredButNeverRecognized" fullname="HandPoseRecognition.Tests.GestureCoreTests.FutureStaticTwoHandDefinitionIsStoredButNeverRecognized" methodname="FutureStaticTwoHandDefinitionIsStoredButNeverRecognized" classname="HandPoseRecognition.Tests.GestureCoreTests" runstate="Runnable" seed="987526841" result="Passed" start-time="2026-10-11 15:34:24Z" end-time="2026-10-11 15:34:24Z" duration="0.000429" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1036" name="HeldShapeAndTopStrokeDoNotCompleteZ" fullname="HandPoseRecognition.Tests.GestureCoreTests.HeldShapeAndTopStrokeDoNotCompleteZ" methodname="HeldShapeAndTopStrokeDoNotCompleteZ" classname="HandPoseRecognition.Tests.GestureCoreTests" runstate="Runnable" seed="1732743885" result="Passed" start-time="2026-10-11 15:34:24Z" end-time="2026-10-11 15:34:24Z" duration="0.001245" asserts="0">
+              <properties />
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1042" name="InvalidMaximumDurationIsRejected" fullname="HandPoseRecognition.Tests.GestureCoreTests.InvalidMaximumDurationIsRejected" classname="HandPoseRecognition.Tests.GestureCoreTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-11 15:34:34Z" end-time="2026-10-11 15:34:34Z" duration="0.000223" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1038" name="InvalidMaximumDurationIsRejected(0)" fullname="HandPoseRecognition.Tests.GestureCoreTests.InvalidMaximumDurationIsRejected(0)" methodname="InvalidMaximumDurationIsRejected" classname="HandPoseRecognition.Tests.GestureCoreTests" runstate="Runnable" seed="553894296" result="Passed" start-time="2026-10-11 15:34:24Z" end-time="2026-10-11 15:34:24Z" duration="0.000282" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1039" name="InvalidMaximumDurationIsRejected(-1)" fullname="HandPoseRecognition.Tests.GestureCoreTests.InvalidMaximumDurationIsRejected(-1)" methodname="InvalidMaximumDurationIsRejected" classname="HandPoseRecognition.Tests.GestureCoreTests" runstate="Runnable" seed="365231878" result="Passed" start-time="2026-10-11 15:34:24Z" end-time="2026-10-11 15:34:24Z" duration="0.000043" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1040" name="InvalidMaximumDurationIsRejected(double.NaN)" fullname="HandPoseRecognition.Tests.GestureCoreTests.InvalidMaximumDurationIsRejected(double.NaN)" methodname="InvalidMaximumDurationIsRejected" classname="HandPoseRecognition.Tests.GestureCoreTests" runstate="Runnable" seed="1246693587" result="Passed" start-time="2026-10-11 15:34:24Z" end-time="2026-10-11 15:34:24Z" duration="0.000038" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1041" name="InvalidMaximumDurationIsRejected(double.PositiveInfinity)" fullname="HandPoseRecognition.Tests.GestureCoreTests.InvalidMaximumDurationIsRejected(double.PositiveInfinity)" methodname="InvalidMaximumDurationIsRejected" classname="HandPoseRecognition.Tests.GestureCoreTests" runstate="Runnable" seed="1065299918" result="Passed" start-time="2026-10-11 15:34:24Z" end-time="2026-10-11 15:34:24Z" duration="0.000028" asserts="0">
+                <properties />
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1035" name="ReversedAndWrongShapesFailBeforeScoring" fullname="HandPoseRecognition.Tests.GestureCoreTests.ReversedAndWrongShapesFailBeforeScoring" classname="HandPoseRecognition.Tests.GestureCoreTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11 15:34:34Z" end-time="2026-10-11 15:34:34Z" duration="0.000158" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1033" name="ReversedAndWrongShapesFailBeforeScoring(J)" fullname="HandPoseRecognition.Tests.GestureCoreTests.ReversedAndWrongShapesFailBeforeScoring(J)" methodname="ReversedAndWrongShapesFailBeforeScoring" classname="HandPoseRecognition.Tests.GestureCoreTests" runstate="Runnable" seed="444441627" result="Passed" start-time="2026-10-11 15:34:24Z" end-time="2026-10-11 15:34:24Z" duration="0.001984" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1034" name="ReversedAndWrongShapesFailBeforeScoring(Z)" fullname="HandPoseRecognition.Tests.GestureCoreTests.ReversedAndWrongShapesFailBeforeScoring(Z)" methodname="ReversedAndWrongShapesFailBeforeScoring" classname="HandPoseRecognition.Tests.GestureCoreTests" runstate="Runnable" seed="1898857041" result="Passed" start-time="2026-10-11 15:34:24Z" end-time="2026-10-11 15:34:24Z" duration="0.001334" asserts="0">
+                <properties />
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1032" name="SpeedTranslationAndScaleRemainSupported" fullname="HandPoseRecognition.Tests.GestureCoreTests.SpeedTranslationAndScaleRemainSupported" classname="HandPoseRecognition.Tests.GestureCoreTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-11 15:34:34Z" end-time="2026-10-11 15:34:34Z" duration="0.000246" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1028" name="SpeedTranslationAndScaleRemainSupported(Z,0.7d)" fullname="HandPoseRecognition.Tests.GestureCoreTests.SpeedTranslationAndScaleRemainSupported(Z,0.7d)" methodname="SpeedTranslationAndScaleRemainSupported" classname="HandPoseRecognition.Tests.GestureCoreTests" runstate="Runnable" seed="67110448" result="Passed" start-time="2026-10-11 15:34:24Z" end-time="2026-10-11 15:34:24Z" duration="0.003294" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1029" name="SpeedTranslationAndScaleRemainSupported(Z,1.5d)" fullname="HandPoseRecognition.Tests.GestureCoreTests.SpeedTranslationAndScaleRemainSupported(Z,1.5d)" methodname="SpeedTranslationAndScaleRemainSupported" classname="HandPoseRecognition.Tests.GestureCoreTests" runstate="Runnable" seed="1472098951" result="Passed" start-time="2026-10-11 15:34:24Z" end-time="2026-10-11 15:34:24Z" duration="0.002682" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1030" name="SpeedTranslationAndScaleRemainSupported(J,0.7d)" fullname="HandPoseRecognition.Tests.GestureCoreTests.SpeedTranslationAndScaleRemainSupported(J,0.7d)" methodname="SpeedTranslationAndScaleRemainSupported" classname="HandPoseRecognition.Tests.GestureCoreTests" runstate="Runnable" seed="1805507517" result="Passed" start-time="2026-10-11 15:34:24Z" end-time="2026-10-11 15:34:24Z" duration="0.003348" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1031" name="SpeedTranslationAndScaleRemainSupported(J,1.5d)" fullname="HandPoseRecognition.Tests.GestureCoreTests.SpeedTranslationAndScaleRemainSupported(J,1.5d)" methodname="SpeedTranslationAndScaleRemainSupported" classname="HandPoseRecognition.Tests.GestureCoreTests" runstate="Runnable" seed="1487417786" result="Passed" start-time="2026-10-11 15:34:24Z" end-time="2026-10-11 15:34:24Z" duration="0.003406" asserts="0">
+                <properties />
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="1046" name="GestureDemoSetupTests" fullname="HandPoseRecognition.Tests.GestureDemoSetupTests" classname="HandPoseRecognition.Tests.GestureDemoSetupTests" runstate="Runnable" testcasecount="1" result="Failed" site="Child" start-time="2026-10-11 15:34:34Z" end-time="2026-10-11 15:34:34Z" duration="0.000226" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1047" name="MotionDemoIsSeparateDisabledAndPreservesOriginalStaticSettings" fullname="HandPoseRecognition.Tests.GestureDemoSetupTests.MotionDemoIsSeparateDisabledAndPreservesOriginalStaticSettings" methodname="MotionDemoIsSeparateDisabledAndPreservesOriginalStaticSettings" classname="HandPoseRecognition.Tests.GestureDemoSetupTests" runstate="Runnable" seed="28048356" result="Failed" start-time="2026-10-11 15:34:24Z" end-time="2026-10-11 15:34:24Z" duration="0.090672" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[  Expected: Disabled
+  But was:  JZOnly
+]]></message>
+                <stack-trace><![CDATA[at HandPoseRecognition.Tests.GestureDemoSetupTests.MotionDemoIsSeparateDisabledAndPreservesOriginalStaticSettings () [0x000bb] in C:\Users\creep\Desktop\Projects\codeRed 2026\.verification\HandPoseBaseline\Assets\Tests\EditMode\GestureDemoSetupTests.cs:22
+]]></stack-trace>
+              </failure>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1048" name="GestureMatcherEdgeTests" fullname="HandPoseRecognition.Tests.GestureMatcherEdgeTests" classname="HandPoseRecognition.Tests.GestureMatcherEdgeTests" runstate="Runnable" testcasecount="18" result="Passed" start-time="2026-10-11 15:34:34Z" end-time="2026-10-11 15:34:34Z" duration="0.001458" total="18" passed="18" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1063" name="DtwRequiresBothEndpointsAndBoundsStretching" fullname="HandPoseRecognition.Tests.GestureMatcherEdgeTests.DtwRequiresBothEndpointsAndBoundsStretching" methodname="DtwRequiresBothEndpointsAndBoundsStretching" classname="HandPoseRecognition.Tests.GestureMatcherEdgeTests" runstate="Runnable" seed="1074814405" result="Passed" start-time="2026-10-11 15:34:24Z" end-time="2026-10-11 15:34:24Z" duration="0.001007" asserts="0">
+              <properties />
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1060" name="InvalidStrokeVerticalToleranceIsRejected" fullname="HandPoseRecognition.Tests.GestureMatcherEdgeTests.InvalidStrokeVerticalToleranceIsRejected" classname="HandPoseRecognition.Tests.GestureMatcherEdgeTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-11 15:34:34Z" end-time="2026-10-11 15:34:34Z" duration="0.000170" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1057" name="InvalidStrokeVerticalToleranceIsRejected(0)" fullname="HandPoseRecognition.Tests.GestureMatcherEdgeTests.InvalidStrokeVerticalToleranceIsRejected(0)" methodname="InvalidStrokeVerticalToleranceIsRejected" classname="HandPoseRecognition.Tests.GestureMatcherEdgeTests" runstate="Runnable" seed="255446316" result="Passed" start-time="2026-10-11 15:34:24Z" end-time="2026-10-11 15:34:24Z" duration="0.000188" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1058" name="InvalidStrokeVerticalToleranceIsRejected(-1)" fullname="HandPoseRecognition.Tests.GestureMatcherEdgeTests.InvalidStrokeVerticalToleranceIsRejected(-1)" methodname="InvalidStrokeVerticalToleranceIsRejected" classname="HandPoseRecognition.Tests.GestureMatcherEdgeTests" runstate="Runnable" seed="973579083" result="Passed" start-time="2026-10-11 15:34:24Z" end-time="2026-10-11 15:34:24Z" duration="0.000051" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1059" name="InvalidStrokeVerticalToleranceIsRejected(double.NaN)" fullname="HandPoseRecognition.Tests.GestureMatcherEdgeTests.InvalidStrokeVerticalToleranceIsRejected(double.NaN)" methodname="InvalidStrokeVerticalToleranceIsRejected" classname="HandPoseRecognition.Tests.GestureMatcherEdgeTests" runstate="Runnable" seed="1035409729" result="Passed" start-time="2026-10-11 15:34:24Z" end-time="2026-10-11 15:34:24Z" duration="0.000036" asserts="0">
+                <properties />
+              </test-case>
+            </test-suite>
+            <test-case id="1067" name="JRequiresWristRotationAndDoesNotReduceToHeldI" fullname="HandPoseRecognition.Tests.GestureMatcherEdgeTests.JRequiresWristRotationAndDoesNotReduceToHeldI" methodname="JRequiresWristRotationAndDoesNotReduceToHeldI" classname="HandPoseRecognition.Tests.GestureMatcherEdgeTests" runstate="Runnable" seed="1102314441" result="Passed" start-time="2026-10-11 15:34:24Z" end-time="2026-10-11 15:34:24Z" duration="0.001378" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1061" name="OrdinalIdsThenStableExampleIndexBreakExactTies" fullname="HandPoseRecognition.Tests.GestureMatcherEdgeTests.OrdinalIdsThenStableExampleIndexBreakExactTies" methodname="OrdinalIdsThenStableExampleIndexBreakExactTies" classname="HandPoseRecognition.Tests.GestureMatcherEdgeTests" runstate="Runnable" seed="985092313" result="Passed" start-time="2026-10-11 15:34:24Z" end-time="2026-10-11 15:34:24Z" duration="0.006027" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1068" name="OverflowingFeatureWeightSumCannotProduceAFalseZeroScore" fullname="HandPoseRecognition.Tests.GestureMatcherEdgeTests.OverflowingFeatureWeightSumCannotProduceAFalseZeroScore" methodname="OverflowingFeatureWeightSumCannotProduceAFalseZeroScore" classname="HandPoseRecognition.Tests.GestureMatcherEdgeTests" runstate="Runnable" seed="599177824" result="Passed" start-time="2026-10-11 15:34:24Z" end-time="2026-10-11 15:34:24Z" duration="0.000377" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1064" name="QAndNegativeQProduceExactlyTheSameOrientationCost" fullname="HandPoseRecognition.Tests.GestureMatcherEdgeTests.QAndNegativeQProduceExactlyTheSameOrientationCost" methodname="QAndNegativeQProduceExactlyTheSameOrientationCost" classname="HandPoseRecognition.Tests.GestureMatcherEdgeTests" runstate="Runnable" seed="60629990" result="Passed" start-time="2026-10-11 15:34:24Z" end-time="2026-10-11 15:34:24Z" duration="0.000439" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1050" name="RelaxedDefaultAcceptsLargerStrokeVariationThanPreviousErrorLimit" fullname="HandPoseRecognition.Tests.GestureMatcherEdgeTests.RelaxedDefaultAcceptsLargerStrokeVariationThanPreviousErrorLimit" methodname="RelaxedDefaultAcceptsLargerStrokeVariationThanPreviousErrorLimit" classname="HandPoseRecognition.Tests.GestureMatcherEdgeTests" runstate="Runnable" seed="116737577" result="Passed" start-time="2026-10-11 15:34:24Z" end-time="2026-10-11 15:34:24Z" duration="0.006772" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1056" name="RelaxedZStillRequiresBothHorizontalStrokesAndDownwardReversal" fullname="HandPoseRecognition.Tests.GestureMatcherEdgeTests.RelaxedZStillRequiresBothHorizontalStrokesAndDownwardReversal" methodname="RelaxedZStillRequiresBothHorizontalStrokesAndDownwardReversal" classname="HandPoseRecognition.Tests.GestureMatcherEdgeTests" runstate="Runnable" seed="2026137272" result="Passed" start-time="2026-10-11 15:34:24Z" end-time="2026-10-11 15:34:24Z" duration="0.000508" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1066" name="SnapshotBuildRejectsDuplicateIdsAndCatalogBudgetAtomically" fullname="HandPoseRecognition.Tests.GestureMatcherEdgeTests.SnapshotBuildRejectsDuplicateIdsAndCatalogBudgetAtomically" methodname="SnapshotBuildRejectsDuplicateIdsAndCatalogBudgetAtomically" classname="HandPoseRecognition.Tests.GestureMatcherEdgeTests" runstate="Runnable" seed="180771722" result="Passed" start-time="2026-10-11 15:34:24Z" end-time="2026-10-11 15:34:24Z" duration="0.001657" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1065" name="SourceEpochAndRawTimestampOrderingAreNeverBridged" fullname="HandPoseRecognition.Tests.GestureMatcherEdgeTests.SourceEpochAndRawTimestampOrderingAreNeverBridged" methodname="SourceEpochAndRawTimestampOrderingAreNeverBridged" classname="HandPoseRecognition.Tests.GestureMatcherEdgeTests" runstate="Runnable" seed="389150299" result="Passed" start-time="2026-10-11 15:34:24Z" end-time="2026-10-11 15:34:24Z" duration="0.001406" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1062" name="UnsupportedVersionAndNullEvidenceFailWithExplicitNoScore" fullname="HandPoseRecognition.Tests.GestureMatcherEdgeTests.UnsupportedVersionAndNullEvidenceFailWithExplicitNoScore" methodname="UnsupportedVersionAndNullEvidenceFailWithExplicitNoScore" classname="HandPoseRecognition.Tests.GestureMatcherEdgeTests" runstate="Runnable" seed="646331448" result="Passed" start-time="2026-10-11 15:34:24Z" end-time="2026-10-11 15:34:24Z" duration="0.005361" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1049" name="WinnerThresholdIsInclusiveAndNeverSelectsWorseWideThreshold" fullname="HandPoseRecognition.Tests.GestureMatcherEdgeTests.WinnerThresholdIsInclusiveAndNeverSelectsWorseWideThreshold" methodname="WinnerThresholdIsInclusiveAndNeverSelectsWorseWideThreshold" classname="HandPoseRecognition.Tests.GestureMatcherEdgeTests" runstate="Runnable" seed="1682500362" result="Passed" start-time="2026-10-11 15:34:24Z" end-time="2026-10-11 15:34:24Z" duration="0.011667" asserts="0">
+              <properties />
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1054" name="ZAllowsSlopedTopAndBottomStrokesWithinIndependentVerticalTolerance" fullname="HandPoseRecognition.Tests.GestureMatcherEdgeTests.ZAllowsSlopedTopAndBottomStrokesWithinIndependentVerticalTolerance" classname="HandPoseRecognition.Tests.GestureMatcherEdgeTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-11 15:34:34Z" end-time="2026-10-11 15:34:34Z" duration="0.000182" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1051" name="ZAllowsSlopedTopAndBottomStrokesWithinIndependentVerticalTolerance(0.3f,0.0f)" fullname="HandPoseRecognition.Tests.GestureMatcherEdgeTests.ZAllowsSlopedTopAndBottomStrokesWithinIndependentVerticalTolerance(0.3f,0.0f)" methodname="ZAllowsSlopedTopAndBottomStrokesWithinIndependentVerticalTolerance" classname="HandPoseRecognition.Tests.GestureMatcherEdgeTests" runstate="Runnable" seed="1704439683" result="Passed" start-time="2026-10-11 15:34:24Z" end-time="2026-10-11 15:34:24Z" duration="0.000476" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1052" name="ZAllowsSlopedTopAndBottomStrokesWithinIndependentVerticalTolerance(0.0f,0.3f)" fullname="HandPoseRecognition.Tests.GestureMatcherEdgeTests.ZAllowsSlopedTopAndBottomStrokesWithinIndependentVerticalTolerance(0.0f,0.3f)" methodname="ZAllowsSlopedTopAndBottomStrokesWithinIndependentVerticalTolerance" classname="HandPoseRecognition.Tests.GestureMatcherEdgeTests" runstate="Runnable" seed="1990731342" result="Passed" start-time="2026-10-11 15:34:24Z" end-time="2026-10-11 15:34:24Z" duration="0.000053" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1053" name="ZAllowsSlopedTopAndBottomStrokesWithinIndependentVerticalTolerance(0.3f,0.3f)" fullname="HandPoseRecognition.Tests.GestureMatcherEdgeTests.ZAllowsSlopedTopAndBottomStrokesWithinIndependentVerticalTolerance(0.3f,0.3f)" methodname="ZAllowsSlopedTopAndBottomStrokesWithinIndependentVerticalTolerance" classname="HandPoseRecognition.Tests.GestureMatcherEdgeTests" runstate="Runnable" seed="143731298" result="Passed" start-time="2026-10-11 15:34:24Z" end-time="2026-10-11 15:34:24Z" duration="0.000034" asserts="0">
+                <properties />
+              </test-case>
+            </test-suite>
+            <test-case id="1055" name="ZReversalSeparatesShallowDiagonalFromTheLaterBottomStroke" fullname="HandPoseRecognition.Tests.GestureMatcherEdgeTests.ZReversalSeparatesShallowDiagonalFromTheLaterBottomStroke" methodname="ZReversalSeparatesShallowDiagonalFromTheLaterBottomStroke" classname="HandPoseRecognition.Tests.GestureMatcherEdgeTests" runstate="Runnable" seed="148918662" result="Passed" start-time="2026-10-11 15:34:24Z" end-time="2026-10-11 15:34:24Z" duration="0.000245" asserts="0">
+              <properties />
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1069" name="GesturePersistenceTests" fullname="HandPoseRecognition.Tests.GesturePersistenceTests" classname="HandPoseRecognition.Tests.GesturePersistenceTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-11 15:34:34Z" end-time="2026-10-11 15:34:34Z" duration="0.001061" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1073" name="ActualRecorderWindowRetainsReviewAcrossPlayModeExitAndReopen" fullname="HandPoseRecognition.Tests.GesturePersistenceTests.ActualRecorderWindowRetainsReviewAcrossPlayModeExitAndReopen" methodname="ActualRecorderWindowRetainsReviewAcrossPlayModeExitAndReopen" classname="HandPoseRecognition.Tests.GesturePersistenceTests" runstate="Runnable" seed="1786965585" result="Passed" start-time="2026-10-11 15:34:24Z" end-time="2026-10-11 15:34:28Z" duration="3.604141" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+              </properties>
+            </test-case>
+            <test-case id="1070" name="CreateUnloadReloadAppendReplaceAndUndoPreserveIdentityAndSnapshot" fullname="HandPoseRecognition.Tests.GesturePersistenceTests.CreateUnloadReloadAppendReplaceAndUndoPreserveIdentityAndSnapshot" methodname="CreateUnloadReloadAppendReplaceAndUndoPreserveIdentityAndSnapshot" classname="HandPoseRecognition.Tests.GesturePersistenceTests" runstate="Runnable" seed="1518468058" result="Passed" start-time="2026-10-11 15:34:28Z" end-time="2026-10-11 15:34:31Z" duration="2.700316" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1071" name="DuplicateCatalogAndTransientCatalogFailBeforeWrites" fullname="HandPoseRecognition.Tests.GesturePersistenceTests.DuplicateCatalogAndTransientCatalogFailBeforeWrites" methodname="DuplicateCatalogAndTransientCatalogFailBeforeWrites" classname="HandPoseRecognition.Tests.GesturePersistenceTests" runstate="Runnable" seed="916944268" result="Passed" start-time="2026-10-11 15:34:31Z" end-time="2026-10-11 15:34:31Z" duration="0.269944" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1072" name="IncompatibleDefinitionCannotReplaceSavedIdentity" fullname="HandPoseRecognition.Tests.GesturePersistenceTests.IncompatibleDefinitionCannotReplaceSavedIdentity" methodname="IncompatibleDefinitionCannotReplaceSavedIdentity" classname="HandPoseRecognition.Tests.GesturePersistenceTests" runstate="Runnable" seed="1925215017" result="Passed" start-time="2026-10-11 15:34:31Z" end-time="2026-10-11 15:34:31Z" duration="0.154632" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1074" name="WindowRetentionHookStopsActiveCaptureWithoutWritingAssets" fullname="HandPoseRecognition.Tests.GesturePersistenceTests.WindowRetentionHookStopsActiveCaptureWithoutWritingAssets" methodname="WindowRetentionHookStopsActiveCaptureWithoutWritingAssets" classname="HandPoseRecognition.Tests.GesturePersistenceTests" runstate="Runnable" seed="604584517" result="Passed" start-time="2026-10-11 15:34:31Z" end-time="2026-10-11 15:34:31Z" duration="0.087486" asserts="0">
+              <properties />
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1075" name="GestureProfilingTests" fullname="HandPoseRecognition.Tests.GestureProfilingTests" classname="HandPoseRecognition.Tests.GestureProfilingTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-11 15:34:34Z" end-time="2026-10-11 15:34:35Z" duration="0.741960" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1076" name="WarmedCaptureExtractionReplayRecorderAndDebugMeasuredSeparately" fullname="HandPoseRecognition.Tests.GestureProfilingTests.WarmedCaptureExtractionReplayRecorderAndDebugMeasuredSeparately" methodname="WarmedCaptureExtractionReplayRecorderAndDebugMeasuredSeparately" classname="HandPoseRecognition.Tests.GestureProfilingTests" runstate="Runnable" seed="572731110" result="Passed" start-time="2026-10-11 15:34:31Z" end-time="2026-10-11 15:34:35Z" duration="3.761495" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[HandGestureController] Idle -> Armed; gesture=synthetic.motion.Z; Ready; begin the complete movement.
+[HandGestureController] Armed -> Tracking; gesture=synthetic.motion.Z; Follow the whole movement.
+[HandGestureController] Tracking -> Completed; gesture=synthetic.motion.Z; Complete motion confirmed. Release before repeating.
+[HandGestureController] Completed -> AwaitRearm; gesture=synthetic.motion.Z; Complete motion confirmed. Release before repeating.
+GESTURE_PROFILE_SETUP: Unity 6000.0.34f1; warmup=128; one right-side Z definition, one 43-frame clip, 64 comparison points, DTW band 12/run 2; source HandFrames preconstructed; events are counts, not bytes; Editor host, not Quest player.
+GESTURE_PROFILE: Owned gesture observation capture; iterations=128; allocation events=385; events/call=3.008; us/call=1.624
+GESTURE_PROFILE: Feature extraction and preprocessing of complete clip; iterations=128; allocation events=2560; events/call=20.000; us/call=120.302
+GESTURE_PROFILE: Full complete-clip replay and DTW; iterations=128; allocation events=7296; events/call=57.000; us/call=1302.595
+GESTURE_PROFILE: Recorder incoming-frame admission; iterations=128; allocation events=1; events/call=0.008; us/call=2.909
+GESTURE_PROFILE: Developer debug text formatting; iterations=128; allocation events=2048; events/call=16.000; us/call=5.159
+GESTURE_WORKSPACE: reused rolling DTW arrays=7680 bytes; maximum configured raw frames=256 (26 joints/frame); no retained arrays are pooled.
+[HandGestureController] AwaitRearm -> Idle; gesture=none; Motion component disabled.
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1077" name="GestureRecordingTests" fullname="HandPoseRecognition.Tests.GestureRecordingTests" classname="HandPoseRecognition.Tests.GestureRecordingTests" runstate="Runnable" testcasecount="21" result="Passed" start-time="2026-10-11 15:34:35Z" end-time="2026-10-11 15:34:35Z" duration="0.069851" total="21" passed="21" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="1097" name="BoundsAndClockNeverTurnTruncationIntoSuccess" fullname="HandPoseRecognition.Tests.GestureRecordingTests.BoundsAndClockNeverTurnTruncationIntoSuccess" classname="HandPoseRecognition.Tests.GestureRecordingTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-11 15:34:35Z" end-time="2026-10-11 15:34:35Z" duration="0.005037" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1093" name="BoundsAndClockNeverTurnTruncationIntoSuccess(&quot;frames&quot;)" fullname="HandPoseRecognition.Tests.GestureRecordingTests.BoundsAndClockNeverTurnTruncationIntoSuccess(&quot;frames&quot;)" methodname="BoundsAndClockNeverTurnTruncationIntoSuccess" classname="HandPoseRecognition.Tests.GestureRecordingTests" runstate="Runnable" seed="131933472" result="Passed" start-time="2026-10-11 15:34:35Z" end-time="2026-10-11 15:34:35Z" duration="0.002610" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1094" name="BoundsAndClockNeverTurnTruncationIntoSuccess(&quot;attempts&quot;)" fullname="HandPoseRecognition.Tests.GestureRecordingTests.BoundsAndClockNeverTurnTruncationIntoSuccess(&quot;attempts&quot;)" methodname="BoundsAndClockNeverTurnTruncationIntoSuccess" classname="HandPoseRecognition.Tests.GestureRecordingTests" runstate="Runnable" seed="116493156" result="Passed" start-time="2026-10-11 15:34:35Z" end-time="2026-10-11 15:34:35Z" duration="0.000580" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1095" name="BoundsAndClockNeverTurnTruncationIntoSuccess(&quot;duration&quot;)" fullname="HandPoseRecognition.Tests.GestureRecordingTests.BoundsAndClockNeverTurnTruncationIntoSuccess(&quot;duration&quot;)" methodname="BoundsAndClockNeverTurnTruncationIntoSuccess" classname="HandPoseRecognition.Tests.GestureRecordingTests" runstate="Runnable" seed="1625277487" result="Passed" start-time="2026-10-11 15:34:35Z" end-time="2026-10-11 15:34:35Z" duration="0.000518" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1096" name="BoundsAndClockNeverTurnTruncationIntoSuccess(&quot;clock&quot;)" fullname="HandPoseRecognition.Tests.GestureRecordingTests.BoundsAndClockNeverTurnTruncationIntoSuccess(&quot;clock&quot;)" methodname="BoundsAndClockNeverTurnTruncationIntoSuccess" classname="HandPoseRecognition.Tests.GestureRecordingTests" runstate="Runnable" seed="1132107290" result="Passed" start-time="2026-10-11 15:34:35Z" end-time="2026-10-11 15:34:35Z" duration="0.000497" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1098" name="ExplicitTrimRevalidatesFullRemainingPerformance" fullname="HandPoseRecognition.Tests.GestureRecordingTests.ExplicitTrimRevalidatesFullRemainingPerformance" methodname="ExplicitTrimRevalidatesFullRemainingPerformance" classname="HandPoseRecognition.Tests.GestureRecordingTests" runstate="Runnable" seed="1039449374" result="Passed" start-time="2026-10-11 15:34:35Z" end-time="2026-10-11 15:34:35Z" duration="0.002493" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1089" name="InvalidAcquisitionStopsAndCannotBeSaved" fullname="HandPoseRecognition.Tests.GestureRecordingTests.InvalidAcquisitionStopsAndCannotBeSaved" classname="HandPoseRecognition.Tests.GestureRecordingTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-10-11 15:34:35Z" end-time="2026-10-11 15:34:35Z" duration="0.009310" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1079" name="InvalidAcquisitionStopsAndCannotBeSaved(&quot;source&quot;)" fullname="HandPoseRecognition.Tests.GestureRecordingTests.InvalidAcquisitionStopsAndCannotBeSaved(&quot;source&quot;)" methodname="InvalidAcquisitionStopsAndCannotBeSaved" classname="HandPoseRecognition.Tests.GestureRecordingTests" runstate="Runnable" seed="1209338739" result="Passed" start-time="2026-10-11 15:34:35Z" end-time="2026-10-11 15:34:35Z" duration="0.002720" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1080" name="InvalidAcquisitionStopsAndCannotBeSaved(&quot;epoch&quot;)" fullname="HandPoseRecognition.Tests.GestureRecordingTests.InvalidAcquisitionStopsAndCannotBeSaved(&quot;epoch&quot;)" methodname="InvalidAcquisitionStopsAndCannotBeSaved" classname="HandPoseRecognition.Tests.GestureRecordingTests" runstate="Runnable" seed="233988052" result="Passed" start-time="2026-10-11 15:34:35Z" end-time="2026-10-11 15:34:35Z" duration="0.000623" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1081" name="InvalidAcquisitionStopsAndCannotBeSaved(&quot;future&quot;)" fullname="HandPoseRecognition.Tests.GestureRecordingTests.InvalidAcquisitionStopsAndCannotBeSaved(&quot;future&quot;)" methodname="InvalidAcquisitionStopsAndCannotBeSaved" classname="HandPoseRecognition.Tests.GestureRecordingTests" runstate="Runnable" seed="1693011083" result="Passed" start-time="2026-10-11 15:34:35Z" end-time="2026-10-11 15:34:35Z" duration="0.000563" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1082" name="InvalidAcquisitionStopsAndCannotBeSaved(&quot;stale&quot;)" fullname="HandPoseRecognition.Tests.GestureRecordingTests.InvalidAcquisitionStopsAndCannotBeSaved(&quot;stale&quot;)" methodname="InvalidAcquisitionStopsAndCannotBeSaved" classname="HandPoseRecognition.Tests.GestureRecordingTests" runstate="Runnable" seed="1562667578" result="Passed" start-time="2026-10-11 15:34:35Z" end-time="2026-10-11 15:34:35Z" duration="0.000559" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1083" name="InvalidAcquisitionStopsAndCannotBeSaved(&quot;loss&quot;)" fullname="HandPoseRecognition.Tests.GestureRecordingTests.InvalidAcquisitionStopsAndCannotBeSaved(&quot;loss&quot;)" methodname="InvalidAcquisitionStopsAndCannotBeSaved" classname="HandPoseRecognition.Tests.GestureRecordingTests" runstate="Runnable" seed="1767419134" result="Passed" start-time="2026-10-11 15:34:35Z" end-time="2026-10-11 15:34:35Z" duration="0.000557" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1084" name="InvalidAcquisitionStopsAndCannotBeSaved(&quot;backtime&quot;)" fullname="HandPoseRecognition.Tests.GestureRecordingTests.InvalidAcquisitionStopsAndCannotBeSaved(&quot;backtime&quot;)" methodname="InvalidAcquisitionStopsAndCannotBeSaved" classname="HandPoseRecognition.Tests.GestureRecordingTests" runstate="Runnable" seed="1358067163" result="Passed" start-time="2026-10-11 15:34:35Z" end-time="2026-10-11 15:34:35Z" duration="0.000605" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1085" name="InvalidAcquisitionStopsAndCannotBeSaved(&quot;backsequence&quot;)" fullname="HandPoseRecognition.Tests.GestureRecordingTests.InvalidAcquisitionStopsAndCannotBeSaved(&quot;backsequence&quot;)" methodname="InvalidAcquisitionStopsAndCannotBeSaved" classname="HandPoseRecognition.Tests.GestureRecordingTests" runstate="Runnable" seed="190771574" result="Passed" start-time="2026-10-11 15:34:35Z" end-time="2026-10-11 15:34:35Z" duration="0.000551" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1086" name="InvalidAcquisitionStopsAndCannotBeSaved(&quot;joint&quot;)" fullname="HandPoseRecognition.Tests.GestureRecordingTests.InvalidAcquisitionStopsAndCannotBeSaved(&quot;joint&quot;)" methodname="InvalidAcquisitionStopsAndCannotBeSaved" classname="HandPoseRecognition.Tests.GestureRecordingTests" runstate="Runnable" seed="1848181790" result="Passed" start-time="2026-10-11 15:34:35Z" end-time="2026-10-11 15:34:35Z" duration="0.000583" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1087" name="InvalidAcquisitionStopsAndCannotBeSaved(&quot;rotation&quot;)" fullname="HandPoseRecognition.Tests.GestureRecordingTests.InvalidAcquisitionStopsAndCannotBeSaved(&quot;rotation&quot;)" methodname="InvalidAcquisitionStopsAndCannotBeSaved" classname="HandPoseRecognition.Tests.GestureRecordingTests" runstate="Runnable" seed="1210651236" result="Passed" start-time="2026-10-11 15:34:35Z" end-time="2026-10-11 15:34:35Z" duration="0.000541" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1088" name="InvalidAcquisitionStopsAndCannotBeSaved(&quot;jump&quot;)" fullname="HandPoseRecognition.Tests.GestureRecordingTests.InvalidAcquisitionStopsAndCannotBeSaved(&quot;jump&quot;)" methodname="InvalidAcquisitionStopsAndCannotBeSaved" classname="HandPoseRecognition.Tests.GestureRecordingTests" runstate="Runnable" seed="239867289" result="Passed" start-time="2026-10-11 15:34:35Z" end-time="2026-10-11 15:34:35Z" duration="0.000538" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1100" name="LongerDefaultWindowRecordsAndReplaysFiveAndAHalfSecondsAt120Hz" fullname="HandPoseRecognition.Tests.GestureRecordingTests.LongerDefaultWindowRecordsAndReplaysFiveAndAHalfSecondsAt120Hz" methodname="LongerDefaultWindowRecordsAndReplaysFiveAndAHalfSecondsAt120Hz" classname="HandPoseRecognition.Tests.GestureRecordingTests" runstate="Runnable" seed="47204959" result="Passed" start-time="2026-10-11 15:34:35Z" end-time="2026-10-11 15:34:35Z" duration="0.031307" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1101" name="LongerDefaultWindowStillInvalidatesAtItsDeadline" fullname="HandPoseRecognition.Tests.GestureRecordingTests.LongerDefaultWindowStillInvalidatesAtItsDeadline" methodname="LongerDefaultWindowStillInvalidatesAtItsDeadline" classname="HandPoseRecognition.Tests.GestureRecordingTests" runstate="Runnable" seed="45139578" result="Passed" start-time="2026-10-11 15:34:35Z" end-time="2026-10-11 15:34:35Z" duration="0.009691" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1078" name="ManualWholeClipFreezesDefinitionDeduplicatesAndSerializes" fullname="HandPoseRecognition.Tests.GestureRecordingTests.ManualWholeClipFreezesDefinitionDeduplicatesAndSerializes" methodname="ManualWholeClipFreezesDefinitionDeduplicatesAndSerializes" classname="HandPoseRecognition.Tests.GestureRecordingTests" runstate="Runnable" seed="1785358059" result="Passed" start-time="2026-10-11 15:34:35Z" end-time="2026-10-11 15:34:35Z" duration="0.007188" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1092" name="NoAcquisitionOrRepeatedReadCannotBridgeGap" fullname="HandPoseRecognition.Tests.GestureRecordingTests.NoAcquisitionOrRepeatedReadCannotBridgeGap" classname="HandPoseRecognition.Tests.GestureRecordingTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11 15:34:35Z" end-time="2026-10-11 15:34:35Z" duration="0.002198" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1090" name="NoAcquisitionOrRepeatedReadCannotBridgeGap(True)" fullname="HandPoseRecognition.Tests.GestureRecordingTests.NoAcquisitionOrRepeatedReadCannotBridgeGap(True)" methodname="NoAcquisitionOrRepeatedReadCannotBridgeGap" classname="HandPoseRecognition.Tests.GestureRecordingTests" runstate="Runnable" seed="874944402" result="Passed" start-time="2026-10-11 15:34:35Z" end-time="2026-10-11 15:34:35Z" duration="0.001046" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1091" name="NoAcquisitionOrRepeatedReadCannotBridgeGap(False)" fullname="HandPoseRecognition.Tests.GestureRecordingTests.NoAcquisitionOrRepeatedReadCannotBridgeGap(False)" methodname="NoAcquisitionOrRepeatedReadCannotBridgeGap" classname="HandPoseRecognition.Tests.GestureRecordingTests" runstate="Runnable" seed="1771761730" result="Passed" start-time="2026-10-11 15:34:35Z" end-time="2026-10-11 15:34:35Z" duration="0.000518" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1099" name="StopWithOnlyInitialFrameIsReviewableButUnsavableAndCancelClears" fullname="HandPoseRecognition.Tests.GestureRecordingTests.StopWithOnlyInitialFrameIsReviewableButUnsavableAndCancelClears" methodname="StopWithOnlyInitialFrameIsReviewableButUnsavableAndCancelClears" classname="HandPoseRecognition.Tests.GestureRecordingTests" runstate="Runnable" seed="1903808704" result="Passed" start-time="2026-10-11 15:34:35Z" end-time="2026-10-11 15:34:35Z" duration="0.000708" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1102" name="GestureSavedAssetTuningCheck" fullname="HandPoseRecognition.Tests.GestureSavedAssetTuningCheck" classname="HandPoseRecognition.Tests.GestureSavedAssetTuningCheck" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-11 15:34:35Z" end-time="2026-10-11 15:34:35Z" duration="0.092081" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1103" name="SavedZCatalogAndRecorderUseTheLongerRelaxedProfile" fullname="HandPoseRecognition.Tests.GestureSavedAssetTuningCheck.SavedZCatalogAndRecorderUseTheLongerRelaxedProfile" methodname="SavedZCatalogAndRecorderUseTheLongerRelaxedProfile" classname="HandPoseRecognition.Tests.GestureSavedAssetTuningCheck" runstate="Runnable" seed="352887734" result="Passed" start-time="2026-10-11 15:34:35Z" end-time="2026-10-11 15:34:35Z" duration="0.091545" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1104" name="GestureSessionTests" fullname="HandPoseRecognition.Tests.GestureSessionTests" classname="HandPoseRecognition.Tests.GestureSessionTests" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-10-11 15:34:35Z" end-time="2026-10-11 15:34:35Z" duration="0.049467" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1105" name="CompletePerformanceEmitsOnceAndNeedsDistinctReleaseAndNewPerformance" fullname="HandPoseRecognition.Tests.GestureSessionTests.CompletePerformanceEmitsOnceAndNeedsDistinctReleaseAndNewPerformance" methodname="CompletePerformanceEmitsOnceAndNeedsDistinctReleaseAndNewPerformance" classname="HandPoseRecognition.Tests.GestureSessionTests" runstate="Runnable" seed="806112900" result="Passed" start-time="2026-10-11 15:34:35Z" end-time="2026-10-11 15:34:35Z" duration="0.008660" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1112" name="ContextChangesAndGapsCannotContinuePartialMotion" fullname="HandPoseRecognition.Tests.GestureSessionTests.ContextChangesAndGapsCannotContinuePartialMotion" classname="HandPoseRecognition.Tests.GestureSessionTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-11 15:34:35Z" end-time="2026-10-11 15:34:35Z" duration="0.010009" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1107" name="ContextChangesAndGapsCannotContinuePartialMotion(&quot;epoch&quot;)" fullname="HandPoseRecognition.Tests.GestureSessionTests.ContextChangesAndGapsCannotContinuePartialMotion(&quot;epoch&quot;)" methodname="ContextChangesAndGapsCannotContinuePartialMotion" classname="HandPoseRecognition.Tests.GestureSessionTests" runstate="Runnable" seed="1545991103" result="Passed" start-time="2026-10-11 15:34:35Z" end-time="2026-10-11 15:34:35Z" duration="0.002121" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1108" name="ContextChangesAndGapsCannotContinuePartialMotion(&quot;source&quot;)" fullname="HandPoseRecognition.Tests.GestureSessionTests.ContextChangesAndGapsCannotContinuePartialMotion(&quot;source&quot;)" methodname="ContextChangesAndGapsCannotContinuePartialMotion" classname="HandPoseRecognition.Tests.GestureSessionTests" runstate="Runnable" seed="570300384" result="Passed" start-time="2026-10-11 15:34:35Z" end-time="2026-10-11 15:34:35Z" duration="0.001716" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1109" name="ContextChangesAndGapsCannotContinuePartialMotion(&quot;catalog&quot;)" fullname="HandPoseRecognition.Tests.GestureSessionTests.ContextChangesAndGapsCannotContinuePartialMotion(&quot;catalog&quot;)" methodname="ContextChangesAndGapsCannotContinuePartialMotion" classname="HandPoseRecognition.Tests.GestureSessionTests" runstate="Runnable" seed="2067177831" result="Passed" start-time="2026-10-11 15:34:35Z" end-time="2026-10-11 15:34:35Z" duration="0.001868" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1110" name="ContextChangesAndGapsCannotContinuePartialMotion(&quot;clock&quot;)" fullname="HandPoseRecognition.Tests.GestureSessionTests.ContextChangesAndGapsCannotContinuePartialMotion(&quot;clock&quot;)" methodname="ContextChangesAndGapsCannotContinuePartialMotion" classname="HandPoseRecognition.Tests.GestureSessionTests" runstate="Runnable" seed="325723447" result="Passed" start-time="2026-10-11 15:34:35Z" end-time="2026-10-11 15:34:35Z" duration="0.001600" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1111" name="ContextChangesAndGapsCannotContinuePartialMotion(&quot;gap&quot;)" fullname="HandPoseRecognition.Tests.GestureSessionTests.ContextChangesAndGapsCannotContinuePartialMotion(&quot;gap&quot;)" methodname="ContextChangesAndGapsCannotContinuePartialMotion" classname="HandPoseRecognition.Tests.GestureSessionTests" runstate="Runnable" seed="65362668" result="Passed" start-time="2026-10-11 15:34:35Z" end-time="2026-10-11 15:34:35Z" duration="0.001811" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1113" name="HoldingStartShapeTimesOutWithoutStaticOrMotionEvent" fullname="HandPoseRecognition.Tests.GestureSessionTests.HoldingStartShapeTimesOutWithoutStaticOrMotionEvent" methodname="HoldingStartShapeTimesOutWithoutStaticOrMotionEvent" classname="HandPoseRecognition.Tests.GestureSessionTests" runstate="Runnable" seed="1491818843" result="Passed" start-time="2026-10-11 15:34:35Z" end-time="2026-10-11 15:34:35Z" duration="0.003512" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1117" name="JCompletesWithWristRotationAndHeadHeadingChangesAfterArming" fullname="HandPoseRecognition.Tests.GestureSessionTests.JCompletesWithWristRotationAndHeadHeadingChangesAfterArming" methodname="JCompletesWithWristRotationAndHeadHeadingChangesAfterArming" classname="HandPoseRecognition.Tests.GestureSessionTests" runstate="Runnable" seed="267119423" result="Passed" start-time="2026-10-11 15:34:35Z" end-time="2026-10-11 15:34:35Z" duration="0.004927" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1116" name="NewSequenceWithNonAdvancingReleaseTimeClearsSuccess" fullname="HandPoseRecognition.Tests.GestureSessionTests.NewSequenceWithNonAdvancingReleaseTimeClearsSuccess" classname="HandPoseRecognition.Tests.GestureSessionTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11 15:34:35Z" end-time="2026-10-11 15:34:35Z" duration="0.012030" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1114" name="NewSequenceWithNonAdvancingReleaseTimeClearsSuccess(0)" fullname="HandPoseRecognition.Tests.GestureSessionTests.NewSequenceWithNonAdvancingReleaseTimeClearsSuccess(0)" methodname="NewSequenceWithNonAdvancingReleaseTimeClearsSuccess" classname="HandPoseRecognition.Tests.GestureSessionTests" runstate="Runnable" seed="1348797925" result="Passed" start-time="2026-10-11 15:34:35Z" end-time="2026-10-11 15:34:35Z" duration="0.007463" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1115" name="NewSequenceWithNonAdvancingReleaseTimeClearsSuccess(-0.01d)" fullname="HandPoseRecognition.Tests.GestureSessionTests.NewSequenceWithNonAdvancingReleaseTimeClearsSuccess(-0.01d)" methodname="NewSequenceWithNonAdvancingReleaseTimeClearsSuccess" classname="HandPoseRecognition.Tests.GestureSessionTests" runstate="Runnable" seed="1707682770" result="Passed" start-time="2026-10-11 15:34:35Z" end-time="2026-10-11 15:34:35Z" duration="0.003811" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1106" name="RepeatedFrameDoesNotCompleteAndLossClearsSuccessImmediately" fullname="HandPoseRecognition.Tests.GestureSessionTests.RepeatedFrameDoesNotCompleteAndLossClearsSuccessImmediately" methodname="RepeatedFrameDoesNotCompleteAndLossClearsSuccessImmediately" classname="HandPoseRecognition.Tests.GestureSessionTests" runstate="Runnable" seed="407777686" result="Passed" start-time="2026-10-11 15:34:35Z" end-time="2026-10-11 15:34:35Z" duration="0.006476" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:/Users/creep/AppData/LocalLow/DefaultCompany/codeRedUnity\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

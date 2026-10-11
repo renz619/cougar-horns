@@ -37,6 +37,61 @@ namespace HandPoseRecognition.Tests
             }
             finally { UnityEngine.Object.DestroyImmediate(a); UnityEngine.Object.DestroyImmediate(b); }
         }
+        [Test] public void RelaxedDefaultAcceptsLargerStrokeVariationThanPreviousErrorLimit()
+        {
+            var definition = new GestureDefinition(); var live = ShiftPath(definition, 1.5f);
+            var asset = GestureTestFixtures.Asset(definition, GestureTestFixtures.Clip(definition));
+            try
+            {
+                var recognizer = new MotionGestureRecognizer(); var result = recognizer.Recognize(live, GestureTestFixtures.Catalog(asset));
+                Assert.IsTrue(result.IsMatch, result.Reason);
+                Assert.Greater(result.Error, .25, "Fixture must exercise the newly accepted error margin.");
+                definition.Settings.MaxError = .25;
+                asset.SetDefinition(definition, new[] { GestureTestFixtures.Clip(definition) });
+                Assert.AreEqual(GestureRecognitionStatus.AboveThreshold, recognizer.Recognize(live, GestureTestFixtures.Catalog(asset)).Status);
+            }
+            finally { UnityEngine.Object.DestroyImmediate(asset); }
+        }
+        [TestCase(.3f, 0f)] [TestCase(0f, .3f)] [TestCase(.3f, .3f)]
+        public void ZAllowsSlopedTopAndBottomStrokesWithinIndependentVerticalTolerance(float topDrop, float bottomRise)
+        {
+            var definition = new GestureDefinition();
+            var points = PhasePoints(Vector3.zero, new Vector3(.8f, -topDrop, 0),
+                new Vector3(0, -topDrop - .8f, 0), new Vector3(.8f, -topDrop - .8f + bottomRise, 0));
+            Assert.IsTrue(MotionGestureRecognizer.CheckPhases(points, definition, out var coverage, out var reason), reason);
+            Assert.AreEqual(1, coverage);
+            definition.Settings.StrokeThreshold = .15; definition.Settings.StrokeVerticalTolerance = .15;
+            Assert.IsFalse(MotionGestureRecognizer.CheckPhases(points, definition, out _, out _));
+        }
+        [Test] public void ZReversalSeparatesShallowDiagonalFromTheLaterBottomStroke()
+        {
+            var points = PhasePoints(Vector3.zero, new Vector3(.8f, 0, 0),
+                new Vector3(0, -.2f, 0), new Vector3(1, -.2f, 0));
+            Assert.IsTrue(MotionGestureRecognizer.CheckPhases(points, new GestureDefinition(), out var coverage, out var reason), reason);
+            Assert.AreEqual(1, coverage);
+        }
+        [Test] public void RelaxedZStillRequiresBothHorizontalStrokesAndDownwardReversal()
+        {
+            var definition = new GestureDefinition();
+            Assert.IsFalse(MotionGestureRecognizer.CheckPhases(PhasePoints(Vector3.zero, Vector3.zero,
+                new Vector3(0, -.8f, 0), new Vector3(.8f, -.8f, 0)), definition, out _, out _));
+            Assert.IsFalse(MotionGestureRecognizer.CheckPhases(PhasePoints(Vector3.zero, new Vector3(.8f, 0, 0),
+                new Vector3(0, -.8f, 0), new Vector3(.05f, -.8f, 0)), definition, out _, out _));
+            Assert.IsFalse(MotionGestureRecognizer.CheckPhases(PhasePoints(Vector3.zero, new Vector3(.8f, 0, 0),
+                Vector3.zero, new Vector3(.8f, 0, 0)), definition, out _, out _));
+        }
+        [TestCase(0)] [TestCase(-1)] [TestCase(double.NaN)]
+        public void InvalidStrokeVerticalToleranceIsRejected(double tolerance)
+        {
+            var definition = new GestureDefinition(); definition.Settings.StrokeVerticalTolerance = tolerance;
+            Assert.IsFalse(definition.TryValidate(out _));
+        }
+        static GestureFeaturePoint[] PhasePoints(params Vector3[] positions)
+        {
+            var points = new GestureFeaturePoint[positions.Length];
+            for (int i = 0; i < positions.Length; i++) points[i] = new GestureFeaturePoint(i * .1, positions[i], Vector3.zero, Quaternion.identity);
+            return points;
+        }
         [Test] public void OrdinalIdsThenStableExampleIndexBreakExactTies()
         {
             var aDefinition = GestureTestFixtures.Definition(id: "A"); var zDefinition = GestureTestFixtures.Definition(id: "z");

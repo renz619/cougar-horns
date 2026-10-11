@@ -57,6 +57,8 @@ namespace HandPoseRecognition.Editor
             var camera = CreateXROrigin();
             var label = CreateLabel(camera);
             CreateRecognition(label, camera.transform.parent);
+            LeftHandDisplaySetup.EnsureDisplay(scene);
+            DirectGestureDemoSetup.Ensure(scene);
 
             if (!EditorSceneManager.SaveScene(scene, k_ScenePath))
             {
@@ -159,6 +161,9 @@ namespace HandPoseRecognition.Editor
         {
             var recognitionObject = new GameObject("Hand Pose Recognition");
             var adapter = recognitionObject.AddComponent<QuestHandAdapter>();
+            var serializedAdapter = new SerializedObject(adapter);
+            serializedAdapter.FindProperty("m_TrackingSpace").objectReferenceValue = trackingSpace;
+            serializedAdapter.ApplyModifiedPropertiesWithoutUndo();
             var display = recognitionObject.AddComponent<HandPoseDisplay>();
 
             // The display's fields are private [SerializeField]s, so assign them

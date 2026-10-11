@@ -1,0 +1,42 @@
+using NUnit.Framework;
+using UnityEditor;
+using UnityEditor.SceneManagement;
+
+namespace HandPoseRecognition.Tests
+{
+    public class GestureSavedAssetTuningCheck
+    {
+        [Test] public void SavedZCatalogAndRecorderUseTheLongerRelaxedProfile()
+        {
+            var data = AssetDatabase.LoadAssetAtPath<GestureData>("Assets/HandGestures/Recorded/letterZ.asset");
+            Assert.IsNotNull(data);
+            Assert.IsTrue(data.TryValidate(out var report), report.ToString());
+            Check(data.Definition.Settings);
+            foreach (var clip in data.CopyClips()) Check(clip.Definition.Settings);
+            var catalog = AssetDatabase.LoadAssetAtPath<GestureCatalog>("Assets/HandGestures/Recorded/MotionCatalog.asset");
+            Assert.IsTrue(catalog.TryBuildSnapshot(out _, out report), report.ToString());
+            EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
+            var scene = EditorSceneManager.OpenScene("Assets/Scenes/HandGestureMotionDemo.unity", OpenSceneMode.Additive);
+            try
+            {
+                HandGestureRecorder recorder = null;
+                foreach (var root in scene.GetRootGameObjects())
+                    if (recorder == null) recorder = root.GetComponentInChildren<HandGestureRecorder>(true);
+                Assert.IsNotNull(recorder);
+                Check(recorder.Definition.Settings);
+            }
+            finally { EditorSceneManager.CloseScene(scene, true); }
+        }
+        static void Check(GestureMotionSettings settings)
+        {
+            Assert.AreEqual(6, settings.MaxDurationSeconds);
+            Assert.AreEqual(768, settings.MaxFrames);
+            Assert.AreEqual(1536, settings.MaxAttempts);
+            Assert.AreEqual(.4, settings.MaxError);
+            Assert.AreEqual(16, settings.DtwBand);
+            Assert.AreEqual(3, settings.MaxWarpRun);
+            Assert.AreEqual(.1, settings.StrokeThreshold);
+            Assert.AreEqual(.35, settings.StrokeVerticalTolerance);
+        }
+    }
+}

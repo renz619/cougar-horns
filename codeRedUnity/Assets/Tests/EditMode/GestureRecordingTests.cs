@@ -86,5 +86,46 @@ namespace HandPoseRecognition.Tests
             session.Cancel(); Assert.AreEqual(GestureRecordingState.Canceled, session.State); Assert.AreEqual(0, session.AcceptedCount);
             session.Clear(); Assert.AreEqual(GestureRecordingState.Idle, session.State);
         }
+        [Test] public void LongerDefaultWindowRecordsAndReplaysFiveAndAHalfSecondsAt120Hz()
+        {
+            var definition = new GestureDefinition();
+            var knots = GestureTestFixtures.Observations();
+            knots[0].Right.TryGetJoint(HandJointId.IndexTip, out var firstTip);
+            var frames = new GestureObservation[661];
+            for (int i = 0; i < frames.Length; i++)
+            {
+                float progress = (float)i * (knots.Length - 1) / (frames.Length - 1);
+                int left = Mathf.Min((int)progress, knots.Length - 2);
+                knots[left].Right.TryGetJoint(HandJointId.IndexTip, out var a);
+                knots[left + 1].Right.TryGetJoint(HandJointId.IndexTip, out var b);
+                var path = (Vector3.Lerp(a.Position, b.Position, progress - left) - firstTip.Position) / .06f;
+                frames[i] = GestureTestFixtures.Observation(GestureTestFixtures.Frame(GestureMotionKind.Z, path,
+                    10 + 5.5 * i / (frames.Length - 1), (ulong)i + 1));
+            }
+            var session = new GestureRecordingSession();
+            Assert.IsTrue(session.Begin(definition, "synthetic-source", new GestureCalibration(Quaternion.identity, 1, 1), frames[0], 10, out var reason), reason);
+            foreach (var frame in frames) session.Tick(frame, "synthetic-source", 1, frame.TimestampSeconds);
+            Assert.AreEqual(GestureRecordingState.Recording, session.State);
+            Assert.AreEqual(661, session.AcceptedCount);
+            session.Stop(); var review = session.ExportReview();
+            Assert.IsTrue(review.TryValidate(out _, out reason), reason);
+            Assert.AreEqual(5.5, review.CopyClip().DurationSeconds, 1e-9);
+            var asset = GestureTestFixtures.Asset(definition, review.CopyClip());
+            try { Assert.IsTrue(new MotionGestureRecognizer().Recognize(review.CopyClip(), GestureTestFixtures.Catalog(asset)).IsMatch); }
+            finally { Object.DestroyImmediate(asset); }
+        }
+        [Test] public void LongerDefaultWindowStillInvalidatesAtItsDeadline()
+        {
+            var definition = new GestureDefinition(); var session = new GestureRecordingSession();
+            for (int i = 0; i <= 720; i++)
+            {
+                double now = 10 + i / 120.0;
+                var frame = GestureTestFixtures.Observation(GestureTestFixtures.Frame(GestureMotionKind.Z, Vector3.zero, now, (ulong)i + 1));
+                if (i == 0) Assert.IsTrue(session.Begin(definition, "synthetic-source", new GestureCalibration(Quaternion.identity, 1, 1), frame, now, out _));
+                else session.Tick(frame, "synthetic-source", 1, now);
+            }
+            Assert.AreEqual(GestureRecordingCompletion.Timeout, session.ExportReview().Completion);
+            Assert.IsFalse(session.ExportReview().TryValidate(out _, out _));
+        }
     }
 }

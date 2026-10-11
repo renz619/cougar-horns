@@ -1,3 +1,10 @@
+# Current gesture setup
+
+The active demo scenes now use direct Thank You, Please, and Yes rules. See
+[DIRECT_GESTURES_SETUP.md](DIRECT_GESTURES_SETUP.md) for motions, Inspector
+thresholds, and scene wiring. The J/Z controller and its feedback are disabled
+in the motion demo; the historical recording pipeline below remains available.
+
 # J/Z motion: implementation, setup and verification
 
 Implemented October 11, 2026 against `HAND_GESTURE_MOTION_AND_TWO_HAND_HANDOFF.md`. Phases A–E supply an opt-in, right-dominant J/Z recording and recognition prototype. Phase F (Quest Link recordings, ASL review, calibration and held-out evaluation) has **not** been performed. Left-hand production and all two-hand evaluators remain future work. No real training examples or recognition-accuracy claims are supplied.
@@ -24,6 +31,7 @@ The only edit to an existing runtime script is additive: `QuestHandAdapter` impl
 | `HandGestureInput.cs` | Shared thin source binding for recorder/controller, stream subscriptions, latest-frame fallback, source availability and epoch invalidation. |
 | `HandGestureRecorder.cs`, `HandGestureController.cs` | Unity clock/source bridges, explicit recording and catalog rebuild, opt-in JZOnly lesson mode. |
 | `HandGestureDebugDisplay.cs` | Separate TMP label and complete 3D trail; state, duration, phases, score availability, best example and reason. |
+| `HandGestureDetectionDisplay.cs` | Separate session-latched Z confirmation label; red flash followed by persistent solid-red text. |
 | `Editor/GestureRecorderWindow.cs` | Whole-clip review, two trail projections, provenance, explicit trim/keep/save and actual editor lifecycle retention hooks. |
 | `Editor/GestureRecordingPersistence.cs` | Create/append/replace, prospective validation, Undo, save/reimport/reload and SessionState review payloads. |
 | `Editor/HandGestureMotionDemoSetup.cs` | Unity-created opt-in scene copy, calibration/source wiring, separate label/trail and empty recorded catalog. |
@@ -58,9 +66,17 @@ DTW begins at both first samples and ends at both last samples, with a bounded d
 
 Manual recording freezes definition/settings, identity, physical role mapping, reference and limits at Begin. It admits every distinct raw Dynamic acquisition, without inheriting the static 0.1-second evaluation interval. Duplicates cannot add attempts or evidence. Incoming pairs are validated incrementally; the recorder does not recopy/revalidate its entire growing buffer at every acquisition. A source/epoch change, tracking gap, invalid clock, missing evidence or disabled/destroyed required source makes the review invalid. Reaching timeout/frame/attempt caps is **not** successful completion. Stop may yield an incomplete/unsavable review; Cancel discards it. Explicit trimming retains the frozen axes/scale, rebases path/time to the selected start and revalidates the entire remaining performance.
 
-Runtime transitions are Idle → Armed → Tracking → Completed → AwaitRearm. Invalid partial performances go to Rejected/AwaitRearm. Armed keeps a short bounded onset history so movement detection retains the first stroke. The two-second attempt deadline includes time Armed. A terminal pause triggers full replay only after ordered phase coverage. Pause/dwell require advancing acquisitions; merely rereading a frame cannot complete motion. Successful completion emits `GestureConfirmed` once with interval, physical side/roles, epoch/source and last acquisition ID. Holding the end pose or cooldown expiry cannot replay it. Rearm requires distinct valid observations outside **all** enabled starting gates spanning the release period, plus cooldown. Missing tracking does not count as a release. Context changes and disable/re-enable clear all evidence and reset cooldown.
+Runtime transitions are Idle → Armed → Tracking → Completed → AwaitRearm. Invalid partial performances go to Rejected/AwaitRearm. Armed keeps a short bounded onset history so movement detection retains the first stroke. The six-second attempt deadline includes time Armed. A terminal pause triggers full replay only after ordered phase coverage. Pause/dwell require advancing acquisitions; merely rereading a frame cannot complete motion. Successful completion emits `GestureConfirmed` once with interval, physical side/roles, epoch/source and last acquisition ID. Holding the end pose or cooldown expiry cannot replay it. Rearm requires distinct valid observations outside **all** enabled starting gates spanning the release period, plus cooldown. Missing tracking does not count as a release. Context changes and disable/re-enable clear all evidence and reset cooldown.
 
 The opt-in controller offers Disabled and **JZOnly**. This is the handoff's permitted J/Z-only lesson arbitration: this path never emits a static letter during a motion prefix or a held starting shape. Existing legacy/static components remain independent diagnostics; a future mixed lesson should consume an explicit arbitration layer rather than subscribe indiscriminately to both event sources.
+
+The controller logs every actual motion state transition to the Unity Console, including completion, rejection, release, tracking loss and resets that change state. Each `[HandGestureController]` message includes the previous/new state, gesture ID when available and reason; clicking it selects the controller. Remaining in the same state does not repeat the log. The plain C# session exposes `StateChanged`; Unity logging stays in the controller.
+
+An AboveThreshold rejection reason includes the winning diagnostic candidate ID, measured error, its own configured threshold and `over by = error - threshold`. Those values appear in the existing Console transition log whenever a completed performance is rejected, and in the motion debug label. Numbers use invariant formatting; no per-frame log is added.
+
+The motion demo also has a separate **Z Detected Label** above the existing text, wired through `HandGestureDetectionDisplay` to `HandGestureController.GestureConfirmed`. It starts hidden. Confirming `asl.letter.z` displays **Z DETECTED**, flashes red every 0.25 seconds for 1.5 seconds using unscaled time, then remains solid red for the current Play Mode scene session. Each later Z confirmation restarts the flash. Tracking loss, release, catalog/session resets and component disable/re-enable preserve the latched text; a new Play Mode session starts hidden. J confirmations and unconfirmed candidates cannot trigger it. The original diagnostic label remains independent. New demo copies include this wiring; **Tools > Hand Gesture > Add Persistent Z Feedback to Motion Demo** installs it on the existing saved demo without duplicating an already assigned label.
+
+The targeted component suite passed **7/7**, including real Play Mode confirmation, initial blink, settled red text, J exclusion and persistence through reset/disable. Evidence: [Z feedback results](Verification/HandGestureMotion/z-feedback.xml) and [Z feedback log](Verification/HandGestureMotion/z-feedback.log). The scene was saved through Unity's scene APIs; device rendering remains to be checked in Quest Link.
 
 Open **Tools → Hand Gesture → Recorder Review before recording** and keep it open. Stop/close/reload/Play Mode-exit hooks retain an owned whole-clip JSON review in Editor SessionState; reopening restores it. Review data survives domain/Play Mode transitions, **not closing Unity**. Explicitly save before editor shutdown. No real asset is automatically written on Stop, disable, window close or exit. Recording started exclusively by another script without the review window does not promise editor retention.
 
@@ -70,20 +86,25 @@ Saving requires an explicitly kept, valid whole performance. Create chooses a un
 
 These are engineering seeds, not calibrated ASL thresholds. Recorded clips freeze all of them. Configure a separate reviewed definition/variant deliberately when changing them.
 
+October 11 duration/tolerance tuning: increased capture/runtime deadline from 2 to 6 seconds, frame/attempt budgets from 256/512 to 768/1,536, maximum accepted error from 0.25 to 0.40, and DTW band/run limits from 12/2 to 16/3. Applied the same six fields to the saved motion recorder and the user's letterZ definition and clip definitions; raw observations and other scene fields are preserved. Stop before the deadline, copy the saved definition before appending recordings, and explicitly rebuild the controller catalog after loading the updated assets. The existing deterministic fixtures retain their original explicit profile so this production tuning does not change their reference cases.
+
+Verification: 5.5-second capture at 120 Hz (661 observations), full replay, deadline rejection and a larger stroke accepted by 0.40 but rejected by 0.25 all passed. An isolated asset check also validated the saved Z/catalog and recorder settings after Unity import. The gesture suite plus this asset check passed 72/73; the remaining demo-default mismatch is described above. Evidence: [tuning XML](Verification/HandGestureMotion/motion-tuning.xml), [tuning log](Verification/HandGestureMotion/motion-tuning.log), and [isolated asset-check source](Verification/HandGestureMotion/GestureSavedAssetTuningCheck.cs.txt).
+
 | Setting | Default |
 | --- | --- |
-| Duration | minimum 0.15 s; maximum 2 s |
-| Frames / attempts / alternative clips | 256 / 512 / 8 |
+| Duration | minimum 0.15 s; maximum 6 s |
+| Frames / attempts / alternative clips | 768 / 1,536 / 8 |
 | Catalog entries / total clips | 64 / 256 |
 | Freshness / maximum acquisition gap | 0.25 s / 0.12 s |
 | Smoothing / resampled points | 0.025 s / 64 |
-| DTW band / maximum consecutive warp run | 12 / 2 |
-| Inclusive maximum error | 0.25 |
+| DTW band / maximum consecutive warp run | 16 / 3 |
+| Inclusive maximum error | 0.40 |
 | Minimum excursion / path length | 0.45 / 0.8 palm widths |
 | Maximum tip or wrist speed | 40 palm widths/s |
 | Tip / wrist / orientation weights | 1 / 0.15 / 0.15 |
 | Orientation scale | 90 degrees; positive orientation weight required for J |
-| Stroke threshold / onset threshold | 0.15 / 0.12 palm widths |
+| Minimum stroke travel / onset threshold | 0.10 / 0.12 palm widths |
+| Z top/bottom vertical deviation tolerance | 0.35 palm widths |
 | End pause / pause movement threshold | 0.18 s / 0.04 palm widths |
 | Onset history | 0.15 s, at most 12 frames |
 | Release / cooldown | 0.2 s / 0.5 s |
@@ -93,6 +114,10 @@ These are engineering seeds, not calibrated ASL thresholds. Recorded clips freez
 | Thumb extended / curled ratios | 0.75 / 0.45; NotExtended policy initially |
 
 Hard validation caps are 4,096 raw frames, 16,384 attempts, 256 resampled points, warp run 16, 32 examples per definition, 256 catalog entries and 1,024 catalog clips. Malformed settings fail; no clipping or silent truncation occurs. Static future entries need no motion settings or DTW trajectory.
+
+Stroke-phase follow-up: minimum travel (`StrokeThreshold`) is now 0.10 palm widths; the separate positive finite `StrokeVerticalTolerance` allows 0.35 palm widths of Z top/bottom drift. The top-stroke scan stops on a clear horizontal reversal, including shallow diagonals, and a bottom stroke needs an advancing endpoint after the diagonal. Both horizontal strokes and a downward reversal remain required, along with full-clip shape, duration, path/excursion and DTW checks. These phase checks use the same settings during runtime and replay. Saved recorder/Z definition and clip settings were updated consistently; raw observations remain unchanged.
+
+Sloped top/bottom strokes, shallow reversals, missing strokes and invalid tolerances are covered by eight new regression cases. With the isolated saved-asset check, verification passed **80/81**, with only the already documented JZOnly-versus-Disabled demo-default mismatch. Evidence: [stroke results](Verification/HandGestureMotion/stroke-tolerance.xml), [stroke log](Verification/HandGestureMotion/stroke-tolerance.log), and [isolated asset check](Verification/HandGestureMotion/GestureSavedStrokeTuningCheck.cs.txt). Rebuild the gesture catalog after loading the updated assets.
 
 ## Exact Unity and Quest Link workflow
 
@@ -115,6 +140,8 @@ Unity **6000.0.34f1**, XR Hands **1.5.1**, OpenXR **1.14.0**, Test Framework **1
 Before implementation, the current baseline was **392 total: 391 passed, 1 failed**. The existing `RecognitionDemoSetupTests.OptInScenePreservesTuningSideRigAndLegacyDefaultAndAddsWiring` expects the saved recognition demo to use LegacyRules, while the current saved scene selects Template. That scene/test mismatch predates these changes. Neither scene nor existing test was edited to hide it.
 
 Final verification on October 11, 2026: **461 total, 460 passed, 1 failed**. All **69 new gesture tests passed**; the sole failure is the same baseline mismatch. No C# compilation errors or warnings were reported in the final log. Evidence: [baseline XML](Verification/HandGestureMotion/baseline.xml), [baseline log](Verification/HandGestureMotion/baseline.log), [final XML](Verification/HandGestureMotion/final.xml), [final log](Verification/HandGestureMotion/final.log), and [Unity demo-generation log](Verification/HandGestureMotion/demo-setup.log). The full suite correctly exits with failure because the baseline mismatch is unresolved; this is not an entirely green test suite.
+
+State-logging follow-up (October 11, 2026): the gesture-filtered suite passed **68/69** tests, including session and live component integration. The demo-default test expects Disabled, while the user's subsequently saved motion scene now selects JZOnly. That scene, its recorded catalog and the user's letterZ asset were preserved. Actual transition messages are present in [state-logging log](Verification/HandGestureMotion/state-logging.log); results are in [state-logging XML](Verification/HandGestureMotion/state-logging.xml). This follow-up does not replace the historical full-suite run above.
 
 The automated command is:
 
@@ -140,7 +167,7 @@ Measured in the final run (128 calls per row):
 
 These are single-run measurements including the recorded outlier allocation events, not a zero-allocation guarantee. Recorder measurements include the repeated initial acquisition and 127 new acquisitions, use preconstructed observations and warmed capacity, and exclude review/export. Runtime boundary scanning and the full rendered display are not separately benchmarked here.
 
-The default rolling DTW workspace is **7,680 bytes** for its reused cost/path-length arrays; at the hard 256-point/run-16 limit it is **202,752 bytes**. Owned raw frames/observations, live preprocessing arrays, validation reports and review/UI formatting still allocate. No retained frame/sample array is pooled or reused. Further optimization should follow target-player profiling rather than weaken ownership.
+The tuned default rolling DTW workspace is **10,752 bytes** (the original profiling fixture above uses its fixed 7,680-byte profile) for its reused cost/path-length arrays; at the hard 256-point/run-16 limit it is **202,752 bytes**. Owned raw frames/observations, live preprocessing arrays, validation reports and review/UI formatting still allocate. No retained frame/sample array is pooled or reused. Further optimization should follow target-player profiling rather than weaken ownership.
 
 Remaining phase F evidence: actual Quest Link baseline and capture; reviewed real J/Z variants; final signing-direction/thumb/shape/motion thresholds; training/tuning/held-out splits by whole performance; accepted/rejected counts and false activations on negatives/transitions; signer coverage, confusion and confirmation latency; target-headset capture/extraction/matching/visualization CPU, allocation bytes and memory. No such measurements or accuracy results are claimed.
 

@@ -114,5 +114,48 @@ namespace HandPoseRecognition.Tests
             }
             finally { UnityEngine.Object.DestroyImmediate(owner); }
         }
+        [UnityTest] public IEnumerator ZFeedbackFlashesThenStaysThroughLossResetAndDisable()
+        {
+            EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single); yield return new EnterPlayMode();
+            var owner = new GameObject("Session Z feedback integration");
+            var labelOwner = new GameObject("Separate confirmation label", typeof(RectTransform));
+            var label = labelOwner.AddComponent<TMPro.TextMeshProUGUI>();
+            var controller = owner.AddComponent<HandGestureController>();
+            var feedback = owner.AddComponent<HandGestureDetectionDisplay>(); feedback.Controller = controller; feedback.Label = label;
+            var jDefinition = GestureTestFixtures.Definition(GestureMotionKind.J, "asl.letter.j");
+            var zDefinition = GestureTestFixtures.Definition(GestureMotionKind.Z, "asl.letter.z");
+            var jAsset = GestureTestFixtures.Asset(jDefinition, GestureTestFixtures.Clip(jDefinition));
+            var zAsset = GestureTestFixtures.Asset(zDefinition, GestureTestFixtures.Clip(zDefinition));
+            try
+            {
+                Assert.IsFalse(label.enabled); Assert.IsFalse(feedback.HasDetected);
+                var calibration = new GestureCalibration(Quaternion.identity, 1, 1);
+                var jCatalog = GestureTestFixtures.Catalog(jAsset);
+                foreach (var frame in GestureTestFixtures.Observations(GestureMotionKind.J))
+                    controller.Session.Update(frame, calibration, jCatalog, frame.TimestampSeconds);
+                Assert.AreEqual("asl.letter.j", controller.Session.ConfirmedGestureId);
+                Assert.IsFalse(feedback.HasDetected, "A J confirmation must not latch the Z text.");
+                controller.Session.Reset(); var zCatalog = GestureTestFixtures.Catalog(zAsset);
+                foreach (var frame in GestureTestFixtures.Observations()) controller.Session.Update(frame, calibration, zCatalog, frame.TimestampSeconds);
+                Assert.IsTrue(feedback.HasDetected); Assert.IsTrue(label.enabled);
+                Assert.AreEqual("Z DETECTED", label.text); Assert.AreEqual(Color.red, label.color);
+                double deadline = Time.unscaledTimeAsDouble + 1;
+                while (label.color.a != 0 && Time.unscaledTimeAsDouble < deadline) yield return null;
+                Assert.AreEqual(0, label.color.a, "Confirmed text must visibly blink during the initial flash.");
+                yield return new WaitForSecondsRealtime(1.6f);
+                Assert.AreEqual(Color.red, label.color); Assert.IsTrue(label.enabled);
+                controller.Session.Update(null, calibration, zCatalog, 11.01); controller.Session.Reset();
+                controller.enabled = false; feedback.enabled = false;
+                Assert.IsTrue(feedback.HasDetected); Assert.IsTrue(label.enabled); Assert.AreEqual(Color.red, label.color);
+                feedback.enabled = true; yield return null;
+                Assert.IsTrue(feedback.HasDetected); Assert.IsTrue(label.enabled); Assert.AreEqual(Color.red, label.color);
+            }
+            finally
+            {
+                UnityEngine.Object.DestroyImmediate(owner); UnityEngine.Object.DestroyImmediate(labelOwner);
+                UnityEngine.Object.DestroyImmediate(jAsset); UnityEngine.Object.DestroyImmediate(zAsset);
+            }
+            yield return new ExitPlayMode();
+        }
     }
 }

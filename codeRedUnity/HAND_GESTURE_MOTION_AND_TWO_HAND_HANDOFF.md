@@ -164,7 +164,7 @@ Choose the lowest eligible full-gesture error, break ties deterministically, and
 
 ### Starter budgets, subject to measurement
 
-Use a two-second candidate/recording window and a 256-frame cap as initial configurable prototype budgets, with a separate bounded attempt count. These are engineering seeds, not established ASL timing requirements. Record all distinct Dynamic acquisitions; do not throttle capture to the static 10 Hz evaluation policy. If actual acquisition rate exceeds the cap, report the limit and revise/resample deliberately. Never silently truncate a training clip into a valid example.
+Use a six-second candidate/recording window and a 768-frame cap as initial configurable prototype budgets, with a separate bounded attempt count. These are engineering seeds, not established ASL timing requirements. Record all distinct Dynamic acquisitions; do not throttle capture to the static 10 Hz evaluation policy. If actual acquisition rate exceeds the cap, report the limit and revise/resample deliberately. Never silently truncate a training clip into a valid example.
 
 A provisional 64-point resampled comparison is reasonable for bounded experiments. Minimum movement, allowed duration, pause timing, smoothing, DTW band, maximum gap, and score thresholds require recordings and headset tuning. Validate all numeric settings and record exact final values; do not invent accuracy or confidence claims from these defaults.
 
@@ -302,7 +302,7 @@ Measure capture, extraction, matching, and visualization separately on the targe
 | Recording/reviewer provenance | No real J/Z training corpus or ASL reviewer approval supplied. Fixtures are explicitly synthetic and confined to tests; delivered catalog is empty. Record intended variants through the review workflow before enabling recognition. |
 | Thresholds/settings | Exact provisional values and hard caps are listed in setup and frozen in each saved definition/clip. They are engineering defaults, not final calibrated ASL thresholds. |
 | Held-out accuracy/false activations/latency | Not measured. Split by whole performance; record signer coverage, per-sign counts, negative/transitional false activations and latency during F. |
-| CPU/allocations/memory | Automated Editor-host profiling separates observation construction, extraction, complete replay, recording admission and debug text. Reused DTW arrays: 7,680 bytes default; 202,752 bytes at hard limits. Headset CPU/allocation bytes/rendering cost remain unmeasured. |
+| CPU/allocations/memory | Automated Editor-host profiling separates observation construction, extraction, complete replay, recording admission and debug text. Reused DTW arrays: 10,752 bytes with the current tuned defaults; 202,752 bytes at hard limits. Headset CPU/allocation bytes/rendering cost remain unmeasured. |
 | Limitations | Right-dominant J/Z only; provisional shape/phase/direction/thumb thresholds; optional latest-frame-only sources cannot promise every acquisition. QuestHandAdapter uses the new Dynamic stream. Review survives domain/Play Mode transitions while its window is open, not editor shutdown. No general ASL translation or two-hand recognition. |
 | Next concrete task | ASL-fluent reviewer selects right-hand variants; record and review whole clips, tune on separate performances, then run held-out/live Quest Link validation and save measured settings/results. |
 

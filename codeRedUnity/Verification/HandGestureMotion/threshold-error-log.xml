@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="18" result="Passed" total="18" passed="18" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-11 15:48:58Z" end-time="2026-10-11 15:48:58Z" duration="0.108888">
+  <test-suite type="TestSuite" id="1000" name="codeRedUnity" fullname="codeRedUnity" runstate="Runnable" testcasecount="473" result="Passed" start-time="2026-10-11 15:48:58Z" end-time="2026-10-11 15:48:58Z" duration="0.108888" total="18" passed="18" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1560" name="HandPose.Tests.EditMode.dll" fullname="C:/Users/creep/Desktop/Projects/codeRed 2026/.verification/HandPoseBaseline/Library/ScriptAssemblies/HandPose.Tests.EditMode.dll" runstate="Runnable" testcasecount="473" result="Passed" start-time="2026-10-11 15:48:58Z" end-time="2026-10-11 15:48:58Z" duration="0.100084" total="18" passed="18" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="42120" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1561" name="HandPoseRecognition" fullname="HandPoseRecognition" runstate="Runnable" testcasecount="473" result="Passed" start-time="2026-10-11 15:48:58Z" end-time="2026-10-11 15:48:58Z" duration="0.096373" total="18" passed="18" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1562" name="Tests" fullname="HandPoseRecognition.Tests" runstate="Runnable" testcasecount="473" result="Passed" start-time="2026-10-11 15:48:58Z" end-time="2026-10-11 15:48:58Z" duration="0.092876" total="18" passed="18" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1049" name="GestureMatcherEdgeTests" fullname="HandPoseRecognition.Tests.GestureMatcherEdgeTests" classname="HandPoseRecognition.Tests.GestureMatcherEdgeTests" runstate="Runnable" testcasecount="18" result="Passed" start-time="2026-10-11 15:48:58Z" end-time="2026-10-11 15:48:58Z" duration="0.086551" total="18" passed="18" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1064" name="DtwRequiresBothEndpointsAndBoundsStretching" fullname="HandPoseRecognition.Tests.GestureMatcherEdgeTests.DtwRequiresBothEndpointsAndBoundsStretching" methodname="DtwRequiresBothEndpointsAndBoundsStretching" classname="HandPoseRecognition.Tests.GestureMatcherEdgeTests" runstate="Runnable" seed="1281569065" result="Passed" start-time="2026-10-11 15:48:58Z" end-time="2026-10-11 15:48:58Z" duration="0.013911" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1061" name="InvalidStrokeVerticalToleranceIsRejected" fullname="HandPoseRecognition.Tests.GestureMatcherEdgeTests.InvalidStrokeVerticalToleranceIsRejected" classname="HandPoseRecognition.Tests.GestureMatcherEdgeTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-11 15:48:58Z" end-time="2026-10-11 15:48:58Z" duration="0.001968" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1058" name="InvalidStrokeVerticalToleranceIsRejected(0)" fullname="HandPoseRecognition.Tests.GestureMatcherEdgeTests.InvalidStrokeVerticalToleranceIsRejected(0)" methodname="InvalidStrokeVerticalToleranceIsRejected" classname="HandPoseRecognition.Tests.GestureMatcherEdgeTests" runstate="Runnable" seed="286609644" result="Passed" start-time="2026-10-11 15:48:58Z" end-time="2026-10-11 15:48:58Z" duration="0.000670" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1059" name="InvalidStrokeVerticalToleranceIsRejected(-1)" fullname="HandPoseRecognition.Tests.GestureMatcherEdgeTests.InvalidStrokeVerticalToleranceIsRejected(-1)" methodname="InvalidStrokeVerticalToleranceIsRejected" classname="HandPoseRecognition.Tests.GestureMatcherEdgeTests" runstate="Runnable" seed="2060986013" result="Passed" start-time="2026-10-11 15:48:58Z" end-time="2026-10-11 15:48:58Z" duration="0.000044" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1060" name="InvalidStrokeVerticalToleranceIsRejected(double.NaN)" fullname="HandPoseRecognition.Tests.GestureMatcherEdgeTests.InvalidStrokeVerticalToleranceIsRejected(double.NaN)" methodname="InvalidStrokeVerticalToleranceIsRejected" classname="HandPoseRecognition.Tests.GestureMatcherEdgeTests" runstate="Runnable" seed="246775743" result="Passed" start-time="2026-10-11 15:48:58Z" end-time="2026-10-11 15:48:58Z" duration="0.000031" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1068" name="JRequiresWristRotationAndDoesNotReduceToHeldI" fullname="HandPoseRecognition.Tests.GestureMatcherEdgeTests.JRequiresWristRotationAndDoesNotReduceToHeldI" methodname="JRequiresWristRotationAndDoesNotReduceToHeldI" classname="HandPoseRecognition.Tests.GestureMatcherEdgeTests" runstate="Runnable" seed="427379240" result="Passed" start-time="2026-10-11 15:48:58Z" end-time="2026-10-11 15:48:58Z" duration="0.007474" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1062" name="OrdinalIdsThenStableExampleIndexBreakExactTies" fullname="HandPoseRecognition.Tests.GestureMatcherEdgeTests.OrdinalIdsThenStableExampleIndexBreakExactTies" methodname="OrdinalIdsThenStableExampleIndexBreakExactTies" classname="HandPoseRecognition.Tests.GestureMatcherEdgeTests" runstate="Runnable" seed="305959507" result="Passed" start-time="2026-10-11 15:48:58Z" end-time="2026-10-11 15:48:58Z" duration="0.014735" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1069" name="OverflowingFeatureWeightSumCannotProduceAFalseZeroScore" fullname="HandPoseRecognition.Tests.GestureMatcherEdgeTests.OverflowingFeatureWeightSumCannotProduceAFalseZeroScore" methodname="OverflowingFeatureWeightSumCannotProduceAFalseZeroScore" classname="HandPoseRecognition.Tests.GestureMatcherEdgeTests" runstate="Runnable" seed="1313373160" result="Passed" start-time="2026-10-11 15:48:58Z" end-time="2026-10-11 15:48:58Z" duration="0.000274" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1065" name="QAndNegativeQProduceExactlyTheSameOrientationCost" fullname="HandPoseRecognition.Tests.GestureMatcherEdgeTests.QAndNegativeQProduceExactlyTheSameOrientationCost" methodname="QAndNegativeQProduceExactlyTheSameOrientationCost" classname="HandPoseRecognition.Tests.GestureMatcherEdgeTests" runstate="Runnable" seed="1273605139" result="Passed" start-time="2026-10-11 15:48:58Z" end-time="2026-10-11 15:48:58Z" duration="0.000777" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1051" name="RelaxedDefaultAcceptsLargerStrokeVariationThanPreviousErrorLimit" fullname="HandPoseRecognition.Tests.GestureMatcherEdgeTests.RelaxedDefaultAcceptsLargerStrokeVariationThanPreviousErrorLimit" methodname="RelaxedDefaultAcceptsLargerStrokeVariationThanPreviousErrorLimit" classname="HandPoseRecognition.Tests.GestureMatcherEdgeTests" runstate="Runnable" seed="423692110" result="Passed" start-time="2026-10-11 15:48:58Z" end-time="2026-10-11 15:48:58Z" duration="0.008197" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1057" name="RelaxedZStillRequiresBothHorizontalStrokesAndDownwardReversal" fullname="HandPoseRecognition.Tests.GestureMatcherEdgeTests.RelaxedZStillRequiresBothHorizontalStrokesAndDownwardReversal" methodname="RelaxedZStillRequiresBothHorizontalStrokesAndDownwardReversal" classname="HandPoseRecognition.Tests.GestureMatcherEdgeTests" runstate="Runnable" seed="1872269116" result="Passed" start-time="2026-10-11 15:48:58Z" end-time="2026-10-11 15:48:58Z" duration="0.000452" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1067" name="SnapshotBuildRejectsDuplicateIdsAndCatalogBudgetAtomically" fullname="HandPoseRecognition.Tests.GestureMatcherEdgeTests.SnapshotBuildRejectsDuplicateIdsAndCatalogBudgetAtomically" methodname="SnapshotBuildRejectsDuplicateIdsAndCatalogBudgetAtomically" classname="HandPoseRecognition.Tests.GestureMatcherEdgeTests" runstate="Runnable" seed="587397600" result="Passed" start-time="2026-10-11 15:48:58Z" end-time="2026-10-11 15:48:58Z" duration="0.001875" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1066" name="SourceEpochAndRawTimestampOrderingAreNeverBridged" fullname="HandPoseRecognition.Tests.GestureMatcherEdgeTests.SourceEpochAndRawTimestampOrderingAreNeverBridged" methodname="SourceEpochAndRawTimestampOrderingAreNeverBridged" classname="HandPoseRecognition.Tests.GestureMatcherEdgeTests" runstate="Runnable" seed="299886358" result="Passed" start-time="2026-10-11 15:48:58Z" end-time="2026-10-11 15:48:58Z" duration="0.001509" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1063" name="UnsupportedVersionAndNullEvidenceFailWithExplicitNoScore" fullname="HandPoseRecognition.Tests.GestureMatcherEdgeTests.UnsupportedVersionAndNullEvidenceFailWithExplicitNoScore" methodname="UnsupportedVersionAndNullEvidenceFailWithExplicitNoScore" classname="HandPoseRecognition.Tests.GestureMatcherEdgeTests" runstate="Runnable" seed="119581724" result="Passed" start-time="2026-10-11 15:48:58Z" end-time="2026-10-11 15:48:58Z" duration="0.006155" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1050" name="WinnerThresholdIsInclusiveAndNeverSelectsWorseWideThreshold" fullname="HandPoseRecognition.Tests.GestureMatcherEdgeTests.WinnerThresholdIsInclusiveAndNeverSelectsWorseWideThreshold" methodname="WinnerThresholdIsInclusiveAndNeverSelectsWorseWideThreshold" classname="HandPoseRecognition.Tests.GestureMatcherEdgeTests" runstate="Runnable" seed="1643335113" result="Passed" start-time="2026-10-11 15:48:58Z" end-time="2026-10-11 15:48:58Z" duration="0.012168" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1055" name="ZAllowsSlopedTopAndBottomStrokesWithinIndependentVerticalTolerance" fullname="HandPoseRecognition.Tests.GestureMatcherEdgeTests.ZAllowsSlopedTopAndBottomStrokesWithinIndependentVerticalTolerance" classname="HandPoseRecognition.Tests.GestureMatcherEdgeTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-11 15:48:58Z" end-time="2026-10-11 15:48:58Z" duration="0.002075" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1052" name="ZAllowsSlopedTopAndBottomStrokesWithinIndependentVerticalTolerance(0.3f,0.0f)" fullname="HandPoseRecognition.Tests.GestureMatcherEdgeTests.ZAllowsSlopedTopAndBottomStrokesWithinIndependentVerticalTolerance(0.3f,0.0f)" methodname="ZAllowsSlopedTopAndBottomStrokesWithinIndependentVerticalTolerance" classname="HandPoseRecognition.Tests.GestureMatcherEdgeTests" runstate="Runnable" seed="1714864061" result="Passed" start-time="2026-10-11 15:48:58Z" end-time="2026-10-11 15:48:58Z" duration="0.001032" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1053" name="ZAllowsSlopedTopAndBottomStrokesWithinIndependentVerticalTolerance(0.0f,0.3f)" fullname="HandPoseRecognition.Tests.GestureMatcherEdgeTests.ZAllowsSlopedTopAndBottomStrokesWithinIndependentVerticalTolerance(0.0f,0.3f)" methodname="ZAllowsSlopedTopAndBottomStrokesWithinIndependentVerticalTolerance" classname="HandPoseRecognition.Tests.GestureMatcherEdgeTests" runstate="Runnable" seed="1836476848" result="Passed" start-time="2026-10-11 15:48:58Z" end-time="2026-10-11 15:48:58Z" duration="0.000094" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1054" name="ZAllowsSlopedTopAndBottomStrokesWithinIndependentVerticalTolerance(0.3f,0.3f)" fullname="HandPoseRecognition.Tests.GestureMatcherEdgeTests.ZAllowsSlopedTopAndBottomStrokesWithinIndependentVerticalTolerance(0.3f,0.3f)" methodname="ZAllowsSlopedTopAndBottomStrokesWithinIndependentVerticalTolerance" classname="HandPoseRecognition.Tests.GestureMatcherEdgeTests" runstate="Runnable" seed="791870395" result="Passed" start-time="2026-10-11 15:48:58Z" end-time="2026-10-11 15:48:58Z" duration="0.000054" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1056" name="ZReversalSeparatesShallowDiagonalFromTheLaterBottomStroke" fullname="HandPoseRecognition.Tests.GestureMatcherEdgeTests.ZReversalSeparatesShallowDiagonalFromTheLaterBottomStroke" methodname="ZReversalSeparatesShallowDiagonalFromTheLaterBottomStroke" classname="HandPoseRecognition.Tests.GestureMatcherEdgeTests" runstate="Runnable" seed="1127585546" result="Passed" start-time="2026-10-11 15:48:58Z" end-time="2026-10-11 15:48:58Z" duration="0.000213" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:/Users/creep/AppData/LocalLow/DefaultCompany/codeRedUnity\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="7" result="Passed" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-11 15:42:22Z" end-time="2026-10-11 15:42:24Z" duration="2.3133926">
+  <test-suite type="TestSuite" id="1000" name="codeRedUnity" fullname="codeRedUnity" runstate="Runnable" testcasecount="473" result="Passed" start-time="2026-10-11 15:42:22Z" end-time="2026-10-11 15:42:24Z" duration="2.313393" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1560" name="HandPose.Tests.EditMode.dll" fullname="C:/Users/creep/Desktop/Projects/codeRed 2026/.verification/HandPoseBaseline/Library/ScriptAssemblies/HandPose.Tests.EditMode.dll" runstate="Runnable" testcasecount="473" result="Passed" start-time="2026-10-11 15:42:22Z" end-time="2026-10-11 15:42:24Z" duration="2.249051" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="22308" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1561" name="HandPoseRecognition" fullname="HandPoseRecognition" runstate="Runnable" testcasecount="473" result="Passed" start-time="2026-10-11 15:42:22Z" end-time="2026-10-11 15:42:24Z" duration="2.248227" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1562" name="Tests" fullname="HandPoseRecognition.Tests" runstate="Runnable" testcasecount="473" result="Passed" start-time="2026-10-11 15:42:22Z" end-time="2026-10-11 15:42:24Z" duration="2.247824" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1016" name="GestureComponentTests" fullname="HandPoseRecognition.Tests.GestureComponentTests" classname="HandPoseRecognition.Tests.GestureComponentTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-10-11 15:42:22Z" end-time="2026-10-11 15:42:24Z" duration="2.241274" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1017" name="AdapterStreamPublishesEveryDynamicAndLossButNeverBeforeRender" fullname="HandPoseRecognition.Tests.GestureComponentTests.AdapterStreamPublishesEveryDynamicAndLossButNeverBeforeRender" methodname="AdapterStreamPublishesEveryDynamicAndLossButNeverBeforeRender" classname="HandPoseRecognition.Tests.GestureComponentTests" runstate="Runnable" seed="552795648" result="Passed" start-time="2026-10-11 15:42:13Z" end-time="2026-10-11 15:42:13Z" duration="0.039350" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1019" name="ComponentsHonorFalseSourceReturnEvenWithNonnullFrame" fullname="HandPoseRecognition.Tests.GestureComponentTests.ComponentsHonorFalseSourceReturnEvenWithNonnullFrame" methodname="ComponentsHonorFalseSourceReturnEvenWithNonnullFrame" classname="HandPoseRecognition.Tests.GestureComponentTests" runstate="Runnable" seed="1370357098" result="Passed" start-time="2026-10-11 15:42:13Z" end-time="2026-10-11 15:42:13Z" duration="0.012615" asserts="0">
+              <properties />
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1023" name="DisabledOrDestroyedRequiredSourceInvalidatesRecordingImmediately" fullname="HandPoseRecognition.Tests.GestureComponentTests.DisabledOrDestroyedRequiredSourceInvalidatesRecordingImmediately" classname="HandPoseRecognition.Tests.GestureComponentTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11 15:42:22Z" end-time="2026-10-11 15:42:22Z" duration="0.000765" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1021" name="DisabledOrDestroyedRequiredSourceInvalidatesRecordingImmediately(False)" fullname="HandPoseRecognition.Tests.GestureComponentTests.DisabledOrDestroyedRequiredSourceInvalidatesRecordingImmediately(False)" methodname="DisabledOrDestroyedRequiredSourceInvalidatesRecordingImmediately" classname="HandPoseRecognition.Tests.GestureComponentTests" runstate="Runnable" seed="86767903" result="Passed" start-time="2026-10-11 15:42:13Z" end-time="2026-10-11 15:42:13Z" duration="0.006912" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1022" name="DisabledOrDestroyedRequiredSourceInvalidatesRecordingImmediately(True)" fullname="HandPoseRecognition.Tests.GestureComponentTests.DisabledOrDestroyedRequiredSourceInvalidatesRecordingImmediately(True)" methodname="DisabledOrDestroyedRequiredSourceInvalidatesRecordingImmediately" classname="HandPoseRecognition.Tests.GestureComponentTests" runstate="Runnable" seed="703331139" result="Passed" start-time="2026-10-11 15:42:13Z" end-time="2026-10-11 15:42:13Z" duration="0.000360" asserts="0">
+                <properties />
+              </test-case>
+            </test-suite>
+            <test-case id="1020" name="MotionComponentsCaptureCompleteLiveSequenceAndClearOnDisable" fullname="HandPoseRecognition.Tests.GestureComponentTests.MotionComponentsCaptureCompleteLiveSequenceAndClearOnDisable" methodname="MotionComponentsCaptureCompleteLiveSequenceAndClearOnDisable" classname="HandPoseRecognition.Tests.GestureComponentTests" runstate="Runnable" seed="1814457952" result="Passed" start-time="2026-10-11 15:42:13Z" end-time="2026-10-11 15:42:18Z" duration="5.143862" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+              </properties>
+              <output><![CDATA[[HandGestureController] Idle -> Armed; gesture=synthetic.motion.Z; Ready; begin the complete movement.
+[HandGestureController] Armed -> Tracking; gesture=synthetic.motion.Z; Follow the whole movement.
+[HandGestureController] Tracking -> Completed; gesture=synthetic.motion.Z; Complete motion confirmed. Release before repeating.
+[HandGestureController] Completed -> AwaitRearm; gesture=synthetic.motion.Z; Complete motion confirmed. Release before repeating.
+[HandGestureController] AwaitRearm -> Idle; gesture=none; Motion component disabled.
+]]></output>
+            </test-case>
+            <test-case id="1018" name="ReferenceProviderFreezesNumericalAxesButDetectsRigChanges" fullname="HandPoseRecognition.Tests.GestureComponentTests.ReferenceProviderFreezesNumericalAxesButDetectsRigChanges" methodname="ReferenceProviderFreezesNumericalAxesButDetectsRigChanges" classname="HandPoseRecognition.Tests.GestureComponentTests" runstate="Runnable" seed="1248576731" result="Passed" start-time="2026-10-11 15:42:18Z" end-time="2026-10-11 15:42:18Z" duration="0.006051" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1024" name="ZFeedbackFlashesThenStaysThroughLossResetAndDisable" fullname="HandPoseRecognition.Tests.GestureComponentTests.ZFeedbackFlashesThenStaysThroughLossResetAndDisable" methodname="ZFeedbackFlashesThenStaysThroughLossResetAndDisable" classname="HandPoseRecognition.Tests.GestureComponentTests" runstate="Runnable" seed="1341118990" result="Passed" start-time="2026-10-11 15:42:18Z" end-time="2026-10-11 15:42:24Z" duration="5.761119" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[HandGestureController] Idle -> Armed; gesture=asl.letter.j; Ready; begin the complete movement.
+[HandGestureController] Armed -> Tracking; gesture=asl.letter.j; Follow the whole movement.
+[HandGestureController] Tracking -> Completed; gesture=asl.letter.j; Complete motion confirmed. Release before repeating.
+[HandGestureController] Completed -> AwaitRearm; gesture=asl.letter.j; Complete motion confirmed. Release before repeating.
+[HandGestureController] AwaitRearm -> Idle; gesture=none; Motion state reset.
+[HandGestureController] Idle -> Armed; gesture=asl.letter.z; Ready; begin the complete movement.
+[HandGestureController] Armed -> Tracking; gesture=asl.letter.z; Follow the whole movement.
+[HandGestureController] Tracking -> Completed; gesture=asl.letter.z; Complete motion confirmed. Release before repeating.
+[HandGestureController] Completed -> AwaitRearm; gesture=asl.letter.z; Complete motion confirmed. Release before repeating.
+[HandGestureController] AwaitRearm -> Idle; gesture=none; Motion state reset.
+Saving results to: C:/Users/creep/AppData/LocalLow/DefaultCompany/codeRedUnity\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

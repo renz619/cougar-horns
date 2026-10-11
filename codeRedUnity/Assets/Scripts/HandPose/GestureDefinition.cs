@@ -13,12 +13,15 @@ namespace HandPoseRecognition
     [Serializable]
     public sealed class GestureMotionSettings
     {
-        public double MinDurationSeconds = .15, MaxDurationSeconds = 2;
-        public int MaxFrames = 256, MaxAttempts = 512, ResampleCount = 64, DtwBand = 12, MaxWarpRun = 2;
+        public double MinDurationSeconds = .15, MaxDurationSeconds = 6;
+        public int MaxFrames = 768, MaxAttempts = 1536, ResampleCount = 64, DtwBand = 16, MaxWarpRun = 3;
         public double MaxGapSeconds = .12, MaxFrameAgeSeconds = .25, SmoothingSeconds = .025;
-        public double MaxError = .25, MinExcursion = .45, MinPathLength = .8, MaxSpeedPalmWidthsPerSecond = 40;
+        public double MaxError = .4, MinExcursion = .45, MinPathLength = .8, MaxSpeedPalmWidthsPerSecond = 40;
         public double TipWeight = 1, WristWeight = .15, OrientationWeight = .15, OrientationScaleDegrees = 90;
-        public double StrokeThreshold = .15, EndPauseSeconds = .18, StartMovementThreshold = .12;
+        public double StrokeThreshold = .10;
+        [Tooltip("Allowed vertical drift of Z's top and bottom strokes, in initial palm widths.")]
+        public double StrokeVerticalTolerance = .35;
+        public double EndPauseSeconds = .18, StartMovementThreshold = .12;
         public double PreMovementSeconds = .15, PauseMovementThreshold = .04;
         public int PreMovementFrames = 12;
         public double RearmSeconds = .2, CooldownSeconds = .5;
@@ -53,6 +56,7 @@ namespace HandPoseRecognition
                 report.Add(path + "/FeatureWeights", "The complete feature-weight sum must remain finite.");
             Positive(OrientationScaleDegrees, nameof(OrientationScaleDegrees), report, path);
             Positive(StrokeThreshold, nameof(StrokeThreshold), report, path);
+            Positive(StrokeVerticalTolerance, nameof(StrokeVerticalTolerance), report, path);
             Positive(EndPauseSeconds, nameof(EndPauseSeconds), report, path);
             Positive(StartMovementThreshold, nameof(StartMovementThreshold), report, path);
             Positive(PreMovementSeconds, nameof(PreMovementSeconds), report, path);

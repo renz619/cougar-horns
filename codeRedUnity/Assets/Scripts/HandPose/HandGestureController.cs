@@ -40,10 +40,15 @@ namespace HandPoseRecognition
         }
         void OnEnable()
         {
+            m_Session.StateChanged += LogStateChange;
             m_Session.Reset(); m_Session.GestureConfirmed += Forward;
             m_Input = new HandGestureInput(Process); Configure(); RebuildCatalog();
         }
-        void OnDisable() { m_Input?.Dispose(); m_Input = null; m_Session.GestureConfirmed -= Forward; m_Session.Reset("Motion component disabled."); }
+        void OnDisable() { m_Input?.Dispose(); m_Input = null; m_Session.GestureConfirmed -= Forward; m_Session.Reset("Motion component disabled."); m_Session.StateChanged -= LogStateChange; }
+        void LogStateChange(GestureRecognitionState previous, GestureRecognitionState next, string reason)
+        {
+            Debug.Log($"[HandGestureController] {previous} -> {next}; gesture={m_Session.ConfirmedGestureId ?? m_Session.PendingGestureId ?? "none"}; {reason}", this);
+        }
         void Forward(GestureRecognitionResult result) => GestureConfirmed?.Invoke(result);
         void Configure()
         {

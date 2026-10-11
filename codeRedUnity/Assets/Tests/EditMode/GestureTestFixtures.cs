@@ -10,7 +10,10 @@ namespace HandPoseRecognition.Tests
     {
         public static GestureDefinition Definition(GestureMotionKind kind = GestureMotionKind.Z, string id = null)
             => new GestureDefinition { GestureId = id ?? "synthetic.motion." + kind, DisplayName = "SYNTHETIC " + kind,
-                MotionKind = kind, Variant = "Synthetic software fixture", Provenance = "Generated test geometry; not ASL validation" };
+                MotionKind = kind, Variant = "Synthetic software fixture", Provenance = "Generated test geometry; not ASL validation",
+                // Fixed original test profile: production tuning must not change these reference cases.
+                Settings = new GestureMotionSettings { MaxDurationSeconds = 2, MaxFrames = 256, MaxAttempts = 512,
+                    DtwBand = 12, MaxWarpRun = 2, MaxError = .25, StrokeThreshold = .15, StrokeVerticalTolerance = .15 } };
 
         public static HandFrame Frame(GestureMotionKind kind, Vector3 tipPath, double time, ulong sequence,
             float wristAngle = 0, Quaternion? basis = null, Vector3? origin = null, float scale = 1, bool tracked = true, bool wrongShape = false)
