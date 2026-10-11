@@ -56,9 +56,10 @@ namespace HandPoseRecognition
 
         /// <summary>
         /// Debug text listing all five finger states, with the thumb's raw
-        /// tip-distance ratio so thresholds can be tuned on the headset, e.g.
-        /// "Thumb Extended (0.72) | Index Curled | Middle Curled | Ring Curled | Little Curled".
-        /// The ratio reads "n/a" when the hand isn't tracked or the thumb data is invalid.
+        /// tip-distance ratio and each other finger's total curl in degrees,
+        /// so thresholds can be tuned on the headset, e.g.
+        /// "Thumb Extended (0.72) | Index Curled (240.00°) | ...".
+        /// Measurements read "n/a" when tracking or the required joint data is invalid.
         /// </summary>
         public static string DescribeFingerStates(in HandJointData hand, HandPoseClassifierSettings settings)
         {
@@ -69,14 +70,19 @@ namespace HandPoseRecognition
             var ratioText = float.IsNaN(ratio) ? "n/a" : ratio.ToString("0.00", CultureInfo.InvariantCulture);
 
             return $"Thumb {HandPoseClassifier.ClassifyThumb(hand, settings)} ({ratioText})"
-                + $" | Index {FingerStateFor(hand, hand.index, settings)}"
-                + $" | Middle {FingerStateFor(hand, hand.middle, settings)}"
-                + $" | Ring {FingerStateFor(hand, hand.ring, settings)}"
-                + $" | Little {FingerStateFor(hand, hand.little, settings)}";
+                + $" | Index {DescribeFinger(hand, hand.index, settings)}"
+                + $" | Middle {DescribeFinger(hand, hand.middle, settings)}"
+                + $" | Ring {DescribeFinger(hand, hand.ring, settings)}"
+                + $" | Little {DescribeFinger(hand, hand.little, settings)}";
         }
 
-        static FingerState FingerStateFor(in HandJointData hand, in FingerJoints finger, HandPoseClassifierSettings settings) =>
-            hand.isTracked ? HandPoseClassifier.ClassifyFinger(finger, settings) : FingerState.Unknown;
+        static string DescribeFinger(in HandJointData hand, in FingerJoints finger, HandPoseClassifierSettings settings)
+        {
+            var state = hand.isTracked ? HandPoseClassifier.ClassifyFinger(finger, settings) : FingerState.Unknown;
+            var curl = hand.isTracked ? HandPoseClassifier.FingerCurlDegrees(finger) : float.NaN;
+            var curlText = float.IsNaN(curl) ? "n/a" : curl.ToString("0.00", CultureInfo.InvariantCulture) + "°";
+            return $"{state} ({curlText})";
+        }
 
         /// <summary>
         /// Debug text listing the spread of each adjacent finger pair with its

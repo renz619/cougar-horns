@@ -23,7 +23,7 @@ namespace HandPoseRecognition.Tests
             var hand = FakeHandData.WithThumb(FakeHandData.Hand(k_FistBend), FakeHandData.Thumb(45f, 0f));
 
             Assert.AreEqual(
-                "Thumb Extended (0.91) | Index Curled | Middle Curled | Ring Curled | Little Curled",
+                "Thumb Extended (0.91) | Index Curled (240.00°) | Middle Curled (240.00°) | Ring Curled (240.00°) | Little Curled (240.00°)",
                 HandPoseDisplay.DescribeFingerStates(hand, m_Settings));
         }
 
@@ -34,7 +34,7 @@ namespace HandPoseRecognition.Tests
             var hand = FakeHandData.WithThumb(FakeHandData.Hand(k_OpenBend), FakeHandData.Thumb(0f, 60f));
 
             Assert.AreEqual(
-                "Thumb Curled (0.33) | Index Extended | Middle Extended | Ring Extended | Little Extended",
+                "Thumb Curled (0.33) | Index Extended (15.00°) | Middle Extended (15.00°) | Ring Extended (15.00°) | Little Extended (15.00°)",
                 HandPoseDisplay.DescribeFingerStates(hand, m_Settings));
         }
 
@@ -54,7 +54,7 @@ namespace HandPoseRecognition.Tests
             var hand = FakeHandData.Hand(k_FistBend);
 
             Assert.AreEqual(
-                "Thumb Unknown (n/a) | Index Curled | Middle Curled | Ring Curled | Little Curled",
+                "Thumb Unknown (n/a) | Index Curled (240.00°) | Middle Curled (240.00°) | Ring Curled (240.00°) | Little Curled (240.00°)",
                 HandPoseDisplay.DescribeFingerStates(hand, m_Settings));
         }
 
@@ -65,7 +65,7 @@ namespace HandPoseRecognition.Tests
             hand.isTracked = false;
 
             Assert.AreEqual(
-                "Thumb Unknown (n/a) | Index Unknown | Middle Unknown | Ring Unknown | Little Unknown",
+                "Thumb Unknown (n/a) | Index Unknown (n/a) | Middle Unknown (n/a) | Ring Unknown (n/a) | Little Unknown (n/a)",
                 HandPoseDisplay.DescribeFingerStates(hand, m_Settings));
         }
     }

@@ -66,7 +66,7 @@ namespace HandPoseRecognition.Tests
             WithDisplay((adapter, display, label) =>
             {
                 Assert.AreEqual(
-                    "Thumb Unknown (n/a) | Index Unknown | Middle Unknown | Ring Unknown | Little Unknown",
+                    "Thumb Unknown (n/a) | Index Unknown (n/a) | Middle Unknown (n/a) | Ring Unknown (n/a) | Little Unknown (n/a)",
                     display.currentFingerStates);
                 StringAssert.Contains("Thumb Unknown (n/a)", label.text);
             });
