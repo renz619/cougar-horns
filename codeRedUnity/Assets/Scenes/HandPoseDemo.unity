@@ -291,7 +291,7 @@ MonoBehaviour:
   m_Settings:
     extendedMaxCurlDegrees: 70
     curledMinCurlDegrees: 160
-    thumbExtendedMinTipDistanceRatio: 0.6
+    thumbExtendedMinTipDistanceRatio: 0.75
     thumbCurledMaxTipDistanceRatio: 0.45
     spreadTogetherMaxRatio: 0.1
     spreadApartMinRatio: 0.25
