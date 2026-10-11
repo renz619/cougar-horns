@@ -26,11 +26,37 @@ namespace HandPoseRecognition.Tests
         }
 
         [Test]
+        public void TrackedThumb_UsesFourMeasuredJointsAndSameMaterialInTrackingSpace()
+        {
+            WithVisualizer((adapter, visualizer, trackingSpace, lines) =>
+            {
+                var hand = FakeHandData.WithThumb(FakeHandData.Hand(5f), FakeHandData.Thumb(45f, 0f));
+                SetField(adapter, "m_CurrentHand", hand);
+                Invoke(visualizer, "LateUpdate");
+
+                Assert.AreEqual(5, lines.Length);
+                var thumb = lines[4];
+                Assert.IsTrue(thumb.enabled);
+                Assert.AreEqual(trackingSpace, thumb.transform.parent);
+                Assert.IsFalse(thumb.useWorldSpace);
+                Assert.AreSame(lines[0].sharedMaterial, thumb.sharedMaterial);
+                Assert.AreEqual(4, thumb.positionCount);
+                Assert.AreEqual(hand.thumb.metacarpal, thumb.GetPosition(0));
+                Assert.AreEqual(hand.thumb.proximal, thumb.GetPosition(1));
+                Assert.AreEqual(hand.thumb.distal, thumb.GetPosition(2));
+                Assert.AreEqual(hand.thumb.tip, thumb.GetPosition(3));
+                Assert.AreEqual(trackingSpace.TransformPoint(hand.thumb.tip),
+                    thumb.transform.TransformPoint(thumb.GetPosition(3)));
+            });
+        }
+
+        [Test]
         public void TrackingLoss_HidesPreviouslyVisibleFingers()
         {
             WithVisualizer((adapter, visualizer, trackingSpace, lines) =>
             {
-                SetField(adapter, "m_CurrentHand", FakeHandData.Hand(5f));
+                var hand = FakeHandData.WithThumb(FakeHandData.Hand(5f), FakeHandData.Thumb(45f, 0f));
+                SetField(adapter, "m_CurrentHand", hand);
                 Invoke(visualizer, "LateUpdate");
                 foreach (var line in lines)
                     Assert.IsTrue(line.enabled);
@@ -47,7 +73,7 @@ namespace HandPoseRecognition.Tests
         {
             WithVisualizer((adapter, visualizer, trackingSpace, lines) =>
             {
-                var hand = FakeHandData.Hand(5f);
+                var hand = FakeHandData.WithThumb(FakeHandData.Hand(5f), FakeHandData.Thumb(45f, 0f));
                 hand.index.isValid = false;
                 SetField(adapter, "m_CurrentHand", hand);
                 Invoke(visualizer, "LateUpdate");
@@ -55,6 +81,48 @@ namespace HandPoseRecognition.Tests
                 Assert.IsTrue(lines[1].enabled);
                 Assert.IsTrue(lines[2].enabled);
                 Assert.IsTrue(lines[3].enabled);
+                // Thumb rendering depends on its own joints, not the index
+                // data used by the separate thumb-state classifier.
+                Assert.IsTrue(lines[4].enabled);
+            });
+        }
+
+        public enum InvalidThumbCase { Missing, Coincident, NaN, Infinity }
+
+        [TestCase(InvalidThumbCase.Missing)]
+        [TestCase(InvalidThumbCase.Coincident)]
+        [TestCase(InvalidThumbCase.NaN)]
+        [TestCase(InvalidThumbCase.Infinity)]
+        public void InvalidThumb_HidesOnlyThumb(InvalidThumbCase invalidCase)
+        {
+            WithVisualizer((adapter, visualizer, trackingSpace, lines) =>
+            {
+                var hand = FakeHandData.WithThumb(FakeHandData.Hand(5f), FakeHandData.Thumb(45f, 0f));
+                SetField(adapter, "m_CurrentHand", hand);
+                Invoke(visualizer, "LateUpdate");
+                Assert.IsTrue(lines[4].enabled);
+
+                switch (invalidCase)
+                {
+                    case InvalidThumbCase.Missing:
+                        hand.thumb.isValid = false;
+                        break;
+                    case InvalidThumbCase.Coincident:
+                        hand.thumb.distal = hand.thumb.proximal;
+                        break;
+                    case InvalidThumbCase.NaN:
+                        hand.thumb.tip = new Vector3(float.NaN, 0f, 0f);
+                        break;
+                    case InvalidThumbCase.Infinity:
+                        hand.thumb.tip = new Vector3(float.PositiveInfinity, 0f, 0f);
+                        break;
+                }
+
+                SetField(adapter, "m_CurrentHand", hand);
+                Invoke(visualizer, "LateUpdate");
+                Assert.IsFalse(lines[4].enabled);
+                for (var i = 0; i < 4; ++i)
+                    Assert.IsTrue(lines[i].enabled);
             });
         }
 

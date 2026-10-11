@@ -2,8 +2,10 @@
 
 Open `Assets/Scenes/HandPoseDemo.unity` and use Unity Play mode with Quest Link.
 The default reader tracks your **right hand**. The demo shows a pose label and
-four cyan finger outlines when real joint positions are available. The thumb
-is not part of the current classifier or outline. The scene does not display
+five cyan outlines (including the thumb) when real joint positions are available.
+The thumb outline connects its four joints using the same renderer and material
+as the other fingers. The thumb's state appears in the debug text, but it does
+not affect the current OPEN/FIST classifier. The scene does not display
 a camera video feed.
 
 ## Headset check
@@ -57,5 +59,5 @@ demos; rebuilding the scene is not needed after this fix.
 
 Use **Window > General > Test Runner > EditMode > Run All**. Tests cover the
 classifier, status changes while the pose remains UNKNOWN, measured finger
-positions in tracking space, invalid fingers, and hiding outlines on tracking
-loss. Synthetic tests do not replace a real headset test.
+positions in tracking space (including the thumb), invalid fingers, and hiding
+outlines on tracking loss. Synthetic tests do not replace a real headset test.

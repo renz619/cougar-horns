@@ -3,8 +3,9 @@ using UnityEngine;
 namespace HandPoseRecognition
 {
     /// <summary>
-    /// Draws the same four fingers that the classifier reads. No pose data is
-    /// invented when tracking is missing, and no sample hand mesh is required.
+    /// Draws all five digits from the adapter's measured joint positions.
+    /// No pose data is invented when tracking is missing, and no sample hand
+    /// mesh is required.
     /// </summary>
     public class HandJointVisualizer : MonoBehaviour
     {
@@ -13,7 +14,7 @@ namespace HandPoseRecognition
         Transform m_TrackingSpace;
         [SerializeField] Material m_Material;
 
-        readonly LineRenderer[] m_Fingers = new LineRenderer[4];
+        readonly LineRenderer[] m_Fingers = new LineRenderer[5];
 
         void Start()
         {
@@ -24,7 +25,7 @@ namespace HandPoseRecognition
                 return;
             }
 
-            var names = new[] { "Index", "Middle", "Ring", "Little" };
+            var names = new[] { "Index", "Middle", "Ring", "Little", "Thumb" };
             for (var i = 0; i < m_Fingers.Length; ++i)
             {
                 var fingerObject = new GameObject($"Tracked {names[i]} Finger");
@@ -32,7 +33,7 @@ namespace HandPoseRecognition
                 var line = fingerObject.AddComponent<LineRenderer>();
                 line.sharedMaterial = m_Material;
                 line.useWorldSpace = false;
-                line.positionCount = 5;
+                line.positionCount = i == 4 ? 4 : 5;
                 line.startWidth = line.endWidth = 0.005f;
                 line.numCapVertices = 4;
                 line.numCornerVertices = 4;
@@ -52,27 +53,47 @@ namespace HandPoseRecognition
             }
 
             var hand = m_Adapter.currentHand;
-            DrawFinger(m_Fingers[0], hand.index, hand.isTracked);
-            DrawFinger(m_Fingers[1], hand.middle, hand.isTracked);
-            DrawFinger(m_Fingers[2], hand.ring, hand.isTracked);
-            DrawFinger(m_Fingers[3], hand.little, hand.isTracked);
+            DrawFinger(m_Fingers[0], hand.isTracked, hand.index.isValid,
+                hand.index.metacarpal, hand.index.proximal, hand.index.distal, hand.index.tip, hand.index.intermediate);
+            DrawFinger(m_Fingers[1], hand.isTracked, hand.middle.isValid,
+                hand.middle.metacarpal, hand.middle.proximal, hand.middle.distal, hand.middle.tip, hand.middle.intermediate);
+            DrawFinger(m_Fingers[2], hand.isTracked, hand.ring.isValid,
+                hand.ring.metacarpal, hand.ring.proximal, hand.ring.distal, hand.ring.tip, hand.ring.intermediate);
+            DrawFinger(m_Fingers[3], hand.isTracked, hand.little.isValid,
+                hand.little.metacarpal, hand.little.proximal, hand.little.distal, hand.little.tip, hand.little.intermediate);
+            DrawFinger(m_Fingers[4], hand.isTracked, hand.thumb.isValid,
+                hand.thumb.metacarpal, hand.thumb.proximal, hand.thumb.distal, hand.thumb.tip);
         }
 
-        static void DrawFinger(LineRenderer line, in FingerJoints finger, bool isTracked)
+        static void DrawFinger(LineRenderer line, bool isTracked, bool isValid,
+            Vector3 metacarpal, Vector3 proximal, Vector3 distal, Vector3 tip, Vector3? intermediate = null)
         {
             if (line == null)
                 return;
 
-            // This also rejects coincident, NaN, or infinite joint positions.
-            line.enabled = isTracked && !float.IsNaN(HandPoseClassifier.FingerCurlDegrees(finger));
+            // All digits share the same geometry checks. The thumb has no
+            // intermediate joint, so its outline connects proximal to distal.
+            var middle = intermediate ?? proximal;
+            line.enabled = isTracked && isValid
+                && IsUsableSegment(proximal - metacarpal)
+                && (!intermediate.HasValue || IsUsableSegment(middle - proximal))
+                && IsUsableSegment(distal - middle)
+                && IsUsableSegment(tip - distal);
             if (!line.enabled)
                 return;
 
-            line.SetPosition(0, finger.metacarpal);
-            line.SetPosition(1, finger.proximal);
-            line.SetPosition(2, finger.intermediate);
-            line.SetPosition(3, finger.distal);
-            line.SetPosition(4, finger.tip);
+            line.SetPosition(0, metacarpal);
+            line.SetPosition(1, proximal);
+            if (intermediate.HasValue)
+                line.SetPosition(2, middle);
+            line.SetPosition(line.positionCount - 2, distal);
+            line.SetPosition(line.positionCount - 1, tip);
+        }
+
+        static bool IsUsableSegment(Vector3 segment)
+        {
+            var length = segment.magnitude;
+            return !float.IsNaN(length) && !float.IsInfinity(length) && length >= 1e-4f;
         }
 
         void OnDisable() => HideFingers();
